@@ -28,37 +28,42 @@ module.exports = {
       const cookieStr = appState.map(c => `${c.key}=${c.value}`).join('; ');
       const botID = api.getCurrentUserID();
 
-      // Fetch Facebook homepage to get fresh fb_dtsg and jazoest tokens
-      const res = await axios.get("https://www.facebook.com/", {
-        headers: {
-          "Cookie": cookieStr,
-          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36",
-          "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8"
-        }
-      });
-
-      // Extract tokens using regex
       let fb_dtsg = "";
       let jazoest = "";
       
-      const dtsgMatch = res.data.match(/"name":"fb_dtsg","value":"([^"]+)"/);
-      const jazoestMatch = res.data.match(/"name":"jazoest","value":"([^"]+)"/);
-      
-      if (dtsgMatch) fb_dtsg = dtsgMatch[1];
-      if (jazoestMatch) jazoest = jazoestMatch[1];
+      try {
+        // Fetch Facebook homepage to get fresh fb_dtsg and jazoest tokens
+        const res = await axios.get("https://www.facebook.com/profile.php", {
+          headers: {
+            "Cookie": cookieStr,
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36",
+            "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8",
+            "sec-fetch-site": "none",
+            "sec-fetch-mode": "navigate",
+            "sec-fetch-user": "?1",
+            "sec-fetch-dest": "document"
+          }
+        });
 
-      if (!fb_dtsg) {
-          // Alternative regex for some Facebook layouts
-          const altDtsgMatch = res.data.match(/\["DTSGInitialData",\[\],\{"token":"([^"]+)"/);
-          if (altDtsgMatch) fb_dtsg = altDtsgMatch[1];
+        const dtsgMatch = res.data.match(/"name":"fb_dtsg","value":"([^"]+)"/);
+        const jazoestMatch = res.data.match(/"name":"jazoest","value":"([^"]+)"/);
+        
+        if (dtsgMatch) fb_dtsg = dtsgMatch[1];
+        if (jazoestMatch) jazoest = jazoestMatch[1];
+
+        if (!fb_dtsg) {
+            const altDtsgMatch = res.data.match(/\["DTSGInitialData",\[\],\{"token":"([^"]+)"/);
+            if (altDtsgMatch) fb_dtsg = altDtsgMatch[1];
+        }
+      } catch (err) {
+        return message.reply("❌ GET request error (fb_dtsg): " + err.message);
       }
 
       if (!fb_dtsg) {
         return message.reply("❌ ফেসবুকের সিকিউরিটি টোকেন (fb_dtsg) এক্সট্র্যাক্ট করতে ব্যর্থ হয়েছি।");
       }
 
-      // Hardcoded tokens from user's network trace
-      const sectionToken = "YXBwX3NlY3Rpb246NjE1ODI2MjgyMzE3Mjg6MjMyNzE1ODIyNw=="; // Base64 for app_section:BOT_ID:2327158227
+      const sectionToken = "YXBwX3NlY3Rpb246NjE1ODI2MjgyMzE3Mjg6MjMyNzE1ODIyNw==";
       const collectionToken = "YXBwX2NvbGxlY3Rpb246cGZiaWQwTGlmZ2toNzRtUjFreXNrN0VkU2l6b1d3em9xUUQ0dUNQZlNXUnFRa1pudjRCWlB3Y1RXRVVaVjZ4djd1WmROZkd3Wko3Wllrb0Q2aVFLUWY3Y1VlOEhBNHhrWmhXbA==";
 
       const variables = {
@@ -92,25 +97,32 @@ module.exports = {
       formData.append('variables', JSON.stringify(variables));
       formData.append('doc_id', '27314313718254937');
 
-      // Send the GraphQL mutation
-      const mutationRes = await axios.post("https://www.facebook.com/api/graphql/", formData.toString(), {
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-          "Cookie": cookieStr,
-          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"
-        }
-      });
+      try {
+        const mutationRes = await axios.post("https://www.facebook.com/api/graphql/", formData.toString(), {
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            "Cookie": cookieStr,
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36",
+            "Origin": "https://www.facebook.com",
+            "Referer": `https://www.facebook.com/profile.php?id=${botID}`,
+            "X-FB-Friendly-Name": "ProfileCometUserUpdateRelationshipStatusMutation",
+            "Sec-Fetch-Site": "same-origin",
+            "Sec-Fetch-Mode": "cors"
+          }
+        });
 
-      if (mutationRes.data && mutationRes.data.data && mutationRes.data.data.user_update_relationship_status) {
-        return message.reply("✅ ১০০% নিশ্চিত! আপনার রিলেশনশিপ স্ট্যাটাস সফলভাবে Single করা হয়েছে!");
-      } else {
-        console.log("Mutation Response:", JSON.stringify(mutationRes.data));
-        return message.reply("❌ স্ট্যাটাস আপডেট হয়েছে কিনা নিশ্চিত নয়। রেসপন্স: " + JSON.stringify(mutationRes.data).substring(0, 100));
+        if (mutationRes.data && mutationRes.data.data && mutationRes.data.data.user_update_relationship_status) {
+          return message.reply("✅ ১০০% নিশ্চিত! আপনার রিলেশনশিপ স্ট্যাটাস সফলভাবে Single করা হয়েছে!");
+        } else {
+          return message.reply("❌ স্ট্যাটাস আপডেট হয়েছে কিনা নিশ্চিত নয়। রেসপন্স: " + JSON.stringify(mutationRes.data).substring(0, 100));
+        }
+      } catch (err) {
+        return message.reply("❌ POST request error (GraphQL): " + err.message);
       }
       
     } catch (error) {
       console.error(error);
-      return message.reply("❌ স্ট্যাটাস আপডেট করতে এরর হয়েছে: " + error.message);
+      return message.reply("❌ Unknown Error: " + error.message);
     }
   }
 };
