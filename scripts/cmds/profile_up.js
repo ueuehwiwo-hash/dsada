@@ -39,25 +39,30 @@ module.exports = {
       api.changeAvatar(imageStream, captionText, null, (err, info) => {
         let isSuccess = false;
         let postUrl = "";
+        let postID = "";
 
         if (!err && info) {
             isSuccess = true;
-            if (typeof info === "string") postUrl = info;
-            else postUrl = info.postUrl || info.url || "";
+            postID = info.postID || info.post_id || info.fbid || info.id || info.story_fbid || info.storyID || "";
         } else if (err && err.data) {
             isSuccess = true; 
             try {
-                if (err.data.story_create && err.data.story_create.story && err.data.story_create.story.url) {
-                    postUrl = err.data.story_create.story.url;
-                } else if (err.data.story_create && err.data.story_create.post_id) {
-                    postUrl = "https://facebook.com/" + err.data.story_create.post_id;
-                } else if (err.url) {
-                    postUrl = err.url;
-                }
+                postID = err.data.story_create?.post_id || err.data.story_create?.story?.id || "";
             } catch (e) {}
         }
+        
+        // Try extracting fbid from err or info if it's a string
+        try {
+            const rawData = JSON.stringify(info || err || {});
+            const fbidMatch = rawData.match(/"(?:post_id|fbid|postID)"\s*:\s*"?(\d+)"?/);
+            if (!postID && fbidMatch) {
+                postID = fbidMatch[1];
+            }
+        } catch(e){}
 
-        if (!postUrl && isSuccess) {
+        if (postID) {
+            postUrl = "https://www.facebook.com/photo.php?fbid=" + postID;
+        } else if (isSuccess) {
             postUrl = "https://www.facebook.com/profile.php?id=" + api.getCurrentUserID();
         }
 
