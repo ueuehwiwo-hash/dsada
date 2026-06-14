@@ -21,7 +21,7 @@ async function getAvatar(api, userID) {
         const url = info[userID].thumbSrc;
         return await loadImage(url);
     } catch {
-        return await loadImage('https://i.imgur.com/gK9u5iL.png');
+        return await loadImage(__dirname + "/assets/richest_bg.png");
     }
 }
 

@@ -17,11 +17,7 @@ module.exports = {
   },
 
   onStart: async function ({ api, message, event, usersData }) {
-	const owner = module.exports.config;
-	const eAuth = "UmFraWIgQWRpbA==";
-	const dAuth = Buffer.from(eAuth, "base64").toString("utf8");
-		if(owner.author !== dAuth) return message.reply("you've changed the author name, please set it to default(Rakib Adil) otherwise this command will not work.🙂");
-
+    const config = module.exports.config;
     let one = event.senderID, two;
     const mention = Object.keys(event.mentions);
     if(mention.length > 0){

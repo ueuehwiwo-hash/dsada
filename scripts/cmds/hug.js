@@ -18,12 +18,6 @@ module.exports = {
 
   onStart: async function ({ api, message, event, usersData }) {
     const config = module.exports.config;
-    const eAuth = "UmFraWIgQWRpbA==";
-    const dAuth = Buffer.from(eAuth, "base64").toString("utf8");
-    if (config.author !== dAuth) {
-      return message.reply("⚠️ Command author mismatch. Please restore original author name to use this command.");
-    }
-
     let one = event.senderID, two;
     const mention = Object.keys(event.mentions);
     

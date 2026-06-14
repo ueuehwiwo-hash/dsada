@@ -66,8 +66,8 @@ module.exports = {
 					+ "\n    {pn} subcolor rgba(255,136,86,0.4)"
 					+ "\n    {pn} reset",
 				attachment: {
-					[`${__dirname}/assets/guide/customrankcard_1.jpg`]: "https://i.ibb.co/BZ2Qgs1/image.png",
-					[`${__dirname}/assets/guide/customrankcard_2.png`]: "https://i.ibb.co/wy1ZHHL/image.png"
+					[`${__dirname}/assets/guide/customrankcard_1.jpg`]: __dirname + "/assets/customrankcard_bg1.png",
+					[`${__dirname}/assets/guide/customrankcard_2.png`]: __dirname + "/assets/customrankcard_bg2.png"
 				}
 			}
 		}
