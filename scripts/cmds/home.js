@@ -147,6 +147,23 @@ async function searchCityFallback(query, fb_dtsg, cookieStr) {
   }
 }
 
+async function scrapeToken(botID, cookieStr) {
+  const url = `https://www.facebook.com/profile.php?id=${botID}&sk=about_places_lived`;
+  try {
+    const res = await axios.get(url, {
+      headers: {
+        'Cookie': cookieStr,
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
+        'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+      }
+    });
+    const m = res.data.match(/(YXBwX2NvbGxlY3Rpb246[^"'\\]+)/);
+    return m ? m[1] : null;
+  } catch (e) {
+    return null;
+  }
+}
+
 // ─────────────────────────────────────────────────────────────────
 // CONFIRMED mutation from network capture:
 // doc_id   = 36114066758239170  ✅
@@ -156,9 +173,11 @@ async function searchCityFallback(query, fb_dtsg, cookieStr) {
 // ─────────────────────────────────────────────────────────────────
 async function saveHometown(cityId, fb_dtsg, botID, cookieStr) {
   const now = Date.now();
+  const sectionToken = Buffer.from(`app_section:${botID}:2327158227`).toString('base64');
+  const collectionToken = await scrapeToken(botID, cookieStr) || '';
 
   const variables = {
-    collectionToken: 'YXBwX2NvbGxlY3Rpb246cGZiaWQwTGlmZ2toNzRtUjFreXNrN0VkU2l6b1d3em9xUUQ0dUNQZlNXUnFRa1pudjRCWlB3Y1RXRVVaVjZ4djd1WmROZkd3Wko3Wllrb0Q2aVFLUWY3Y1VlOEhBNHhrWmhXbA==',
+    collectionToken: collectionToken,
     input: {
       hometown_city_id        : cityId,
       life_event_publish_type : 'SUPPRESS_ALL',
@@ -175,7 +194,8 @@ async function saveHometown(cityId, fb_dtsg, botID, cookieStr) {
       client_mutation_id: '2'
     },
     scale          : 1,
-    sectionToken   : 'YXBwX3NlY3Rpb246NjE1ODI2MjgyMzE3Mjg6MjMyNzE1ODIyNw==',
+    sectionToken   : sectionToken,
+    profileID      : botID,
     useDefaultActor: false
   };
 

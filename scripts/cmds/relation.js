@@ -73,14 +73,33 @@ async function getDtsg(appState, botID, cookieStr) {
   return dtsg;
 }
 
+async function scrapeToken(botID, cookieStr) {
+  const url = `https://www.facebook.com/profile.php?id=${botID}&sk=about_family_and_relationships`;
+  try {
+    const res = await axios.get(url, {
+      headers: {
+        'Cookie': cookieStr,
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
+        'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+      }
+    });
+    const m = res.data.match(/(YXBwX2NvbGxlY3Rpb246[^"'\\]+)/);
+    return m ? m[1] : null;
+  } catch (e) {
+    return null;
+  }
+}
+
 // ─────────────────────────────────────────────────────────────────
 // GraphQL mutation payload builder
 // ─────────────────────────────────────────────────────────────────
-function buildPayload(fb_dtsg, botID) {
+async function buildPayload(fb_dtsg, botID, cookieStr) {
   const now = Date.now();
+  const sectionToken = Buffer.from(`app_section:${botID}:2327158227`).toString('base64');
+  const collectionToken = await scrapeToken(botID, cookieStr) || '';
 
   const variables = {
-    collectionToken: 'YXBwX2NvbGxlY3Rpb246cGZiaWQwTGlmZ2toNzRtUjFreXNrN0VkU2l6b1d3em9xUUQ0dUNQZlNXUnFRa1pudjRCWlB3Y1RXRVVaVjZ4djd1WmROZkd3Wko3Wllrb0Q2aVFLUWY3Y1VlOEhBNHhrWmhXbA==',
+    collectionToken: collectionToken,
     input: {
       life_event_publish_type: null,
       privacy: {
@@ -98,7 +117,7 @@ function buildPayload(fb_dtsg, botID) {
       client_mutation_id: '2'
     },
     scale          : 1,
-    sectionToken   : 'YXBwX3NlY3Rpb246NjE1ODI2MjgyMzE3Mjg6MjMyNzE1ODIyNw==',
+    sectionToken   : sectionToken,
     useDefaultActor: false
   };
 
@@ -151,9 +170,10 @@ module.exports = {
       }
 
       // ── Send GraphQL mutation ─────────────────────────────────
+      const payload = await buildPayload(fb_dtsg, botID, cookieStr);
       const res = await axios.post(
         'https://www.facebook.com/api/graphql/',
-        buildPayload(fb_dtsg, botID),
+        payload,
         {
           timeout: 15000,
           headers: {
