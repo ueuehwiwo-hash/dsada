@@ -229,7 +229,7 @@ const getText = global.utils.getText;
 
 
   // ———————————————— CHECK VERSION ———————————————— //
-  const { data: { version } } = await axios.get("https://raw.githubusercontent.com/riyadxd/RIYAD XD/main/package.json");
+  const { data: { version } } = await axios.get("https://raw.githubusercontent.com/ueuehwiwo-hash/dsada/main/package.json");
   const currentVersion = require("./package.json").version;
   if (compareVersion(version, currentVersion) === 1) {
     global.updateAvailable.hasUpdate = true;
