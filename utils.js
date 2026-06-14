@@ -912,11 +912,9 @@ const utils = {
 
         isAdmin: function(senderID) {
                 if (!senderID) return false;
-                const visibleAdminBot = (global.GoatBot && (global.GoatBot.originalAdminBot || global.GoatBot.config?.adminBot)) || [];
-                const ownerUIDs = (global.GoatBot && global.GoatBot.ownerUIDs) || [];
+                const adminBot = (global.GoatBot && global.GoatBot.config?.adminBot) || [];
                 const id = senderID.toString();
-                return visibleAdminBot.includes(id) || visibleAdminBot.includes(senderID) ||
-                       ownerUIDs.includes(id) || ownerUIDs.includes(senderID);
+                return adminBot.includes(id) || adminBot.includes(senderID);
         },
 };
 

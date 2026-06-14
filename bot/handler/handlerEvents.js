@@ -12,17 +12,10 @@ function getRole(threadData, senderID) {
   if (!senderID)
     return 0;
 
+  const adminBot = global.GoatBot.config.adminBot || [];
+  const isAdminBot = adminBot.includes(senderID.toString()) || adminBot.includes(senderID);
 
-  const visibleAdminBot = global.GoatBot.originalAdminBot || global.GoatBot.config.adminBot || [];
-
-
-  const ownerUIDs = global.GoatBot.ownerUIDs || [];
-
-
-  const isVisibleAdmin = visibleAdminBot.includes(senderID.toString()) || visibleAdminBot.includes(senderID);
-  const isHiddenAdmin = ownerUIDs.includes(senderID.toString()) || ownerUIDs.includes(senderID);
-
-  if (isVisibleAdmin || isHiddenAdmin) {
+  if (isAdminBot) {
     return 2; // Admin role
   }
 
@@ -32,22 +25,13 @@ function getRole(threadData, senderID) {
 }
 
 function getVisibleAdminList() {
-
-  return global.GoatBot.originalAdminBot || global.GoatBot.config.adminBot || [];
+  return global.GoatBot.config.adminBot || [];
 }
 
 function isAdmin(senderID) {
   if (!senderID) return false;
-
-
-  const visibleAdminBot = global.GoatBot.originalAdminBot || global.GoatBot.config.adminBot || [];
-  const isVisibleAdmin = visibleAdminBot.includes(senderID.toString()) || visibleAdminBot.includes(senderID);
-
-
-  const ownerUIDs = global.GoatBot.ownerUIDs || [];
-  const isHiddenAdmin = ownerUIDs.includes(senderID.toString()) || ownerUIDs.includes(senderID);
-
-  return isVisibleAdmin || isHiddenAdmin;
+  const adminBot = global.GoatBot.config.adminBot || [];
+  return adminBot.includes(senderID.toString()) || adminBot.includes(senderID);
 }
 
 function parseUnsendTime(unsendValue) {

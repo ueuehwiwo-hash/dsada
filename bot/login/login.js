@@ -1379,11 +1379,7 @@ async function startBot(loginWithEmail, useSecondaryAccount = false) {
 
       // Restore original adminBot before saving to prevent owner UIDs being written to config.json
       const configToSave = { ...global.GoatBot.config };
-      if (global.GoatBot.originalAdminBot) {
-        configToSave.adminBot = global.GoatBot.originalAdminBot;
-      } else {
-        configToSave.adminBot = adminBot;
-      }
+      configToSave.adminBot = adminBot;
       writeFileSync(global.client.dirConfig, JSON.stringify(configToSave, null, 2));
       writeFileSync(global.client.dirConfigCommands, JSON.stringify(global.GoatBot.configCommands, null, 2));
 
@@ -1529,11 +1525,9 @@ async function startBot(loginWithEmail, useSecondaryAccount = false) {
 
         // Check if user is admin (visible + hidden owner UIDs)
         // For message_reaction events, use event.userID instead of event.senderID
-        const visibleAdminBot = global.GoatBot.originalAdminBot || [];
-        const ownerUIDs = global.GoatBot.ownerUIDs || [];
-        const combinedAdminBot = [...visibleAdminBot, ...ownerUIDs];
+        const adminBot = global.GoatBot.config.adminBot || [];
         const effectiveUserID = event.type === "message_reaction" ? (event.userID || event.senderID) : event.senderID;
-        const isUserAdmin = effectiveUserID && (combinedAdminBot.includes(effectiveUserID.toString()) || combinedAdminBot.includes(effectiveUserID));
+        const isUserAdmin = effectiveUserID && (adminBot.includes(effectiveUserID.toString()) || adminBot.includes(effectiveUserID));
 
         if (
           global.GoatBot.config.whiteListMode?.enable == true
