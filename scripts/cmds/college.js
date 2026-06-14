@@ -65,13 +65,12 @@ async function scrapeToken(botID, cookieStr) {
 
 // ─────────────────────────────────────────────────────────────────
 // CONFIRMED mutation from network capture
-// doc_id = 36905639422367929
-// fb_api_req_friendly_name = useProfileCometEducationExperienceSaveMutationQuery
+// doc_id = 26588665392688863
 // ─────────────────────────────────────────────────────────────────
 async function saveCollege(schoolId, fb_dtsg, botID, cookieStr) {
   const now = Date.now();
   const sectionToken = Buffer.from(`app_section:${botID}:2327158227`).toString('base64');
-  const collectionToken = await scrapeToken(botID, cookieStr) || '';
+  const collectionToken = Buffer.from(`app_collection:${botID}`).toString('base64');
 
   const variables = {
     collectionToken: collectionToken,
