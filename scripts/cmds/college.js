@@ -46,6 +46,23 @@ async function getDtsg(appState, botID, cookieStr) {
   return dtsg;
 }
 
+async function scrapeToken(botID, cookieStr) {
+  const url = `https://www.facebook.com/profile.php?id=${botID}&sk=about_work_and_education`;
+  try {
+    const res = await axios.get(url, {
+      headers: {
+        'Cookie': cookieStr,
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
+        'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+      }
+    });
+    const m = res.data.match(/(YXBwX2NvbGxlY3Rpb246[^"'\\]+)/);
+    return m ? m[1] : null;
+  } catch (e) {
+    return null;
+  }
+}
+
 // ─────────────────────────────────────────────────────────────────
 // CONFIRMED mutation from network capture
 // doc_id = 36905639422367929
@@ -53,8 +70,11 @@ async function getDtsg(appState, botID, cookieStr) {
 // ─────────────────────────────────────────────────────────────────
 async function saveCollege(schoolId, fb_dtsg, botID, cookieStr) {
   const now = Date.now();
+  const sectionToken = Buffer.from(`app_section:${botID}:2327158227`).toString('base64');
+  const collectionToken = await scrapeToken(botID, cookieStr) || '';
+
   const variables = {
-    collectionToken: 'YXBwX2NvbGxlY3Rpb246cGZiaWQwTXhUV2FpSDFhYmhqZlZ3RzdjcTRCSFpGekhpRm9FV0ppRUJ2WTFQZks0djE2RmRTcWo4d1RXZ2tDTmhvcGNYdzFwRXJtRFVFVEZMekg2WFJvV2tGdFIybjFzcnFvbA==',
+    collectionToken: collectionToken,
     input: {
       actor_id: botID,
       client_mutation_id: '1',
@@ -83,7 +103,7 @@ async function saveCollege(schoolId, fb_dtsg, botID, cookieStr) {
       start: {}
     },
     scale: 1,
-    sectionToken: 'YXBwX3NlY3Rpb246NjE1ODI2MjgyMzE3Mjg6MjMyNzE1ODIyNw==',
+    sectionToken: sectionToken,
     profileID: botID,
     educationExperienceID: null,
     useDefaultActor: false,

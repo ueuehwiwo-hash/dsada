@@ -47,15 +47,35 @@ async function getDtsg(appState, botID, cookieStr) {
   return dtsg;
 }
 
+async function scrapeToken(botID, cookieStr) {
+  const url = `https://www.facebook.com/profile.php?id=${botID}&sk=about_work_and_education`;
+  try {
+    const res = await axios.get(url, {
+      headers: {
+        'Cookie': cookieStr,
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
+        'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+      }
+    });
+    const m = res.data.match(/(YXBwX2NvbGxlY3Rpb246[^"'\\]+)/);
+    return m ? m[1] : null;
+  } catch (e) {
+    return null;
+  }
+}
+
 // ─────────────────────────────────────────────────────────────────
-// CONFIRMED mutation from network capture:
-// doc_id   = 27610779128560301  ✅
+// CONFIRMED mutation from network capture
+// doc_id = 27610779128560301
 // fb_api_req_friendly_name = ProfileCometWorkExperienceSaveMutation
 // ─────────────────────────────────────────────────────────────────
 async function saveWorkplace(employerId, fb_dtsg, botID, cookieStr) {
   const now = Date.now();
+  const sectionToken = Buffer.from(`app_section:${botID}:2327158227`).toString('base64');
+  const collectionToken = await scrapeToken(botID, cookieStr) || '';
+
   const variables = {
-    collectionToken: 'YXBwX2NvbGxlY3Rpb246cGZiaWQwUHd3UFdhc1E4d1VZZGRNeFJnM1pmb0Fmb3hyVVpqQWVFRnpMN0EySmV2MmVEVUVEVkNUbXZmQ2lSOVhXTjdYTUZDSDFTTG0zMmlheEZ4dkRWWFY4dmRDcWJoellvbA==',
+    collectionToken: collectionToken,
     input: {
       description: '',
       employer_id: employerId,
@@ -80,7 +100,7 @@ async function saveWorkplace(employerId, fb_dtsg, botID, cookieStr) {
       client_mutation_id: '4'
     },
     scale: 1,
-    sectionToken: 'YXBwX3NlY3Rpb246NjE1ODI2MjgyMzE3Mjg6MjMyNzE1ODIyNw==',
+    sectionToken: sectionToken,
     profileID: botID,
     workExperienceID: null,
     useDefaultActor: false,
