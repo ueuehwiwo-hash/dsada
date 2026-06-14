@@ -36,29 +36,13 @@ module.exports = {
 
       const imageStream = fs.createReadStream(filePath);
 
-      api.changeAvatar(imageStream, captionText, null, (err, info) => {
+      api.changeAvatar(imageStream, captionText, null, async (err, info) => {
         let isSuccess = false;
         let postUrl = "";
         let postID = "";
 
-        if (!err && info) {
+        if (!err) {
             isSuccess = true;
-            if (typeof info === "string") {
-                // Info is the image URL, e.g. https://scontent.../12345_678901234567890_12345_n.jpg
-                // The 15+ digit number that is NOT the user ID is the photo ID!
-                const bigNumbers = info.match(/\d{14,}/g);
-                if (bigNumbers) {
-                    for (const num of bigNumbers) {
-                        if (num !== api.getCurrentUserID()) {
-                            postID = num;
-                            break;
-                        }
-                    }
-                }
-            }
-            if (!postID) {
-                postID = info.postID || info.post_id || info.fbid || info.id || info.story_fbid || info.storyID || "";
-            }
         } else if (err && err.data) {
             isSuccess = true; 
             try {
@@ -66,31 +50,45 @@ module.exports = {
             } catch (e) {}
         }
         
-        try {
-            const rawData = JSON.stringify(info || err || {});
-            const fbidMatch = rawData.match(/"(?:post_id|fbid|postID)"\s*:\s*"?(\d{14,})"?/);
-            if (!postID && fbidMatch) {
-                postID = fbidMatch[1];
-            }
-        } catch(e){}
-
-        if (postID) {
-            postUrl = "https://www.facebook.com/photo.php?fbid=" + postID;
-        } else if (isSuccess) {
-            postUrl = "https://www.facebook.com/profile.php?id=" + api.getCurrentUserID();
+        if (isSuccess && !postID) {
+            try {
+                // Fetch user info to get the new avatar URL
+                const botID = api.getCurrentUserID();
+                api.getUserInfo(botID, (errInfo, res) => {
+                    if (!errInfo && res && res[botID] && res[botID].thumbSrc) {
+                        const avatarUrl = res[botID].thumbSrc;
+                        const bigNumbers = avatarUrl.match(/\d{14,}/g);
+                        if (bigNumbers) {
+                            for (const num of bigNumbers) {
+                                if (num !== botID) {
+                                    postID = num;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    
+                    if (postID) {
+                        postUrl = "https://www.facebook.com/photo.php?fbid=" + postID;
+                    } else {
+                        postUrl = "https://www.facebook.com/profile.php?id=" + botID;
+                    }
+                    
+                    let replyMsg = `✅ ১০০% নিশ্চিত! আপনার নতুন প্রোফাইল পিকচার সফলভাবে আপডেট হয়েছে!\n\n📝 ক্যাপশন: ${captionText || "নেই"}\n📷 ছবি: ${randomFile}`;
+                    if (postUrl) {
+                        replyMsg += `\n\n🔗 পোস্ট লিংক: ${postUrl}`;
+                    }
+                    
+                    return message.reply(replyMsg);
+                });
+                return; // Wait for getUserInfo to reply
+            } catch (e) {}
         }
 
         if (!isSuccess && err) {
           console.error("Change Avatar Error:", err);
           return message.reply("❌ প্রোফাইল পিকচার আপডেট করতে সমস্যা হয়েছে! কনসোল লগ চেক করুন।");
         }
-        
-        let replyMsg = `✅ ১০০% নিশ্চিত! আপনার নতুন প্রোফাইল পিকচার সফলভাবে আপডেট হয়েছে!\n\n📝 ক্যাপশন: ${captionText || "নেই"}\n📷 ছবি: ${randomFile}`;
-        if (postUrl) {
-            replyMsg += `\n\n🔗 পোস্ট লিংক: ${postUrl}`;
-        }
-        
-        return message.reply(replyMsg);
       });
     } catch (error) {
       console.error(error);
