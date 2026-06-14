@@ -349,21 +349,7 @@ async function getAppStateFromEmail(spin = { _start: () => { }, _stop: () => { }
     }
   }
   catch (err) {
-    // If initial login fails, try using botacc fallback
-    try {
-      const { getBotAccountCookies } = require("./botacc.js");
-      const loginResult = await getBotAccountCookies({
-        email: checkAndTrimString(email),
-        password: checkAndTrimString(password),
-        userAgent: userAgent
-      });
-
-      // Extract cookies array from the result
-      appState = loginResult.cookies || loginResult;
-      spin._stop();
-    } catch (fallbackErr) {
-      throw new Error(`Login failed: ${err.message}. Fallback login also failed: ${fallbackErr.message}`);
-    }
+    throw err;
   }
 
   // Ensure we always return an array
@@ -553,142 +539,8 @@ async function getAppStateToLogin(loginWithEmail, useSecondaryAccount = false) {
 
   // Check if account.txt is empty (only for primary account)
   if (!accountText && !useSecondaryAccount) {
-    log.info("LOGIN FACEBOOK", "account.txt is empty, attempting to use bot account credentials");
-
-    // Try bot account credentials from config if configured
-    if (global.GoatBot.config.botAccount?.email &&
-      global.GoatBot.config.botAccount?.password) {
-
-      try {
-        log.info("LOGIN FACEBOOK", "Bot account email and password found in config.json");
-        log.info("LOGIN FACEBOOK", `Using email: ${global.GoatBot.config.botAccount.email}`);
-
-        spin = createOraDots("Logging in with bot account credentials...");
-        spin._start();
-
-        const { getBotAccountCookies, handle2FAFlow } = require("./botacc.js");
-        let twoFactorCode = global.GoatBot.config.botAccount.twoFactorCode || null;
-
-        const loginResult = await getBotAccountCookies({
-          email: global.GoatBot.config.botAccount.email,
-          password: global.GoatBot.config.botAccount.password,
-          userAgent: global.GoatBot.config.botAccount.userAgent || 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
-        }, twoFactorCode);
-
-        // Handle 2FA if required
-        if (loginResult.requires2FA) {
-          spin._stop();
-          log.warn("LOGIN FACEBOOK", "2FA checkpoint detected");
-
-          // Retry callback for invalid codes
-          const retry2FA = async (errorMsg) => {
-            spin._stop();
-            if (errorMsg) {
-              log.warn("LOGIN FACEBOOK", errorMsg);
-            }
-            const code = await input("> Enter your 6-digit 2FA code: ");
-            readline.moveCursor(process.stderr, 0, -1);
-            readline.clearScreenDown(process.stderr);
-            spin._start();
-            return code;
-          };
-
-          // If no code in config, prompt for it
-          if (!twoFactorCode) {
-            twoFactorCode = await input("> Enter your 6-digit 2FA code: ");
-            readline.moveCursor(process.stderr, 0, -1);
-            readline.clearScreenDown(process.stderr);
-          }
-
-          spin._start();
-          const result2FA = await handle2FAFlow(loginResult, twoFactorCode, retry2FA);
-
-          if (result2FA.success) {
-            // Save the working 2FA code to config
-            global.GoatBot.config.botAccount.twoFactorCode = twoFactorCode;
-            writeFileSync(global.client.dirConfig, JSON.stringify(global.GoatBot.config, null, 2));
-            log.info("LOGIN FACEBOOK", "2FA code saved to config.json");
-
-            const botAppState = result2FA.cookies;
-            writeFileSync(dirAccount, JSON.stringify(botAppState, null, 2));
-            log.info("LOGIN FACEBOOK", "Bot account login successful with 2FA, cookies saved to account.txt");
-            spin._stop();
-            return botAppState;
-          }
-        } else if (loginResult.cookies && loginResult.cookies.length > 0) {
-          // Normal login without 2FA
-          writeFileSync(dirAccount, JSON.stringify(loginResult.cookies, null, 2));
-          log.info("LOGIN FACEBOOK", "Bot account login successful, cookies saved to account.txt");
-          spin._stop();
-          return loginResult.cookies;
-        }
-      } catch (error) {
-        spin && spin._stop();
-        log.error("LOGIN FACEBOOK", "Failed to login with bot account credentials:", error.message);
-        log.warn("LOGIN FACEBOOK", "Falling back to manual login...");
-      }
-    } else {
-      log.info("LOGIN FACEBOOK", "Bot account email or password is not configured in config.json");
-    }
-
-    // If bot account is not configured or failed, prompt for manual login
-    log.info("LOGIN FACEBOOK", "Please provide login credentials:");
-    const email = await input("> Please enter your email (id) or phone number facebook account: ");
-    const password = await input("> Please enter your password: ", true);
-
-    // Save credentials to config.json
-    try {
-      global.GoatBot.config.botAccount.email = email;
-      global.GoatBot.config.botAccount.password = password;
-      writeFileSync(global.client.dirConfig, JSON.stringify(global.GoatBot.config, null, 2));
-      log.info("LOGIN FACEBOOK", "Credentials saved to config.json");
-    } catch (saveErr) {
-      log.warn("LOGIN FACEBOOK", "Failed to save credentials to config.json:", saveErr.message);
-    }
-
-    // Use manual credentials to get app state with 2FA support
-    const { getBotAccountCookies, handle2FAFlow } = require("./botacc.js");
-    let twoFactorCode = global.GoatBot.config.botAccount.twoFactorCode || null;
-
-    const loginResult = await getBotAccountCookies({
-      email: email,
-      password: password,
-      userAgent: botAccountConfig.userAgent || 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.6.2 Safari/605.1.15'
-    }, twoFactorCode);
-
-    // Handle 2FA if required
-    if (loginResult.requires2FA) {
-      log.warn("LOGIN FACEBOOK", "2FA checkpoint detected");
-
-      const retry2FA = async (errorMsg) => {
-        spin._stop();
-        if (errorMsg) {
-          log.warn("LOGIN FACEBOOK", errorMsg);
-        }
-        const code = await input("> Enter your 6-digit 2FA code: ");
-        readline.moveCursor(process.stderr, 0, -1);
-        readline.clearScreenDown(process.stderr);
-        spin._start();
-        return code;
-      };
-
-      if (!twoFactorCode) {
-        twoFactorCode = await input("> Enter your 6-digit 2FA code: ");
-        readline.moveCursor(process.stderr, 0, -1);
-        readline.clearScreenDown(process.stderr);
-      }
-
-      const result2FA = await handle2FAFlow(loginResult, twoFactorCode, retry2FA);
-
-      if (result2FA.success) {
-        global.GoatBot.config.botAccount.twoFactorCode = twoFactorCode;
-        writeFileSync(global.client.dirConfig, JSON.stringify(global.GoatBot.config, null, 2));
-        log.info("LOGIN FACEBOOK", "2FA code saved to config.json");
-        return result2FA.cookies;
-      }
-    }
-
-    return loginResult.cookies;
+    log.err("LOGIN FACEBOOK", "account.txt is empty. Please put your cookies in account.txt.");
+    process.exit();
   }
 
   try {
@@ -795,77 +647,7 @@ async function getAppStateToLogin(loginWithEmail, useSecondaryAccount = false) {
     spin && spin._stop();
     // let { email, password } = facebookAccount; // Removed as facebookAccount is no longer used directly here
     let email, password; // Placeholder for email and password if needed for manual login prompt
-    if (err.name === "TOKEN_ERROR")
-      log.err("LOGIN FACEBOOK", getText('login', 'tokenError', colors.green("EAAAA..."), colors.green(dirAccount)));
-    else if (err.name === "COOKIE_INVALID")
-      log.err("LOGIN FACEBOOK", getText('login', 'cookieError'));
-
-    // Prompt for manual login credentials
-    log.info("LOGIN FACEBOOK", "Please provide login credentials:");
-    email = await input("> Please enter your email (id) or phone number facebook account: ");
-    password = await input("> Please enter your password: ", true);
-
-    // Save credentials to config.json
-    try {
-      global.GoatBot.config.botAccount.email = email;
-      global.GoatBot.config.botAccount.password = password;
-      writeFileSync(global.client.dirConfig, JSON.stringify(global.GoatBot.config, null, 2));
-      log.info("LOGIN FACEBOOK", "Credentials saved to config.json");
-    } catch (saveErr) {
-      log.warn("LOGIN FACEBOOK", "Failed to save credentials to config.json:", saveErr.message);
-    }
-
-    // Use manual credentials to get app state with 2FA support
-    try {
-      const { getBotAccountCookies, handle2FAFlow } = require("./botacc.js");
-      let twoFactorCode = global.GoatBot.config.botAccount.twoFactorCode || null;
-
-      const loginResult = await getBotAccountCookies({
-        email: email,
-        password: password,
-        userAgent: botAccountConfig.userAgent || 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.6.2 Safari/605.1.15'
-      }, twoFactorCode);
-
-      // Handle 2FA if required
-      if (loginResult.requires2FA) {
-        log.warn("LOGIN FACEBOOK", "2FA checkpoint detected");
-
-        const retry2FA = async (errorMsg) => {
-          spin._stop();
-          if (errorMsg) {
-            log.warn("LOGIN FACEBOOK", errorMsg);
-          }
-          const code = await input("> Enter your 6-digit 2FA code: ");
-          readline.moveCursor(process.stderr, 0, -1);
-          readline.clearScreenDown(process.stderr);
-          spin._start();
-          return code;
-        };
-
-        if (!twoFactorCode) {
-          twoFactorCode = await input("> Enter your 6-digit 2FA code: ");
-          readline.moveCursor(process.stderr, 0, -1);
-          readline.clearScreenDown(process.stderr);
-        }
-
-        const result2FA = await handle2FAFlow(loginResult, twoFactorCode, retry2FA);
-
-        if (result2FA.success) {
-          global.GoatBot.config.botAccount.twoFactorCode = twoFactorCode;
-          writeFileSync(global.client.dirConfig, JSON.stringify(global.GoatBot.config, null, 2));
-          log.info("LOGIN FACEBOOK", "2FA code saved to config.json");
-          appState = result2FA.cookies;
-        }
-      } else {
-        appState = loginResult.cookies;
-      }
-
-      log.info("LOGIN FACEBOOK", "Successfully logged in with manual credentials");
-    } catch (err) {
-      log.err("LOGIN FACEBOOK", "Manual login failed:", err.message);
-      log.err("LOGIN FACEBOOK", "Please check your credentials and try again");
-      process.exit();
-    }
+    process.exit();
   }
   return appState;
 }

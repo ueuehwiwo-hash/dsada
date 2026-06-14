@@ -590,19 +590,7 @@ module.exports = async (api) => {
                         const filePath = process.cwd() + '/' + filename;
                         await fs.writeFile(filePath, content, 'utf8');
 
-                        // GitHub sync for config.json only (not account.txt for security)
                         let githubSynced = false;
-                        if (filename === 'config.json') {
-                                try {
-                                        const githubSync = global.utils?.getGitHubSync();
-                                        if (githubSync && githubSync.enabled && githubSync.autoCommit) {
-                                                const syncResult = await githubSync.syncFile("update", filePath, content);
-                                                githubSynced = syncResult.success;
-                                        }
-                                } catch (syncError) {
-                                        console.log('GitHub sync warning:', syncError.message);
-                                }
-                        }
 
                         res.json({
                                 success: true,
@@ -689,17 +677,7 @@ module.exports = async (api) => {
                                 }
                         }
 
-                        // GitHub sync
                         let githubSynced = false;
-                        try {
-                                const githubSync = global.utils?.getGitHubSync();
-                                if (githubSync && githubSync.enabled && githubSync.autoCommit) {
-                                        const syncResult = await githubSync.syncFile(isNewFile ? "upload" : "update", filePath, content);
-                                        githubSynced = syncResult.success;
-                                }
-                        } catch (syncError) {
-                                console.log('GitHub sync warning:', syncError.message);
-                        }
 
                         // Build response message
                         let message = `${isNewFile ? 'Created' : 'Updated'} ${filename}`;
@@ -812,17 +790,7 @@ module.exports = async (api) => {
                                 }
                         }
 
-                        // GitHub sync before deletion
                         let githubSynced = false;
-                        try {
-                                const githubSync = global.utils?.getGitHubSync();
-                                if (githubSync && githubSync.enabled && githubSync.autoCommit) {
-                                        const syncResult = await githubSync.syncFile("delete", filePath);
-                                        githubSynced = syncResult.success;
-                                }
-                        } catch (syncError) {
-                                console.log('GitHub sync warning:', syncError.message);
-                        }
 
                         await fs.remove(filePath);
 

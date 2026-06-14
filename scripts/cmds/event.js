@@ -213,15 +213,7 @@ module.exports = {
 			const filePath = path.join(__dirname, '..', 'events', fileName);
 			message.reply(getLang("installed", infoLoad.name, filePath.replace(process.cwd(), ""), () => message.unsend(messageID)));
 			
-			// GitHub sync with auto-commit
-			try {
-				const githubSync = global.utils.getGitHubSync();
-				if (githubSync && githubSync.enabled && githubSync.autoCommit) {
-					await githubSync.syncFile("upload", filePath, rawCode);
-				}
-			} catch (syncError) {
-				console.log("GitHub sync warning:", syncError.message);
-			}
+
 		} else {
 			message.reply(getLang("installedError", infoLoad.name, infoLoad.error.name, infoLoad.error.message, () => message.unsend(messageID)));
 		}

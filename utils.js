@@ -804,39 +804,6 @@ async function uploadImgbb(file /* stream or image url */) {
 }
 
 
-// Replaced with new implementation below
-// let githubSync = null;
-
-const fs_ = require("fs-extra");
-const axios_ = require("axios");
-const path_ = require("path");
-const { execSync } = require("child_process");
-
-let githubSyncInstance = null;
-
-async function initGitHubSync(config) {
-        if (!config.githubIntegration?.enable) {
-                return null;
-        }
-
-        try {
-                const GitHubSync = require("./bot/login/githubSync.js");
-                delete require.cache[require.resolve("./bot/login/githubSync.js")];
-
-                githubSyncInstance = new GitHubSync(config.githubIntegration);
-                await githubSyncInstance.initialize();
-
-                return githubSyncInstance;
-        } catch (error) {
-                console.error("Failed to initialize GitHub sync:", error.message);
-                return null;
-        }
-}
-
-function getGitHubSync() {
-        return githubSyncInstance;
-}
-
 
 const utils = {
         CustomError,
@@ -905,10 +872,6 @@ const utils = {
         translate,
         shortenURL,
         uploadImgbb,
-
-        initGitHubSync: initGitHubSync,
-
-        getGitHubSync: getGitHubSync,
 
         isAdmin: function(senderID) {
                 if (!senderID) return false;

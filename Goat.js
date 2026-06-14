@@ -227,22 +227,6 @@ const getText = global.utils.getText;
   global.utils.sendMail = () => Promise.reject(new Error("Gmail not configured"));
   global.utils.transporter = null;
 
-  // ———————————————— INITIALIZE GITHUB SYNC ———————————————— //
-  if (config.githubIntegration?.enable) {
-    try {
-      const githubSync = await utils.initGitHubSync(config);
-      if (githubSync && githubSync.initialized) {
-        const testResult = await githubSync.testConnection();
-        if (testResult.success) {
-          log.info("GITHUB", "GitHub integration ready");
-        } else {
-          log.warn("GITHUB", "GitHub connection failed:", testResult.message);
-        }
-      }
-    } catch (error) {
-      log.error("GITHUB", "Failed to initialize GitHub sync:", error.message);
-    }
-  }
 
   // ———————————————— CHECK VERSION ———————————————— //
   const { data: { version } } = await axios.get("https://raw.githubusercontent.com/sheikhtamimlover/ST-BOT/main/package.json");
