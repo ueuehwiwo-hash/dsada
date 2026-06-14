@@ -5,7 +5,7 @@ module.exports = {
 		name: "setleave",
 		aliases: ["setl"],
 		version: "1.7",
-		author: "NTKhang",
+		author: "RIYAD XD",
 		countDown: 5,
 		role: 0,
 		description: {
@@ -116,7 +116,7 @@ module.exports = {
 				}
 				else if (event.attachments.length == 0 && (!event.messageReply || event.messageReply.attachments.length == 0)) {
 					return message.reply(getLang("missingFile"), (err, info) => {
-						global.GoatBot.onReply.set(info.messageID, {
+						global.RIYAD XD.onReply.set(info.messageID, {
 							messageID: info.messageID,
 							author: senderID,
 							commandName

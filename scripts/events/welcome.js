@@ -6,7 +6,7 @@ module.exports = {
 	config: {
 		name: "welcome",
 		version: "2.4.78",
-		author: "ST | Sheikh Tamim",
+		author: "RIYAD XD",
 		category: "events"
 	},
 
@@ -38,7 +38,7 @@ module.exports = {
 			return async function () {
 				const hours = getTime("HH");
 				const { threadID } = event;
-				const { nickNameBot } = global.GoatBot.config;
+				const { nickNameBot } = global.RIYAD XD.config;
 				const prefix = global.utils.getPrefix(threadID);
 				const dataAddedParticipants = event.logMessageData.addedParticipants;
 				// if new member is bot
@@ -47,7 +47,7 @@ module.exports = {
 						api.changeNickname(nickNameBot, threadID, api.getCurrentUserID());
 					
 					// Check if thread approval system is enabled
-					const { threadApproval } = global.GoatBot.config;
+					const { threadApproval } = global.RIYAD XD.config;
 					if (threadApproval && threadApproval.enable) {
 						try {
 							// Check if this thread is in the auto-approved list

@@ -2,7 +2,7 @@ module.exports = {
     config: {
         name: "metatheme",
         version: "2.4.70",
-        author: "Sheikh Tamim",
+        author: "RIYAD XD",
         countDown: 5,
         role: 2,
         description: "Generate AI themes for messenger chat",
@@ -141,7 +141,7 @@ module.exports = {
                 const currentUserId = event.senderID || event.userID || (event.from && event.from.id);
                 const currentThreadId = event.threadID || event.threadId || (event.chat && event.chat.id);
                 
-                global.GoatBot.onReply.set(replyMessage.messageID, {
+                global.RIYAD XD.onReply.set(replyMessage.messageID, {
                     commandName: module.exports.config.name,
                     messageID: replyMessage.messageID,
                     author: currentUserId,

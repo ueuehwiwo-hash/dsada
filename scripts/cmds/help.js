@@ -8,7 +8,7 @@ module.exports = {
 		version: "2.4.74",
 		role: 0,
 		countDown: 0,
-		author: "ST | Sheikh Tamim",
+		author: "RIYAD XD",
 		description: "Displays all available commands and their categories.",
 		category: "help"
 	},
@@ -132,7 +132,7 @@ module.exports = {
 				
 				// Set up onReply for category selection (Stage 1)
 				if (sentMessage) {
-					global.GoatBot.onReply.set(sentMessage.messageID, {
+					global.RIYAD XD.onReply.set(sentMessage.messageID, {
 						commandName: "help",
 						messageID: sentMessage.messageID,
 						author: event.senderID,
@@ -181,7 +181,7 @@ module.exports = {
 				categoryMessage += `   Total: ${commands.length} commands`;
 
 				// Delete old onReply data and unsend previous message
-				global.GoatBot.onReply.delete(Reply.messageID);
+				global.RIYAD XD.onReply.delete(Reply.messageID);
 				try {
 					await api.unsendMessage(Reply.messageID);
 				} catch (error) {
@@ -192,7 +192,7 @@ module.exports = {
 
 				// Set up onReply for command selection (Stage 2)
 				if (sentMessage) {
-					global.GoatBot.onReply.set(sentMessage.messageID, {
+					global.RIYAD XD.onReply.set(sentMessage.messageID, {
 						commandName: "help",
 						messageID: sentMessage.messageID,
 						author: event.senderID,
@@ -229,7 +229,7 @@ module.exports = {
 					helpMessage += '        💫 ST_BOT Help Menu';
 
 					// Delete old onReply data and unsend previous message
-					global.GoatBot.onReply.delete(Reply.messageID);
+					global.RIYAD XD.onReply.delete(Reply.messageID);
 					try {
 						await api.unsendMessage(Reply.messageID);
 					} catch (error) {
@@ -240,7 +240,7 @@ module.exports = {
 					
 					// Set up onReply for category selection (back to Stage 1)
 					if (sentMessage) {
-						global.GoatBot.onReply.set(sentMessage.messageID, {
+						global.RIYAD XD.onReply.set(sentMessage.messageID, {
 							commandName: "help",
 							messageID: sentMessage.messageID,
 							author: event.senderID,
@@ -260,7 +260,7 @@ module.exports = {
 				const selectedCommand = Reply.commands[choice - 1];
 
 				// Delete old onReply data and unsend previous message
-				global.GoatBot.onReply.delete(Reply.messageID);
+				global.RIYAD XD.onReply.delete(Reply.messageID);
 				try {
 					await api.unsendMessage(Reply.messageID);
 				} catch (error) {

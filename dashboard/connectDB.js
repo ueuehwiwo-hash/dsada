@@ -3,7 +3,7 @@ const path = require("path");
 const dirConfig = path.join(`${__dirname}/../config.json`);
 const dirConfigCommands = path.join(`${__dirname}/../configCommands.json`);
 
-global.GoatBot = {
+global.RIYAD XD = {
 	config: require(dirConfig),
 	configCommands: require(dirConfigCommands)
 };

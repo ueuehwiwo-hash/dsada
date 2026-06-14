@@ -11,8 +11,8 @@ const exec = (cmd, options) => new Promise((resolve, reject) => {
 });
 
 const { log, loading, getText, colors, removeHomeDir } = global.utils;
-const { GoatBot } = global;
-const { configCommands } = GoatBot;
+const { RIYAD XD } = global;
+const { configCommands } = RIYAD XD;
 
 const regExpCheckPackage = /require(\s+|)\((\s+|)[`'"]([^`'"]+)[`'"](\s+|)\)/g;
 const packageAlready = [];
@@ -87,9 +87,9 @@ module.exports = async function (api, threadModel, userModel, dashBoardModel, gl
                 for (const data of aliasesData) {
                         const { aliases, commandName } = data;
                         for (const alias of aliases) {
-                                if (GoatBot.aliases.has(alias))
+                                if (RIYAD XD.aliases.has(alias))
                                         throw new Error(`Alias "${alias}" already exists in command "${commandName}"`);
-                                GoatBot.aliases.set(alias, commandName);
+                                RIYAD XD.aliases.set(alias, commandName);
                         }
                 }
         }
@@ -188,7 +188,7 @@ module.exports = async function (api, threadModel, userModel, dashBoardModel, gl
                                 if (!command.onStart && !command.ST) throw new Error(`onStart or ST function of ${text} is required`);
                                 if (command.onStart && typeof command.onStart !== "function") throw new Error(`onStart of ${text} must be a function`);
                                 if (command.ST && typeof command.ST !== "function") throw new Error(`ST of ${text} must be a function`);
-                                if (GoatBot[setMap].has(commandName)) throw new Error(`${text} "${commandName}" already exists with file "${removeHomeDir(GoatBot[setMap].get(commandName).location || "")}"`);
+                                if (RIYAD XD[setMap].has(commandName)) throw new Error(`${text} "${commandName}" already exists with file "${removeHomeDir(RIYAD XD[setMap].get(commandName).location || "")}"`);
 
                                 const { onFirstChat, onChat, onLoad, onEvent, onAnyEvent } = command;
                                 const { envGlobal, envConfig, aliases } = configCommand;
@@ -200,11 +200,11 @@ module.exports = async function (api, threadModel, userModel, dashBoardModel, gl
                                         for (const alias of aliases) {
                                                 if (aliases.filter(item => item === alias).length > 1)
                                                         throw new Error(`alias "${alias}" duplicate in ${text} "${commandName}" with file "${removeHomeDir(pathCommand)}"`);
-                                                if (GoatBot.aliases.has(alias))
-                                                        throw new Error(`alias "${alias}" already exists in ${text} "${GoatBot.aliases.get(alias)}" with file "${removeHomeDir(GoatBot[setMap].get(GoatBot.aliases.get(alias))?.location || "")}"`);
+                                                if (RIYAD XD.aliases.has(alias))
+                                                        throw new Error(`alias "${alias}" already exists in ${text} "${RIYAD XD.aliases.get(alias)}" with file "${removeHomeDir(RIYAD XD[setMap].get(RIYAD XD.aliases.get(alias))?.location || "")}"`);
                                                 validAliases.push(alias);
                                         }
-                                        for (const alias of validAliases) GoatBot.aliases.set(alias, commandName);
+                                        for (const alias of validAliases) RIYAD XD.aliases.set(alias, commandName);
                                 }
 
                                 // ───────────── ENV GLOBAL ───────────── //
@@ -244,15 +244,15 @@ module.exports = async function (api, threadModel, userModel, dashBoardModel, gl
                                 }
                                 if (command.ST && typeof command.ST !== "function")
                                         throw new Error('The value of "ST" must be function');
-                                if (onChat) GoatBot.onChat.push(commandName);
-                                if (onFirstChat) GoatBot.onFirstChat.push({ commandName, threadIDsChattedFirstTime: [] });
-                                if (onEvent) GoatBot.onEvent.push(commandName);
-                                if (onAnyEvent) GoatBot.onAnyEvent.push(commandName);
+                                if (onChat) RIYAD XD.onChat.push(commandName);
+                                if (onFirstChat) RIYAD XD.onFirstChat.push({ commandName, threadIDsChattedFirstTime: [] });
+                                if (onEvent) RIYAD XD.onEvent.push(commandName);
+                                if (onAnyEvent) RIYAD XD.onAnyEvent.push(commandName);
 
-                                GoatBot[setMap].set(commandName.toLowerCase(), command);
+                                RIYAD XD[setMap].set(commandName.toLowerCase(), command);
                                 commandLoadSuccess++;
 
-                                global.GoatBot[folderModules === "cmds" ? "commandFilesPath" : "eventCommandsFilesPath"].push({
+                                global.RIYAD XD[folderModules === "cmds" ? "commandFilesPath" : "eventCommandsFilesPath"].push({
                                         filePath: path.normalize(pathCommand),
                                         commandName: [commandName, ...validAliases]
                                 });

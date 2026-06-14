@@ -2,7 +2,7 @@ module.exports = {
         config: {
                 name: "unsend",
                 version: "1.2",
-                author: "NTKhang",
+                author: "RIYAD XD",
                 countDown: 5,
                 role: 0,
                 description: {
@@ -29,7 +29,7 @@ module.exports = {
                 if (!event.messageReply)
                         return message.reply(getLang("syntaxError"));
 
-                const botID = String(api.getCurrentUserID());
+                conRIYAD XDID = String(api.getCurrentUserID());
                 const replyMsgID = event.messageReply.messageID;
                 const replySenderID = String(event.messageReply.senderID || "");
                 const isE2EEThread = typeof event.threadID === 'string' && event.threadID.includes('@');

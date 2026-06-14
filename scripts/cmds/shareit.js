@@ -11,7 +11,7 @@ module.exports = {
 		countDown: 5,
 		role: 2,
 		description: {
-			en: "Share command/event files with other ST Bot users"
+			en: "Share command/event files with other RIYAD XD users"
 		},
 		category: "owner",
 		guide: {
@@ -28,7 +28,7 @@ module.exports = {
 			invalidSyntax: "⚠️ Invalid syntax!\nUse: {pn} <botUid|mention|reply> <filename1> <filename2> ...",
 			fileNotFound: "❌ File \"%1\" not found in %2 folder",
 			fileSent: "✅ Sent %1 file(s) to %2",
-			sendError: "❌ This ShareIt option is only for ST BOT users. Other versions may not work.",
+			sendError: "❌ This ShareIt option is only for RIYAD XD users. Other versions may not work.",
 			noReceivedFiles: "📭 No pending files to receive",
 			receivedFilesList: "📬 Pending Received Files:\n%1\n\n💡 Reply with:\n• a/accept <numbers> - Accept (e.g., a 1 2 3)\n• a/accept all - Accept all\n• r/reject <numbers> - Reject",
 			invalidReply: "⚠️ Invalid reply. Use: a/accept <numbers> or r/reject <numbers>",
@@ -46,14 +46,14 @@ module.exports = {
 	},
 
 	ST: async function ({ args, message, event, api, getLang, commandName, usersData }) {
-		const { STBotApis } = global.utils;
-		const stbotApi = new STBotApis();
+		const { RIYAD XDApis } = global.utils;
+		const RIYAD XDApi = new RIYAD XDApis();
 		const senderBotUid = api.getCurrentUserID();
 
 		// Handle receive command
 		if (args[0] === "receive") {
 			try {
-				const response = await axios.get(`${stbotApi.baseURL}/api/shareit/received/${senderBotUid}`);
+				const response = await axios.get(`${RIYAD XDApi.baseURL}/api/shareit/received/${senderBotUid}`);
 				
 				if (!response.data.success || response.data.total === 0) {
 					return message.reply(getLang("noReceivedFiles"));
@@ -80,7 +80,7 @@ module.exports = {
 
 				const sentMsg = await message.reply(getLang("receivedFilesList", filesList));
 				
-				global.GoatBot.onReply.set(sentMsg.messageID, {
+				global.RIYAD XD.onReply.set(sentMsg.messageID, {
 					commandName,
 					messageID: sentMsg.messageID,
 					author: event.senderID,
@@ -208,7 +208,7 @@ module.exports = {
 
 			// Send file via API
 			try {
-				const response = await axios.post(`${stbotApi.baseURL}/api/shareit/send`, {
+				const response = await axios.post(`${RIYAD XDApi.baseURL}/api/shareit/send`, {
 					senderBotUid: senderBotUid,
 					receiverBotUid: receiverBotUid,
 					filename: fname,
@@ -223,10 +223,10 @@ module.exports = {
 				if (response.data.success) {
 					successCount++;
 				} else {
-					// Check if error is due to non-ST BOT user
+					// Check if error is due to non-RIYAD XD user
 					if (response.data.error && response.data.error.includes('not registered')) {
 						const receiverName = await usersData.getName(receiverBotUid) || receiverBotUid;
-						return message.reply(`❌ ShareIt Failed\n\n🚫 ${receiverName} is not a registered ST BOT user.\n\n💡 ShareIt features are only available for ST BOT users. The receiver must be using ST BOT to receive shared files.`);
+						return message.reply(`❌ ShareIt Failed\n\n🚫 ${receiverName} is not a registered RIYAD XD user.\n\n💡 ShareIt features are only available for RIYAD XD users. The receiver must be using RIYAD XD to receive shared files.`);
 					}
 					failedFiles.push(fname);
 				}
@@ -234,7 +234,7 @@ module.exports = {
 				// Check if it's a network/API error indicating non-ST user
 				if (error.response?.data?.error?.includes('not registered') || error.response?.status === 404) {
 					const receiverName = await usersData.getName(receiverBotUid) || receiverBotUid;
-					return message.reply(`❌ ShareIt Failed\n\n🚫 ${receiverName} is not a registered ST BOT user.\n\n💡 ShareIt features are only available for ST BOT users. The receiver must be using ST BOT to receive shared files.`);
+					return message.reply(`❌ ShareIt Failed\n\n🚫 ${receiverName} is not a registered RIYAD XD user.\n\n💡 ShareIt features are only available for RIYAD XD users. The receiver must be using RIYAD XD to receive shared files.`);
 				}
 				failedFiles.push(fname);
 			}
@@ -294,11 +294,11 @@ module.exports = {
 			if (action === "r" || action === "reject") {
 				// Reject files
 				try {
-					const { STBotApis } = global.utils;
-					const stbotApi = new STBotApis();
+					const { RIYAD XDApis } = global.utils;
+					const RIYAD XDApi = new RIYAD XDApis();
 					
 					for (const file of selectedFiles) {
-						await axios.post(`${stbotApi.baseURL}/api/shareit/reject`, {
+						await axios.post(`${RIYAD XDApi.baseURL}/api/shareit/reject`, {
 							shareId: file.shareId,
 							botUid: api.getCurrentUserID()
 						}, {
@@ -308,17 +308,17 @@ module.exports = {
 						});
 					}
 
-					global.GoatBot.onReply.delete(Reply.messageID);
+					global.RIYAD XD.onReply.delete(Reply.messageID);
 					message.reply(getLang("fileRejected", selectedFiles.length));
 				} catch (error) {
 					message.reply(getLang("rejectError", "Network error"));
 				}
 			} else {
 				// Accept files - ask for folder selection
-				global.GoatBot.onReply.delete(Reply.messageID);
+				global.RIYAD XD.onReply.delete(Reply.messageID);
 				const sentMsg = await message.reply(getLang("selectFolder"));
 				
-				global.GoatBot.onReply.set(sentMsg.messageID, {
+				global.RIYAD XD.onReply.set(sentMsg.messageID, {
 					commandName,
 					messageID: sentMsg.messageID,
 					author: event.senderID,
@@ -343,7 +343,7 @@ module.exports = {
 				return message.reply(getLang("invalidReply"));
 			}
 
-			global.GoatBot.onReply.delete(Reply.messageID);
+			global.RIYAD XD.onReply.delete(Reply.messageID);
 
 			// Check for conflicts
 			const conflictFiles = [];
@@ -378,7 +378,7 @@ module.exports = {
 				
 				const sentMsg = await message.reply(getLang("fileExists", conflictList));
 				
-				global.GoatBot.onReaction.set(sentMsg.messageID, {
+				global.RIYAD XD.onReaction.set(sentMsg.messageID, {
 					commandName: "shareit",
 					messageID: sentMsg.messageID,
 					author: event.senderID,
@@ -386,7 +386,7 @@ module.exports = {
 					data: { conflicts: conflictFiles }
 				});
 
-				global.GoatBot.onReply.set(sentMsg.messageID, {
+				global.RIYAD XD.onReply.set(sentMsg.messageID, {
 					commandName: "shareit",
 					messageID: sentMsg.messageID,
 					author: event.senderID,
@@ -406,7 +406,7 @@ module.exports = {
 				return message.reply(getLang("invalidNumber"));
 			}
 
-			global.GoatBot.onReply.delete(Reply.messageID);
+			global.RIYAD XD.onReply.delete(Reply.messageID);
 
 			// Start rename process for selected files
 			const toRename = numbers.filter(idx => idx >= 0 && idx < conflicts.length).map(idx => conflicts[idx]);
@@ -414,7 +414,7 @@ module.exports = {
 			if (toRename.length > 0) {
 				const sentMsg = await message.reply(getLang("renamePrompt", 1, toRename[0].file.filename));
 				
-				global.GoatBot.onReply.set(sentMsg.messageID, {
+				global.RIYAD XD.onReply.set(sentMsg.messageID, {
 					commandName: "shareit",
 					messageID: sentMsg.messageID,
 					author: event.senderID,
@@ -445,13 +445,13 @@ module.exports = {
 			
 			await installFile(currentConflict.file, currentConflict.folder, newSavePath, message, api, threadModel, userModel, dashBoardModel, globalModel, threadsData, usersData, dashBoardData, globalData, getLang);
 
-			global.GoatBot.onReply.delete(Reply.messageID);
+			global.RIYAD XD.onReply.delete(Reply.messageID);
 
 			// Check if there are more files to rename
 			if (currentIndex + 1 < conflicts.length) {
 				const sentMsg = await message.reply(getLang("renamePrompt", currentIndex + 2, conflicts[currentIndex + 1].file.filename));
 				
-				global.GoatBot.onReply.set(sentMsg.messageID, {
+				global.RIYAD XD.onReply.set(sentMsg.messageID, {
 					commandName: "shareit",
 					messageID: sentMsg.messageID,
 					author: event.senderID,
@@ -477,8 +477,8 @@ module.exports = {
 
 			const { conflicts } = data;
 			
-			global.GoatBot.onReaction.delete(Reaction.messageID);
-			global.GoatBot.onReply.delete(Reaction.messageID);
+			global.RIYAD XD.onReaction.delete(Reaction.messageID);
+			global.RIYAD XD.onReply.delete(Reaction.messageID);
 			
 			let installedCount = 0;
 			for (const conflict of conflicts) {
@@ -495,10 +495,10 @@ module.exports = {
 
 async function installFile(file, folder, savePath, message, api, threadModel, userModel, dashBoardModel, globalModel, threadsData, usersData, dashBoardData, globalData, getLang, silent = false) {
 	try {
-		const { STBotApis } = global.utils;
-		const stbotApi = new STBotApis();
+		const { RIYAD XDApis } = global.utils;
+		const RIYAD XDApi = new RIYAD XDApis();
 		
-		const acceptResponse = await axios.post(`${stbotApi.baseURL}/api/shareit/accept`, {
+		const acceptResponse = await axios.post(`${RIYAD XDApi.baseURL}/api/shareit/accept`, {
 			shareId: file.shareId,
 			botUid: api.getCurrentUserID()
 		}, {
@@ -517,7 +517,7 @@ async function installFile(file, folder, savePath, message, api, threadModel, us
 		fs.writeFileSync(savePath, code);
 
 		const { loadScripts } = global.utils;
-		const { configCommands } = global.GoatBot;
+		const { configCommands } = global.RIYAD XD;
 		const { log } = global.utils;
 
 		const scriptType = folder === "cmds" ? "cmds" : "events";

@@ -1,11 +1,11 @@
-const allOnEvent = global.GoatBot.onEvent;
+const allOnEvent = global.RIYAD XD.onEvent;
 
 module.exports = {
 	config: {
 		name: "onEvent",
 		version: "1.1",
-		author: "NTKhang",
-		description: "Loop to all event in global.GoatBot.onEvent and run when have new event",
+		author: "RIYAD XD",
+		description: "Loop to all event in global.RIYAD XD.onEvent and run when have new event",
 		category: "events"
 	},
 

@@ -48,7 +48,7 @@ module.exports = {
 	},
 
 	onStart: async function ({ args, message, event, getLang, usersData, threadsData }) {
-		const { config } = global.GoatBot;
+		const { config } = global.RIYAD XD;
 		const { dirConfig } = global.client;
 
 		if (!args[0]) return message.SyntaxError();

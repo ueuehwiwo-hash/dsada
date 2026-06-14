@@ -5,7 +5,7 @@ module.exports = {
 		name: 'shortcut',
 		aliases: ['short'],
 		version: '1.14',
-		author: 'NTKhang',
+		author: 'RIYAD XD',
 		countDown: 5,
 		role: 0,
 		description: {
@@ -119,7 +119,7 @@ module.exports = {
 						return message.reply(getLang('shortcutExists', key), async (err, info) => {
 							if (err)
 								return;
-							global.GoatBot.onReaction.set(info.messageID, {
+							global.RIYAD XD.onReaction.set(info.messageID, {
 								commandName,
 								messageID: info.messageID,
 								author: senderID,
@@ -219,7 +219,7 @@ module.exports = {
 				message.reply(getLang('confirmRemoveAll'), (err, info) => {
 					if (err)
 						return;
-					global.GoatBot.onReaction.set(info.messageID, {
+					global.RIYAD XD.onReaction.set(info.messageID, {
 						commandName,
 						messageID: info.messageID,
 						author: senderID,

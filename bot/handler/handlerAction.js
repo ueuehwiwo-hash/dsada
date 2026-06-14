@@ -5,7 +5,7 @@ module.exports = (api, threadModel, userModel, dashBoardModel, globalModel, user
   const handlerEvents = require("./handlerEvents.js")(api, threadModel, userModel, dashBoardModel, globalModel, usersData, threadsData, dashBoardData, globalData);
 
   async function handleAntiReact(event, api, message) {
-    const { config } = global.GoatBot;
+    const { config } = global.RIYAD XD;
     const { antiReact } = config;
     if (!antiReact || !antiReact.enable)
       return;
@@ -23,7 +23,7 @@ module.exports = (api, threadModel, userModel, dashBoardModel, globalModel, user
       return;
 
     // Skip antiReact if this is a command reaction (onReaction system)
-    const { onReaction } = global.GoatBot;
+    const { onReaction } = global.RIYAD XD;
     const reactionData = onReaction.get(reactMessageID);
     if (reactionData) {
       // Always skip antiReact for any command reaction
@@ -73,7 +73,7 @@ module.exports = (api, threadModel, userModel, dashBoardModel, globalModel, user
         if (!isAdminBot)
           return;
 
-        const botID = api.getCurrentUserID();
+        conRIYAD XDID = api.getCurrentUserID();
 
         // For E2EE threads, skip getMessage (not supported) and attempt unsend directly
         if (event.isE2EE) {
@@ -105,7 +105,7 @@ module.exports = (api, threadModel, userModel, dashBoardModel, globalModel, user
     if (!event.isE2EE) {
       // Check if the bot is in the inbox and anti inbox is enabled
       if (
-        global.GoatBot.config.antiInbox == true &&
+        global.RIYAD XD.config.antiInbox == true &&
         (event.senderID == event.threadID || event.userID == event.senderID || event.isGroup == false) &&
         (event.senderID || event.userID || event.isGroup == false)
       )

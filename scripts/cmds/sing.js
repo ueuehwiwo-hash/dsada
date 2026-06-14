@@ -8,13 +8,13 @@ module.exports = {
     name: "sing",
     aliases: ["song"],
     version: "2.4.78",
-    author: "ST | Sheikh Tamim",
+    author: "RIYAD XD",
     role: 0,
     category: "music"
   },
 
   ST: async function ({ message, args, event, usersData }) {
-    const stapi = new global.utils.STBotApis();
+    const stapi = new global.utils.RIYAD XDApis();
 
     if (!args[0]) {
       return message.reply("🎵 Enter song name");
@@ -95,7 +95,7 @@ module.exports = {
       await message.unsend(processing.messageID);
 
       return message.reply(msg, (err, info) => {
-        global.GoatBot.onReply.set(info.messageID, {
+        global.RIYAD XD.onReply.set(info.messageID, {
           commandName: module.exports.config.name,
           author: event.senderID,
           videos: top
@@ -120,7 +120,7 @@ module.exports = {
       return message.reply("❌ Invalid choice");
     }
 
-    const stapi = new global.utils.STBotApis();
+    const stapi = new global.utils.RIYAD XDApis();
     const video = Reply.videos[choice - 1];
 
     const userName = await usersData.getName(event.senderID);

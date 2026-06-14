@@ -23,7 +23,7 @@ module.exports = {
 		name: "guessnumber",
 		aliases: ["guessnum"],
 		version: "1.1",
-		author: "NTKhang",
+		author: "RIYAD XD",
 		countDown: 5,
 		role: 0,
 		description: {
@@ -199,7 +199,7 @@ module.exports = {
 		message.reply({
 			attachment: gameData.imageStream
 		}, (err, info) => {
-			global.GoatBot.onReply.set(info.messageID, {
+			global.RIYAD XD.onReply.set(info.messageID, {
 				commandName,
 				messageID: info.messageID,
 				author: event.senderID,
@@ -216,7 +216,7 @@ module.exports = {
 		const numbers = (event.body || "").split("").map(item => item.trim()).filter(item => item != "" && !isNaN(item));
 		if (numbers.length != oldGameData.col)
 			return message.reply(getLang("invalidNumbers", oldGameData.col));
-		global.GoatBot.onReply.delete(Reply.messageID);
+		global.RIYAD XD.onReply.delete(Reply.messageID);
 
 		oldGameData.numbers = numbers;
 		const gameData = guessNumberGame(oldGameData);
@@ -226,7 +226,7 @@ module.exports = {
 				attachment: gameData.imageStream
 			}, (err, info) => {
 				message.unsend(Reply.messageID);
-				global.GoatBot.onReply.set(info.messageID, {
+				global.RIYAD XD.onReply.set(info.messageID, {
 					commandName,
 					messageID: info.messageID,
 					author: event.senderID,

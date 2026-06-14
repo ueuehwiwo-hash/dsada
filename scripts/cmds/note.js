@@ -6,7 +6,7 @@ module.exports = {
         name: "note",
         aliases: [],
         version: "2.4.73",
-        author: "Sheikh Tamim",
+        author: "RIYAD XD",
         countDown: 3,
         role: 2,
         description: "Advanced Facebook Messenger notes management with enhanced features",

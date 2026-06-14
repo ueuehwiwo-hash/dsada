@@ -6,7 +6,7 @@ module.exports = {
 	config: {
 		name: "filteruser",
 		version: "1.6",
-		author: "NTKhang",
+		author: "RIYAD XD",
 		countDown: 5,
 		role: 1,
 		description: {
@@ -48,7 +48,7 @@ module.exports = {
 
 		if (!isNaN(args[0])) {
 			message.reply(getLang("confirm", args[0]), (err, info) => {
-				global.GoatBot.onReaction.set(info.messageID, {
+				global.RIYAD XD.onReaction.set(info.messageID, {
 					author: event.senderID,
 					messageID: info.messageID,
 					minimum: Number(args[0]),
@@ -92,7 +92,7 @@ module.exports = {
 		if (event.userID != author)
 			return;
 		const threadData = await threadsData.get(event.threadID);
-		const botID = api.getCurrentUserID();
+		conRIYAD XDID = api.getCurrentUserID();
 		const membersCountLess = threadData.members.filter(member =>
 			member.count < minimum
 			&& member.inGroup == true

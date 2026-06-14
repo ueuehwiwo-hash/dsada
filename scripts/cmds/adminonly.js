@@ -1,5 +1,5 @@
 const fs = require("fs-extra");
-const { config } = global.GoatBot;
+const { config } = global.RIYAD XD;
 const { client } = global;
 
 module.exports = {
@@ -7,7 +7,7 @@ module.exports = {
 		name: "adminonly",
 		aliases: ["adonly", "onlyad", "onlyadmin"],
 		version: "2.4.73",
-		author: "NTKhang Enhanced by Sheikh Tamim",
+		author: "RIYAD XD Enhanced by RIYAD XD",
 		countDown: 5,
 		role: 2,
 		description: {

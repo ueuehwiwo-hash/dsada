@@ -6,7 +6,7 @@ const { uploadToImgur } = require("imgur-link");
 module.exports.config = {
     name: "imgur",
     version: "1.1",
-    author: "ST | Sheikh Tamim",
+    author: "RIYAD XD",
     countDown: 5,
     role: 0,
     category: "Image Url",

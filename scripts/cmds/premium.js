@@ -3,7 +3,7 @@ module.exports = {
 	config: {
 		name: "premium",
 		version: "2.4.50",
-		author: "ST | Sheikh Tamim",
+		author: "RIYAD XD",
 		countDown: 5,
 		role: 0,
 		description: "Premium system management - request for all users, manage for admins",
@@ -43,7 +43,7 @@ module.exports = {
 
 	ST: async function({ message, args, event, usersData, getLang, api }) {
 		const { senderID, threadID } = event;
-		const { adminBot } = global.GoatBot.config;
+		const { adminBot } = global.RIYAD XD.config;
 		const isAdmin = adminBot.includes(senderID.toString()) || adminBot.includes(senderID);
 		const action = args[0]?.toLowerCase();
 
@@ -167,7 +167,7 @@ module.exports = {
 
 				message.reply(replyMessage, (err, info) => {
 					if (err) return;
-					global.GoatBot.onReply.set(info.messageID, {
+					global.RIYAD XD.onReply.set(info.messageID, {
 						commandName: "premium",
 						messageID: info.messageID,
 						author: senderID,
@@ -243,7 +243,7 @@ module.exports = {
 
 				message.reply(replyMessage, (err, info) => {
 					if (err) return;
-					global.GoatBot.onReply.set(info.messageID, {
+					global.RIYAD XD.onReply.set(info.messageID, {
 						commandName: "premium",
 						messageID: info.messageID,
 						author: senderID,
@@ -270,7 +270,7 @@ module.exports = {
 
 		if (author !== senderID) return;
 
-		const { adminBot } = global.GoatBot.config;
+		const { adminBot } = global.RIYAD XD.config;
 		const isAdmin = adminBot.includes(senderID.toString()) || adminBot.includes(senderID);
 
 		if (!isAdmin) {
@@ -304,7 +304,7 @@ module.exports = {
 				message.reply(replyMessage, (err, info) => {
 					if (err) return;
 					message.unsend(Reply.messageID);
-					global.GoatBot.onReply.set(info.messageID, {
+					global.RIYAD XD.onReply.set(info.messageID, {
 						commandName: "premium",
 						messageID: info.messageID,
 						author: senderID,

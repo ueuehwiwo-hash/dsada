@@ -1,4 +1,4 @@
-const ignoreList = global.GoatBot.config.adminOnly.ignoreCommand;
+const ignoreList = global.RIYAD XD.config.adminOnly.ignoreCommand;
 const fs = require("fs-extra");
 
 module.exports = {
@@ -6,7 +6,7 @@ module.exports = {
 		name: "ignoreonlyad",
 		aliases: ["ignoreadonly", "ignoreonlyadmin", "ignoreadminonly"],
 		version: "1.2",
-		author: "NTKhang",
+		author: "RIYAD XD",
 		countDown: 5,
 		role: 2,
 		description: {
@@ -53,13 +53,13 @@ module.exports = {
 				if (!args[1])
 					return message.reply(getLang("missingCommandNameToAdd"));
 				const commandName = args[1].toLowerCase();
-				const command = global.GoatBot.commands.get(commandName);
+				const command = global.RIYAD XD.commands.get(commandName);
 				if (!command)
 					return message.reply(getLang("commandNotFound", commandName));
 				if (ignoreList.includes(commandName))
 					return message.reply(getLang("commandAlreadyInList", commandName));
 				ignoreList.push(commandName);
-				fs.writeFileSync(global.client.dirConfig, JSON.stringify(global.GoatBot.config, null, 2));
+				fs.writeFileSync(global.client.dirConfig, JSON.stringify(global.RIYAD XD.config, null, 2));
 				return message.reply(getLang("commandAdded", commandName));
 			}
 			case "del":
@@ -70,13 +70,13 @@ module.exports = {
 				if (!args[1])
 					return message.reply(getLang("missingCommandNameToDelete"));
 				const commandName = args[1].toLowerCase();
-				const command = global.GoatBot.commands.get(commandName);
+				const command = global.RIYAD XD.commands.get(commandName);
 				if (!command)
 					return message.reply(getLang("commandNotFound", commandName));
 				if (!ignoreList.includes(commandName))
 					return message.reply(getLang("commandNotInList", commandName));
 				ignoreList.splice(ignoreList.indexOf(commandName), 1);
-				fs.writeFileSync(global.client.dirConfig, JSON.stringify(global.GoatBot.config, null, 2));
+				fs.writeFileSync(global.client.dirConfig, JSON.stringify(global.RIYAD XD.config, null, 2));
 				return message.reply(getLang("commandDeleted", commandName));
 			}
 			case "list": {

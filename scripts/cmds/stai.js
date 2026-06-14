@@ -3,9 +3,9 @@
 module.exports = {
   config: {
     name: "stai",
-    aliases: ["tamimai", "aiagent", "stagent"],
+    aliases: ["riyadai", "aiagent", "riyadagent"],
     version: "2.1.0",
-    author: "STAI | Sheikh Tamim",
+    author: "STAI | RIYAD XD",
     countDown: 3,
     role: 2,
     description: {
@@ -30,13 +30,13 @@ module.exports = {
   },
 
   onStart: async function(params) {
-    return global.GoatBot.stagent.handleCommand(params);
+    return global.RIYAD XD.riyadagent.handleCommand(params);
   },
 
   onReply: async function(params) {
     const { Reply, event } = params;
     if (!Reply || Reply.commandName !== "stai") return;
     if (Reply.author && event.senderID !== Reply.author && !global.utils.isAdmin(event.senderID)) return;
-    return global.GoatBot.stagent.handleReply(params);
+    return global.RIYAD XD.riyadagent.handleReply(params);
   }
 };

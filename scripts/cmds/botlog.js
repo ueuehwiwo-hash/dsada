@@ -6,7 +6,7 @@ module.exports = {
 		name: "botlog",
 		aliases: ["blogconfig"],
 		version: "2.3.5",
-		author: "ST | Sheikh Tamim",
+		author: "RIYAD XD",
 		countDown: 5,
 		role: 2,
 		description: {
@@ -50,7 +50,7 @@ module.exports = {
 
 	onStart: async function ({ args, message, event, getLang }) {
 		const { threadID } = event;
-		const { config } = global.GoatBot;
+		const { config } = global.RIYAD XD;
 		
 		// Initialize botLogging if it doesn't exist
 		if (!config.botLogging) {

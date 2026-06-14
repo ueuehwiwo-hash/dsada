@@ -5,7 +5,7 @@ module.exports = {
 		name: "loadconfig",
 		aliases: ["loadcf"],
 		version: "1.4",
-		author: "NTKhang",
+		author: "RIYAD XD",
 		countDown: 5,
 		role: 2,
 		description: {
@@ -26,8 +26,8 @@ module.exports = {
 	},
 
 	onStart: async function ({ message, getLang }) {
-		global.GoatBot.config = fs.readJsonSync(global.client.dirConfig);
-		global.GoatBot.configCommands = fs.readJsonSync(global.client.dirConfigCommands);
+		global.RIYAD XD.config = fs.readJsonSync(global.client.dirConfig);
+		global.RIYAD XD.configCommands = fs.readJsonSync(global.client.dirConfigCommands);
 		message.reply(getLang("success"));
 	}
 };

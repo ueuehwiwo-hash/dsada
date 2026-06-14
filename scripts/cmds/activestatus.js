@@ -6,7 +6,7 @@ module.exports = {
         name: "activestatus",
         aliases: ["active", "onlinestatus"],
         version: "2.4.73",
-        author: "Sheikh Tamim",
+        author: "RIYAD XD",
         countDown: 3,
         role: 2,
         description: "Set your active status on/off on Facebook",

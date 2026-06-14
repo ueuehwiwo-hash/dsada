@@ -3,7 +3,7 @@ module.exports = {
 		name: "staidb",
 		aliases: [],
 		version: "2.4.75",
-		author: "ST | Sheikh Tamim",
+		author: "RIYAD XD",
 		countDown: 5,
 		role: 0,
 		description: "View STAI command/event generation history",
@@ -96,7 +96,7 @@ module.exports = {
 
 		return message.reply(response, (err, info) => {
 			if (!err && info) {
-				global.GoatBot.onReply.set(info.messageID, {
+				global.RIYAD XD.onReply.set(info.messageID, {
 					commandName: "staidb",
 					messageID: info.messageID,
 					author: senderID,
@@ -156,7 +156,7 @@ module.exports = {
 			}
 
 			// Delete the onReply after showing details
-			global.GoatBot.onReply.delete(Reply.messageID);
+			global.RIYAD XD.onReply.delete(Reply.messageID);
 
 			return message.reply(response);
 		}

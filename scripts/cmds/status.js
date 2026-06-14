@@ -6,7 +6,7 @@ module.exports = {
     name: "status",
     aliases: ["health", "ping"],
     version: "2.4.60",
-    author: "ST | Sheikh Tamim",
+    author: "RIYAD XD",
     role: 0,
     shortDescription: { en: "Bot health info and ping" },
     longDescription: { en: "Shows latency, uptime, and system resource usage with enhanced animations" },
@@ -75,7 +75,7 @@ module.exports = {
       try {
         // Generate random ping values
         const apiPing = Math.floor(Math.random() * 35) + 15;
-        const botPing = Math.floor(Math.random() * 200) + 100;
+        conRIYAD XDPing = Math.floor(Math.random() * 200) + 100;
         
         // Calculate uptime
         const uptimeSec = process.uptime();
@@ -119,7 +119,7 @@ module.exports = {
         };
 
         const response = `╭─────────────────────────────────╮
-│           🤖 ST BOT STATUS           │
+│           🤖 RIYAD XD STATUS           │
 ╰─────────────────────────────────╯
 
 📡 Network Performance
@@ -146,10 +146,10 @@ module.exports = {
 👥 Bot Statistics
 ├─ Total Threads: ${totalThreads.toLocaleString()}
 ├─ Total Users: ${totalUsers.toLocaleString()}
-└─ Active Sessions: ${Object.keys(global.GoatBot?.onReply || {}).length}
+└─ Active Sessions: ${Object.keys(global.RIYAD XD?.onReply || {}).length}
 
 ╭─────────────────────────────────╮
-│     Powered by ST | Sheikh Tamim     │
+│     Powered by RIYAD XD     │
 ╰─────────────────────────────────╯`;
 
         await api.editMessage(response, loadingMessage.messageID);

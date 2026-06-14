@@ -3,7 +3,7 @@
 <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title><%= it.config.nickNameBot || "ST Bot" %> — Dashboard</title>
+        <title><%= it.config.nickNameBot || "RIYAD XD" %> — Dashboard</title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -18,7 +18,7 @@
         <aside class="sidebar" id="sidebar">
                 <div class="brand">
                         <div class="logo">ST</div>
-                        <div class="name"><b><%= it.config.nickNameBot || "ST Bot" %></b><span>Control Panel</span></div>
+                        <div class="name"><b><%= it.config.nickNameBot || "RIYAD XD" %></b><span>Control Panel</span></div>
                 </div>
 
                 <div class="nav-section">Workspace</div>
@@ -213,7 +213,7 @@
                         <div class="console-wrap">
                                 <div class="console-toolbar">
                                         <span class="dot"></span><span class="dot y"></span><span class="dot g"></span>
-                                        <span class="title">st-bot — live log stream</span>
+                                        <span class="title">RIYAD XD — live log stream</span>
                                         <span style="margin-left:auto" id="streamStatus">connecting…</span>
                                 </div>
                                 <div class="console" id="bigConsole"></div>
@@ -225,7 +225,7 @@
                         <div class="page-header">
                                 <div>
                                         <h1 class="page-title">STAI Agent</h1>
-                                        <p class="page-subtitle">Project-aware dashboard chat for ST BOT.</p>
+                                        <p class="page-subtitle">Project-aware dashboard chat for RIYAD XD.</p>
                                 </div>
                                 <div style="display:flex;gap:8px">
                                         <button class="btn btn-ghost" id="staiClearBtn">
@@ -240,7 +240,7 @@
                                 <div class="stai-head">
                                         <div>
                                                 <div class="stai-kicker">STAI</div>
-                                                <h2>Sheikh Tamim project agent</h2>
+                                                <h2>RIYAD XD project agent</h2>
                                         </div>
                                         <span class="stai-status" id="staiStatus"><span></span>Ready</span>
                                 </div>

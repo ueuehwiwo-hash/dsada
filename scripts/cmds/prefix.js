@@ -5,7 +5,7 @@ module.exports = {
 	config: {
 		name: "prefix",
 		version: "1.4",
-		author: "NTKhang",
+		author: "RIYAD XD",
 		countDown: 5,
 		role: 0,
 		description: "Thay đổi dấu lệnh của bot trong box chat của bạn hoặc cả hệ thống bot (chỉ admin bot)",
@@ -55,7 +55,7 @@ module.exports = {
 
 		if (args[0] == 'reset') {
 			await threadsData.set(event.threadID, null, "data.prefix");
-			return message.reply(getLang("reset", global.GoatBot.config.prefix));
+			return message.reply(getLang("reset", global.RIYAD XD.config.prefix));
 		}
 
 		const newPrefix = args[0];
@@ -75,7 +75,7 @@ module.exports = {
 
 		return message.reply(args[1] === "-g" ? getLang("confirmGlobal") : getLang("confirmThisThread"), (err, info) => {
 			formSet.messageID = info.messageID;
-			global.GoatBot.onReaction.set(info.messageID, formSet);
+			global.RIYAD XD.onReaction.set(info.messageID, formSet);
 		});
 	},
 
@@ -84,8 +84,8 @@ module.exports = {
 		if (event.userID !== author)
 			return;
 		if (setGlobal) {
-			global.GoatBot.config.prefix = newPrefix;
-			fs.writeFileSync(global.client.dirConfig, JSON.stringify(global.GoatBot.config, null, 2));
+			global.RIYAD XD.config.prefix = newPrefix;
+			fs.writeFileSync(global.client.dirConfig, JSON.stringify(global.RIYAD XD.config, null, 2));
 			return message.reply(getLang("successGlobal", newPrefix));
 		}
 		else {
@@ -97,7 +97,7 @@ module.exports = {
 	onChat: async function ({ event, message, getLang }) {
 		if (event.body && event.body.toLowerCase() === "prefix")
 			return () => {
-				return message.reply(getLang("myPrefix", global.GoatBot.config.prefix, utils.getPrefix(event.threadID)));
+				return message.reply(getLang("myPrefix", global.RIYAD XD.config.prefix, utils.getPrefix(event.threadID)));
 			};
 	}
 };

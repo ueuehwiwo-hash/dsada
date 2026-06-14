@@ -9,7 +9,7 @@ module.exports = {
 		name: "loanadmin",
 		aliases: ["la"],
 		version: "2.4.71",
-		author: "ST BOT",
+		author: "RIYAD XD",
 		countDown: 5,
 		role: 2,
 		description: {
@@ -82,7 +82,7 @@ module.exports = {
 
 				return message.reply(msg, (err, info) => {
 					if (!err) {
-						global.GoatBot.onReply.set(info.messageID, {
+						global.RIYAD XD.onReply.set(info.messageID, {
 							commandName: module.exports.config.name,
 							messageID: info.messageID,
 							author: event.senderID,
@@ -221,7 +221,7 @@ module.exports = {
 
 	onReply: async function ({ event, Reply, message, usersData, api }) {
 		const { author, type } = Reply;
-		const adminConfig = global.GoatBot.config.adminBot;
+		const adminConfig = global.RIYAD XD.config.adminBot;
 		const bankData = global.db.bankData;
 
 		if (!adminConfig.includes(event.senderID)) {

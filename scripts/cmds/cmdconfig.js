@@ -7,7 +7,7 @@ module.exports = {
 		name: "cmdconfig",
 		aliases: ["cc"],
 		version: "2.4.74",
-		author: "ST | Sheikh Tamim",
+		author: "RIYAD XD",
 		countDown: 5,
 		role: 2, // Admin only
 		description: "Dynamically modify command configurations",
@@ -42,7 +42,7 @@ module.exports = {
 		}
 
 		const { loadScripts } = global.utils;
-		const { configCommands } = global.GoatBot;
+		const { configCommands } = global.RIYAD XD;
 		
 		// Check if it's a remove operation
 		const isRemove = args[0] === "-r";

@@ -5,7 +5,7 @@ module.exports = {
     name: "say",
     aliases: [],
     version: "2.0",
-    author: "ST | Sheikh Tamim",
+    author: "RIYAD XD",
     countDown: 1,
     role: 0,
     shortDescription: "say something",

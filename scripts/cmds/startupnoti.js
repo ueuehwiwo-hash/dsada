@@ -6,7 +6,7 @@ module.exports = {
 		name: "startupnoti",
 		aliases: [],
 		version: "1.0",
-		author: "ST | Sheikh Tamim",
+		author: "RIYAD XD",
 		countDown: 5,
 		role: 2,
 		description: {
@@ -49,7 +49,7 @@ module.exports = {
 
 	onStart: async function ({ args, message, event, getLang }) {
 		const { threadID } = event;
-		const { config } = global.GoatBot;
+		const { config } = global.RIYAD XD;
 		const startupConfig = config.botStartupNotification;
 
 		if (!args[0]) {

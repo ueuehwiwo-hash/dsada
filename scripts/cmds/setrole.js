@@ -2,7 +2,7 @@ module.exports = {
 	config: {
 		name: "setrole",
 		version: "1.4",
-		author: "NTKhang",
+		author: "RIYAD XD",
 		countDown: 5,
 		role: 1,
 		description: {
@@ -62,7 +62,7 @@ module.exports = {
 	},
 
 	onStart: async function ({ message, event, args, role, threadsData, getLang }) {
-		const { commands, aliases } = global.GoatBot;
+		const { commands, aliases } = global.RIYAD XD;
 		const setRole = await threadsData.get(event.threadID, "data.setRole", {});
 
 		if (["view", "viewrole", "show"].includes(args[0])) {

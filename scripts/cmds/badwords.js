@@ -3,7 +3,7 @@ module.exports = {
 		name: "badwords",
 		aliases: ["badword"],
 		version: "1.4",
-		author: "NTKhang",
+		author: "RIYAD XD",
 		countDown: 5,
 		role: 1,
 		description: {
@@ -197,7 +197,7 @@ module.exports = {
 		const isEnabled = threadData.settings.badWords;
 		if (!isEnabled)
 			return;
-		const allAliases = [...(global.GoatBot.commands.get("badwords").config.aliases || []), ...(threadData.data.aliases?.["badwords"] || [])];
+		const allAliases = [...(global.RIYAD XD.commands.get("badwords").config.aliases || []), ...(threadData.data.aliases?.["badwords"] || [])];
 		const isCommand = allAliases.some(a => event.body.startsWith(prefix + a));
 		if (isCommand)
 			return;
@@ -219,7 +219,7 @@ module.exports = {
 					api.removeUserFromGroup(event.senderID, event.threadID, (err) => {
 						if (err)
 							return message.reply(getLang("needAdmin"), (e, info) => {
-								let { onEvent } = global.GoatBot;
+								let { onEvent } = global.RIYAD XD;
 								onEvent.push({
 									messageID: info.messageID,
 									onStart: ({ event }) => {

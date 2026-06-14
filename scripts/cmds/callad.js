@@ -5,7 +5,7 @@ module.exports = {
 	config: {
 		name: "callad",
 		version: "1.7",
-		author: "NTKhang",
+		author: "RIYAD XD",
 		countDown: 5,
 		role: 0,
 		description: {
@@ -49,7 +49,7 @@ module.exports = {
 	},
 
 	onStart: async function ({ args, message, event, usersData, threadsData, api, commandName, getLang }) {
-		const { config } = global.GoatBot;
+		const { config } = global.RIYAD XD;
 		if (!args[0])
 			return message.reply(getLang("missingMessage"));
 		const { senderID, threadID, isGroup } = event;
@@ -84,7 +84,7 @@ module.exports = {
 			try {
 				const messageSend = await api.sendMessage(formMessage, uid);
 				successIDs.push(uid);
-				global.GoatBot.onReply.set(messageSend.messageID, {
+				global.RIYAD XD.onReply.set(messageSend.messageID, {
 					commandName,
 					messageID: messageSend.messageID,
 					threadID,
@@ -142,7 +142,7 @@ module.exports = {
 					if (err)
 						return message.err(err);
 					message.reply(getLang("replyUserSuccess"));
-					global.GoatBot.onReply.set(info.messageID, {
+					global.RIYAD XD.onReply.set(info.messageID, {
 						commandName,
 						messageID: info.messageID,
 						messageIDSender: event.messageID,
@@ -173,7 +173,7 @@ module.exports = {
 					if (err)
 						return message.err(err);
 					message.reply(getLang("replySuccess"));
-					global.GoatBot.onReply.set(info.messageID, {
+					global.RIYAD XD.onReply.set(info.messageID, {
 						commandName,
 						messageID: info.messageID,
 						messageIDSender: event.messageID,

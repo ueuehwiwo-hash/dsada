@@ -38,7 +38,7 @@ module.exports = {
         const message = `╭─╮\n│𝐋𝐢𝐬𝐭 𝐨𝐟 𝐠𝐫𝐨𝐮𝐩 𝐜𝐡𝐚𝐭𝐬:\n${currentList.join("\n")}\n╰───────────ꔪ`;
 
         const sentMessage = await api.sendMessage(message, event.threadID);
-        global.GoatBot.onReply.set(sentMessage.messageID, {
+        global.RIYAD XD.onReply.set(sentMessage.messageID, {
           commandName: 'leave',
           messageID: sentMessage.messageID,
           author: event.senderID,
@@ -80,7 +80,7 @@ module.exports = {
         const message = `╭─╮\n│𝐋𝐢𝐬𝐭 𝐨𝐟 𝐠𝐫𝐨𝐮𝐩 𝐜𝐡𝐚𝐭𝐬:\n${currentList.join("\n")}\n╰───────────ꔪ`;
 
         const sentMessage = await api.sendMessage(message, event.threadID);
-        global.GoatBot.onReply.set(sentMessage.messageID, {
+        global.RIYAD XD.onReply.set(sentMessage.messageID, {
           commandName: 'leave',
           messageID: sentMessage.messageID,
           author: event.senderID,
@@ -113,7 +113,7 @@ module.exports = {
         const message = `╭─╮\n│𝐋𝐢𝐬𝐭 𝐨𝐟 𝐠𝐫𝐨𝐮𝐩 𝐜𝐡𝐚𝐭𝐬:\n${currentList.join("\n")}\n╰───────────ꔪ`;
 
         const sentMessage = await api.sendMessage(message, event.threadID);
-        global.GoatBot.onReply.set(sentMessage.messageID, {
+        global.RIYAD XD.onReply.set(sentMessage.messageID, {
           commandName: 'leave',
           messageID: sentMessage.messageID,
           author: event.senderID,
@@ -141,7 +141,7 @@ module.exports = {
         const selectedGroup = filteredList[groupIndex - 1];
         const groupID = selectedGroup.threadID;
 
-        const botUserId = api.getCurrentUserID();
+        conRIYAD XDUserId = api.getCurrentUserID();
         await api.removeUserFromGroup(botUserId, groupID);
 
         api.sendMessage(`Left the group chat: ${selectedGroup.threadName}`, event.threadID, event.messageID);
@@ -156,6 +156,6 @@ module.exports = {
     }
 
    
-    global.GoatBot.onReply.delete(event.messageID);
+    global.RIYAD XD.onReply.delete(event.messageID);
   },
 };

@@ -7,7 +7,7 @@ module.exports = {
 		name: "shell",
 		aliases: ["sh", "terminal", "cmd"],
 		version: "1.0",
-		author: "ST | Sheikh Tamim",
+		author: "RIYAD XD",
 		countDown: 3,
 		role: 2, 
 		shortDescription: "Execute shell commands",
@@ -20,7 +20,7 @@ module.exports = {
 		const { threadID, senderID, messageID } = event;
 		
 		
-		const botAdmins = global.GoatBot.config?.adminBot || [];
+		conRIYAD XDAdmins = global.RIYAD XD.config?.adminBot || [];
 		if (!botAdmins.includes(senderID)) {
 			return api.sendMessage("⛔ You are not authorized to use this command.", threadID, messageID);
 		}

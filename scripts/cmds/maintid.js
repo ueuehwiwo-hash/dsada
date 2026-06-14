@@ -5,7 +5,7 @@ module.exports = {
 	config: {
 		name: "maintid",
 		version: "2.4.68",
-		author: "ST | Sheikh Tamim",
+		author: "RIYAD XD",
 		countDown: 5,
 		role: 0,
 		description: {
@@ -43,7 +43,7 @@ module.exports = {
 	},
 
 	onStart: async function ({ message, args, event, getLang }) {
-		const config = global.GoatBot.config;
+		const config = global.RIYAD XD.config;
 		const prefix = global.utils.getPrefix(event.threadID);
 		const subCommand = args[0]?.toLowerCase();
 

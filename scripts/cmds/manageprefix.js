@@ -6,7 +6,7 @@ module.exports = {
 		name: "manageprefix",
 		aliases: ["mp"],
 		version: "2.4.60",
-		author: "ST | Sheikh Tamim",
+		author: "RIYAD XD",
 		countDown: 5,
 		role: 2, // Admin only
 		description: "Manage prefix settings for the bot",
@@ -22,7 +22,7 @@ module.exports = {
 	},
 
 	ST: async function ({ message, args, getLang }) {
-		const config = global.GoatBot.config;
+		const config = global.RIYAD XD.config;
 		
 		if (!args[0]) {
 			return message.reply("Please specify an action. Use 'status', 'global', 'admin', 'adduid', 'removeuid', or 'listuid'.");
@@ -56,7 +56,7 @@ module.exports = {
 				
 				// Reload config
 				delete require.cache[require.resolve(global.client.dirConfig)];
-				global.GoatBot.config = require(global.client.dirConfig);
+				global.RIYAD XD.config = require(global.client.dirConfig);
 				
 				return message.reply(`✅ Global prefix requirement has been ${newValue ? "enabled" : "disabled"}.`);
 			}
@@ -72,7 +72,7 @@ module.exports = {
 				
 				// Reload config
 				delete require.cache[require.resolve(global.client.dirConfig)];
-				global.GoatBot.config = require(global.client.dirConfig);
+				global.RIYAD XD.config = require(global.client.dirConfig);
 				
 				return message.reply(`✅ Admin prefix requirement has been ${newValue ? "enabled" : "disabled"}.`);
 			}
@@ -89,7 +89,7 @@ module.exports = {
 					
 					// Reload config
 					delete require.cache[require.resolve(global.client.dirConfig)];
-					global.GoatBot.config = require(global.client.dirConfig);
+					global.RIYAD XD.config = require(global.client.dirConfig);
 					
 					return message.reply(`✅ UID ${uid} has been added to the no-prefix list.`);
 				} else {
@@ -110,7 +110,7 @@ module.exports = {
 					
 					// Reload config
 					delete require.cache[require.resolve(global.client.dirConfig)];
-					global.GoatBot.config = require(global.client.dirConfig);
+					global.RIYAD XD.config = require(global.client.dirConfig);
 					
 					return message.reply(`✅ UID ${uid} has been removed from the no-prefix list.`);
 				} else {

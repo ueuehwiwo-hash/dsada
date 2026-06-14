@@ -8,7 +8,7 @@ module.exports = {
     name: "megaspin",
     aliases: [],
     version: "2.4.78",
-    author: "ST | Sheikh Tamim",
+    author: "RIYAD XD",
     description: "Professional 5-reel slot machine with casino-style design",
     usage: "megaspin [bet]",
     category: "game",
@@ -401,7 +401,7 @@ module.exports = {
         ctx.fillStyle = "#ffffff80";
         ctx.font = "20px Arial";
         ctx.textAlign = "center";
-        ctx.fillText("🎰 Powered by ST | Sheikh Tamim 🎰", width/2, height - 30);
+        ctx.fillText("🎰 Powered by RIYAD XD 🎰", width/2, height - 30);
         
         encoder.addFrame(ctx);
       }

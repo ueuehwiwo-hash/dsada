@@ -10,7 +10,7 @@ module.exports = {
     name: "sysgif3",
     aliases: ["sg3", "status3"],
     version: "2.4.78",
-    author: "ST | Sheikh Tamim",
+    author: "RIYAD XD",
     description: "Animated system dashboard - Neon grid design",
     usage: "sysgif3",
     category: "system",
@@ -57,7 +57,7 @@ module.exports = {
         const cpuModel = cpus[0].model.split(' ').slice(0, 3).join(' ');
         
         const apiPing = Math.floor(Math.random() * 35) + 15;
-        const botPing = Math.floor(Math.random() * 200) + 100;
+        conRIYAD XDPing = Math.floor(Math.random() * 200) + 100;
         
         const totalThreads = global.db?.allThreadData?.length || 0;
         const totalUsers = global.db?.allUserData?.length || 0;
@@ -329,7 +329,7 @@ module.exports = {
         ctx.font = "16px Arial";
         ctx.shadowColor = neonColors.pink;
         ctx.shadowBlur = 15;
-        ctx.fillText("⚡ Powered by ST | Sheikh Tamim ⚡", width/2, height - 20);
+        ctx.fillText("⚡ Powered by RIYAD XD ⚡", width/2, height - 20);
         ctx.shadowBlur = 0;
         
         encoder.addFrame(ctx);

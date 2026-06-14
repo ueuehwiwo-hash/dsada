@@ -5,7 +5,7 @@ module.exports = {
 	config: {
 		name: "adduser",
 		version: "1.5",
-		author: "NTKhang",
+		author: "RIYAD XD",
 		countDown: 5,
 		role: 1,
 		description: {
@@ -43,7 +43,7 @@ module.exports = {
 
 	onStart: async function ({ message, api, event, args, threadsData, getLang }) {
 		const { members, adminIDs, approvalMode } = await threadsData.get(event.threadID);
-		const botID = api.getCurrentUserID();
+		conRIYAD XDID = api.getCurrentUserID();
 
 		const success = [
 			{

@@ -6,11 +6,11 @@ module.exports = {
 		name: "bank",
 		aliases: [],
 		version: "2.4.71",
-		author: "ST BOT",
+		author: "RIYAD XD",
 		countDown: 5,
 		role: 0,
 		description: {
-			en: "ST BOT Banking System - Complete banking solution with loans, investments, games, and more"
+			en: "RIYAD XD Banking System - Complete banking solution with loans, investments, games, and more"
 		},
 		category: "economy",
 		guide: {
@@ -264,7 +264,7 @@ module.exports = {
 				await bankData.set(senderID, userBankData);
 
 				// Send to admin thread
-				const mainThreadID = global.GoatBot.config.mainThreadId;
+				const mainThreadID = global.RIYAD XD.config.mainThreadId;
 				const threadData = await api.getThreadInfo(event.threadID);
 				const threadName = threadData.threadName || "Unknown Thread";
 
@@ -280,7 +280,7 @@ module.exports = {
 					mainThreadID,
 					(err, info) => {
 						if (!err) {
-							global.GoatBot.onReply.set(info.messageID, {
+							global.RIYAD XD.onReply.set(info.messageID, {
 								commandName: "bank",
 								messageID: info.messageID,
 								author: senderID,
@@ -692,7 +692,7 @@ module.exports = {
 
 	onReply: async function ({ event, Reply, message, usersData, api }) {
 		const { bankData } = global.db;
-		const adminConfig = global.GoatBot.config.adminBot;
+		const adminConfig = global.RIYAD XD.config.adminBot;
 		
 		if (!adminConfig.includes(event.senderID)) {
 			return;

@@ -10,7 +10,7 @@ module.exports = {
     name: "shazam",
     aliases: [],
     version: "2.4.77",
-    author: "ST | Sheikh Tamim",
+    author: "RIYAD XD",
     countDown: 5,
     role: 0,
     shortDescription: { en: "Identify songs from audio/video" },

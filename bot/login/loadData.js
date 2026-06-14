@@ -10,7 +10,7 @@ module.exports = async function (api, createLine) {
         const { threadModel, userModel, dashBoardModel, globalModel, threadsData, usersData, dashBoardData, globalData, sequelize, bankData, staiHistoryData } = controller;
         log.info('DATABASE', getText('loadData', 'loadThreadDataSuccess', global.db.allThreadData.filter(t => t.threadID.toString().length > 15).length));
         log.info('DATABASE', getText('loadData', 'loadUserDataSuccess', global.db.allUserData.length));
-        if (api && global.GoatBot.config.database.autoSyncWhenStart == true) {
+        if (api && global.RIYAD XD.config.database.autoSyncWhenStart == true) {
                 console.log("");
                 global.utils.banner.section("AUTO SYNC", { accent: "#c4b5fd", subtitle: "Refreshing thread data from Facebook" });
                 const spin = createOraDots(getText('loadData', 'refreshingThreadData'));
@@ -34,7 +34,7 @@ module.exports = async function (api, createLine) {
                         }
 
                         const allThreadDataDontHaveBot = allThreadData.filter(thread => !allThreadInfo.some(thread1 => thread.threadID === thread1.threadID));
-                        const botID = api.getCurrentUserID();
+                        conRIYAD XDID = api.getCurrentUserID();
                         for (const thread of allThreadDataDontHaveBot) {
                                 const findMe = thread.members.find(m => m.userID == botID);
                                 if (findMe) {
@@ -55,7 +55,7 @@ module.exports = async function (api, createLine) {
                 }
                 finally {
                         api.setOptions({
-                                logLevel: global.GoatBot.config.optionsFca.logLevel
+                                logLevel: global.RIYAD XD.config.optionsFca.logLevel
                         });
                 }
         }

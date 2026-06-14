@@ -10,7 +10,7 @@ module.exports = {
     name: "sysgif",
     aliases: ["systemgif", "statusgif"],
     version: "2.4.78",
-    author: "ST | Sheikh Tamim",
+    author: "RIYAD XD",
     description: "Animated system status dashboard with hexagonal design",
     usage: "sysgif",
     category: "system",
@@ -61,7 +61,7 @@ module.exports = {
         
         // Generate realistic ping values
         const apiPing = Math.floor(Math.random() * 35) + 15;
-        const botPing = Math.floor(Math.random() * 200) + 100;
+        conRIYAD XDPing = Math.floor(Math.random() * 200) + 100;
         
         const totalThreads = global.db?.allThreadData?.length || 0;
         const totalUsers = global.db?.allUserData?.length || 0;
@@ -202,7 +202,7 @@ module.exports = {
         ctx.fillStyle = "#00ffcc";
         ctx.font = "bold 36px 'Segoe UI', Arial";
         ctx.textAlign = "center";
-        ctx.fillText("⚡ ST BOT SYSTEM STATUS ⚡", cx, 60);
+        ctx.fillText("⚡ RIYAD XD SYSTEM STATUS ⚡", cx, 60);
         ctx.shadowBlur = 0;
 
         // Timestamp
@@ -236,7 +236,7 @@ module.exports = {
         ctx.fillStyle = "#ffffff60";
         ctx.font = "14px 'Segoe UI', Arial";
         ctx.textAlign = "center";
-        ctx.fillText("Powered by ST | Sheikh Tamim", cx, height - 30);
+        ctx.fillText("Powered by RIYAD XD", cx, height - 30);
 
         encoder.addFrame(ctx);
       }
@@ -247,7 +247,7 @@ module.exports = {
         api.unsendMessage(loadingMsg.messageID);
         
         api.sendMessage({
-          body: "📊 System Status Dashboard\n━━━━━━━━━━━━━━━━━━━━━\n✨ Animated hexagonal display\n🎨 Real-time system metrics\n⚡ Powered by ST Bot",
+          body: "📊 System Status Dashboard\n━━━━━━━━━━━━━━━━━━━━━\n✨ Animated hexagonal display\n🎨 Real-time system metrics\n⚡ Powered by RIYAD XD",
           attachment: fs.createReadStream(filePath)
         }, threadID, () => {
           try {

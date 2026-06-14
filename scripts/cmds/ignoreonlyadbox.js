@@ -3,7 +3,7 @@ module.exports = {
 		name: "ignoreonlyadbox",
 		aliases: ["ignoreadboxonly", "ignoreadminboxonly"],
 		version: "1.2",
-		author: "NTKhang",
+		author: "RIYAD XD",
 		countDown: 5,
 		role: 2,
 		description: {
@@ -51,7 +51,7 @@ module.exports = {
 				if (!args[1])
 					return message.reply(getLang("missingCommandNameToAdd"));
 				const commandName = args[1].toLowerCase();
-				const command = global.GoatBot.commands.get(commandName);
+				const command = global.RIYAD XD.commands.get(commandName);
 				if (!command)
 					return message.reply(getLang("commandNotFound", commandName));
 				if (ignoreList.includes(commandName))
@@ -68,7 +68,7 @@ module.exports = {
 				if (!args[1])
 					return message.reply(getLang("missingCommandNameToDelete"));
 				const commandName = args[1].toLowerCase();
-				const command = global.GoatBot.commands.get(commandName);
+				const command = global.RIYAD XD.commands.get(commandName);
 				if (!command)
 					return message.reply(getLang("commandNotFound", commandName));
 

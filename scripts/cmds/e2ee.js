@@ -40,7 +40,7 @@ module.exports = {
         // 3. Send the interactive test message
         const sentInfo = await message.reply(getLang("testMsg"));
         if (sentInfo && sentInfo.messageID) {
-            global.GoatBot.onReply.set(sentInfo.messageID, {
+            global.RIYAD XD.onReply.set(sentInfo.messageID, {
                 commandName: "e2ee",
                 messageID: sentInfo.messageID,
                 author: event.senderID,

@@ -1,5 +1,5 @@
-const { db, utils, GoatBot } = global;
-const { config } = GoatBot;
+const { db, utils, RIYAD XD } = global;
+const { config } = RIYAD XD;
 const { log, getText } = utils;
 const { creatingThreadData, creatingUserData } = global.client.database;
 

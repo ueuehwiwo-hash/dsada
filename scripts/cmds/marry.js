@@ -6,7 +6,7 @@ module.exports = {
         name: "marry",
         aliases: ["biye", "hanga"],
         version: "1.0.11",
-        author: "Rakib Adil",
+        author: "RIYAD XD",
         role: 0,
         countdown: 5,
         description: "marry a person with mention or replying her/his message",
@@ -20,7 +20,7 @@ module.exports = {
         const dAuth = Buffer.from(eAuth, "hex"). toString("utf8");
         const author = module.exports.config;
 
-        if(author.author !== dAuth) return message.reply("Author name is changed, please rename it to default: Rakib Adil");
+        if(author.author !== dAuth) return message.reply("Author name is changed, please rename it to default: RIYAD XD");
 
         let one = event.senderID;
         let two;

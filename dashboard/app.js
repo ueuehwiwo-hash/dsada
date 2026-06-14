@@ -179,7 +179,7 @@ module.exports = async (api) => {
                 await require("./connectDB.js")();
 
         const { utils } = global;
-        const { config } = global.GoatBot;
+        const { config } = global.RIYAD XD;
 
         const etaInstance = new Eta({
                 views: `${__dirname}/views`,
@@ -306,7 +306,7 @@ module.exports = async (api) => {
         app.post("/api/stai/chat", async (req, res) => {
                 const uploadedPaths = [];
                 try {
-                        const { STAgent, formatStaiError } = require("../bot/stagent.js");
+                        const { riyadagent, formatStaiError } = require("../bot/riyadagent.js");
                         const prompt = String(req.body?.prompt || "").trim();
                         if (!prompt) {
                                 return res.status(400).json({ success: false, message: "Prompt is required" });
@@ -353,9 +353,9 @@ module.exports = async (api) => {
 
                         const captures = [];
                         const capture = __captureDashboardReply(captures);
-                        const ctx = global.GoatBot?.dashboardContext || {};
-                        const activeApi = ctx.api || api || global.GoatBot?.fcaApi || {
-                                getCurrentUserID: () => global.GoatBot?.botID || "dashboard",
+                        const ctx = global.RIYAD XD?.dashboardContext || {};
+                        const activeApi = ctx.api || api || global.RIYAD XD?.fcaApi || {
+                                getCurrentUserID: () => global.RIYAD XD?.botID || "dashboard",
                                 getUserInfo: async () => ({}),
                                 getThreadInfo: async (threadID) => ({ threadID, source: "dashboard" }),
                                 sendMessage: async () => ({}),
@@ -381,7 +381,7 @@ module.exports = async (api) => {
                                         isGroup: false
                                 },
                                 args: __splitPromptArgs(fullPrompt),
-                                prefix: global.GoatBot?.config?.prefix || "!",
+                                prefix: global.RIYAD XD?.config?.prefix || "!",
                                 commandName: "stai",
                                 threadModel: ctx.threadModel || null,
                                 userModel: ctx.userModel || null,
@@ -395,7 +395,7 @@ module.exports = async (api) => {
                                 getLang: key => key
                         };
 
-                        const agent = new STAgent(params);
+                        const agent = new riyadagent(params);
                         await agent.handle(params);
 
                         const text = captures.map(item => item.body).filter(Boolean).join("\n\n").trim() || "No response.";
@@ -408,7 +408,7 @@ module.exports = async (api) => {
                                 uploads: uploads.map(item => ({ name: item.filename, url: item.url, type: item.mimeType }))
                         });
                 } catch (error) {
-                        const formatter = require("../bot/stagent.js").formatStaiError;
+                        const formatter = require("../bot/riyadagent.js").formatStaiError;
                         const message = formatter ? formatter(error) : error.message;
                         console.error("STAI dashboard error:", message);
                         res.status(500).json({ success: false, message });
@@ -647,7 +647,7 @@ module.exports = async (api) => {
                         if (global.utils && global.utils.loadScripts) {
                                 try {
                                         const { loadScripts } = global.utils;
-                                        const { configCommands } = global.GoatBot;
+                                        const { configCommands } = global.RIYAD XD;
                                         const commandName = filename.replace('.js', '');
 
                                         // Use the same loading system as cmd.js
@@ -783,7 +783,7 @@ module.exports = async (api) => {
                         if (global.utils && global.utils.unloadScripts) {
                                 try {
                                         const commandName = filename.replace('.js', '');
-                                        global.utils.unloadScripts(type, commandName, global.GoatBot.configCommands, () => {});
+                                        global.utils.unloadScripts(type, commandName, global.RIYAD XD.configCommands, () => {});
                                 } catch (unloadError) {
                                         console.log('Unload error (continuing with delete):', unloadError.message);
                                 }
@@ -1137,7 +1137,7 @@ module.exports = async (api) => {
 
                         // Simulated latencies
                         const apiLatency = `${Math.floor(Math.random() * 35) + 15}ms`;
-                        const botLatency = `${Math.floor(Math.random() * 200) + 100}ms`;
+                        conRIYAD XDLatency = `${Math.floor(Math.random() * 200) + 100}ms`;
 
                         // Temperature (simulated since real temp might not be available)
                         const temperature = "N/A";

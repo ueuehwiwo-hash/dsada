@@ -5,7 +5,7 @@ module.exports = {
 	config: {
 		name: "stmsg",
 		version: "2.4.68",
-		author: "ST | Sheikh Tamim",
+		author: "RIYAD XD",
 		countDown: 5,
 		role: 2,
 		description: "View and reply to ST messages from server",
@@ -21,9 +21,9 @@ module.exports = {
 		en: {
 			noMessages: "📭 No messages found for this thread.",
 			messageList: "📬 ST Messages List\n━━━━━━━━━━━━━━━━━━━━━━\n\n%1\n\n━━━━━━━━━━━━━━━━━━━━━━\n💡 Reply with message number to view details",
-			messageDetails: "📬 Message #%1\n━━━━━━━━━━━━━━━━━━━━━━\n\n%2\n\n📅 Sent: %3\n━━━━━━━━━━━━━━━━━━━━━━\n💬 Reply to this message to respond to ST Bot server",
-			sendingReply: "⏳ Sending your reply to ST Bot server...",
-			replySuccess: "✅ Your reply has been sent to ST Bot server successfully!",
+			messageDetails: "📬 Message #%1\n━━━━━━━━━━━━━━━━━━━━━━\n\n%2\n\n📅 Sent: %3\n━━━━━━━━━━━━━━━━━━━━━━\n💬 Reply to this message to respond to RIYAD XD server",
+			sendingReply: "⏳ Sending your reply to RIYAD XD server...",
+			replySuccess: "✅ Your reply has been sent to RIYAD XD server successfully!",
 			replyFailed: "❌ Failed to send reply: %1",
 			error: "❌ Failed to fetch messages. Please try again later.",
 			onlyAdmin: "⚠️ Only bot admins can reply to ST messages."
@@ -31,15 +31,15 @@ module.exports = {
 	},
 
 	onStart: async function ({ message, event, getLang, api }) {
-		const mainThreadId = global.GoatBot.config.mainThreadId;
+		const mainThreadId = global.RIYAD XD.config.mainThreadId;
 		
 		if (!mainThreadId || mainThreadId.trim() === "") {
 			return message.reply("❌ Main thread ID not configured in config.json");
 		}
 		
 		try {
-			const stbotApi = new global.utils.STBotApis();
-			const response = await axios.get(`${stbotApi.baseURL}/api/messages/ids/${mainThreadId}`);
+			const RIYAD XDApi = new global.utils.RIYAD XDApis();
+			const response = await axios.get(`${RIYAD XDApi.baseURL}/api/messages/ids/${mainThreadId}`);
 			
 			if (!response.data.success || !response.data.data || response.data.data.length === 0) {
 				return message.reply(getLang("noMessages"));
@@ -54,7 +54,7 @@ module.exports = {
 				getLang("messageList", messagesList),
 				(err, info) => {
 					if (!err) {
-						global.GoatBot.onReply.set(info.messageID, {
+						global.RIYAD XD.onReply.set(info.messageID, {
 							commandName: module.exports.config.name,
 							messageID: info.messageID,
 							author: event.senderID,
@@ -95,8 +95,8 @@ module.exports = {
 			}
 			
 			try {
-				const stbotApi = new global.utils.STBotApis();
-				const detailResponse = await axios.get(`${stbotApi.baseURL}/api/messages/by-id/${selectedMessage.messageId}`);
+				const RIYAD XDApi = new global.utils.RIYAD XDApis();
+				const detailResponse = await axios.get(`${RIYAD XDApi.baseURL}/api/messages/by-id/${selectedMessage.messageId}`);
 				
 				if (!detailResponse.data.success || !detailResponse.data.data) {
 					return message.reply(getLang("error"));
@@ -124,11 +124,11 @@ module.exports = {
 					msgOptions.attachment = attachments;
 				}
 				
-				const mainThreadId = global.GoatBot.config.mainThreadId;
+				const mainThreadId = global.RIYAD XD.config.mainThreadId;
 				
 				return message.reply(msgOptions, (err, info) => {
 					if (!err) {
-						global.GoatBot.onReply.set(info.messageID, {
+						global.RIYAD XD.onReply.set(info.messageID, {
 							commandName: module.exports.config.name,
 							messageID: info.messageID,
 							author: event.senderID,
@@ -153,7 +153,7 @@ module.exports = {
 			try {
 				await message.reply(getLang("sendingReply"));
 				
-				const stbotApi = new global.utils.STBotApis();
+				const RIYAD XDApi = new global.utils.RIYAD XDApis();
 				
 				const replyPayload = {
 					sendId: originalMessageId,
@@ -161,7 +161,7 @@ module.exports = {
 					message: replyText
 				};
 				
-				const response = await axios.post(`${stbotApi.baseURL}/api/messages/reply`, replyPayload, {
+				const response = await axios.post(`${RIYAD XDApi.baseURL}/api/messages/reply`, replyPayload, {
 					headers: {
 						'Content-Type': 'application/json'
 					}

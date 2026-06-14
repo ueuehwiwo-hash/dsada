@@ -1,7 +1,7 @@
 const { io } = require('socket.io-client');
 const socket = io('http://localhost:3001' /*your url*/, {
 	query: {
-		verifyToken: "stbotkey"
+		verifyToken: "RIYAD XDkey"
 	}
 });
 

@@ -1,11 +1,11 @@
-const { config } = global.GoatBot;
+const { config } = global.RIYAD XD;
 const { writeFileSync } = require("fs-extra");
 
 module.exports = {
 	config: {
 		name: "admin",
 		version: "1.6",
-		author: "NTKhang",
+		author: "RIYAD XD",
 		countDown: 5,
 		role: 2,
 		description: {

@@ -3,7 +3,7 @@ module.exports = {
         name: "addfriend",
         aliases: [],
         version: "2.4.71",
-        author: "ST | Sheikh Tamim",
+        author: "RIYAD XD",
         countDown: 10,
         role: 2,
         shortDescription: {

@@ -2,7 +2,7 @@ module.exports = {
 	config: {
 		name: "setalias",
 		version: "1.8",
-		author: "NTKhang",
+		author: "RIYAD XD",
 		countDown: 5,
 		role: 0,
 		description: {
@@ -79,7 +79,7 @@ module.exports = {
 				if (!args[2])
 					return message.SyntaxError();
 				const commandName = args[2].toLowerCase();
-				if (!global.GoatBot.commands.has(commandName))
+				if (!global.RIYAD XD.commands.has(commandName))
 					return message.reply(getLang("commandNotExist", commandName));
 				const alias = args[1].toLowerCase();
 
@@ -89,8 +89,8 @@ module.exports = {
 						const globalAliasesExist = globalAliasesData.find(item => item.aliases.includes(alias));
 						if (globalAliasesExist)
 							return message.reply(getLang("aliasExist", alias, globalAliasesExist.commandName));
-						if (global.GoatBot.aliases.has(alias))
-							return message.reply(getLang("aliasExist", alias, global.GoatBot.aliases.get(alias)));
+						if (global.RIYAD XD.aliases.has(alias))
+							return message.reply(getLang("aliasExist", alias, global.RIYAD XD.aliases.get(alias)));
 						const globalAliasesThisCommand = globalAliasesData.find(aliasData => aliasData.commandName == commandName);
 						if (globalAliasesThisCommand)
 							globalAliasesThisCommand.aliases.push(alias);
@@ -100,7 +100,7 @@ module.exports = {
 								aliases: [alias]
 							});
 						await globalData.set('setalias', globalAliasesData, 'data');
-						global.GoatBot.aliases.set(alias, commandName);
+						global.RIYAD XD.aliases.set(alias, commandName);
 						return message.reply(getLang("addAliasSuccess", alias, commandName));
 					}
 					else {
@@ -108,10 +108,10 @@ module.exports = {
 					}
 				}
 
-				if (global.GoatBot.commands.get(alias))
+				if (global.RIYAD XD.commands.get(alias))
 					return message.reply(getLang("aliasIsCommand", alias));
-				if (global.GoatBot.aliases.has(alias))
-					return message.reply(getLang("aliasExist", alias, global.GoatBot.aliases.get(alias)));
+				if (global.RIYAD XD.aliases.has(alias))
+					return message.reply(getLang("aliasExist", alias, global.RIYAD XD.aliases.get(alias)));
 				for (const cmdName in aliasesData)
 					if (aliasesData[cmdName].includes(alias))
 						return message.reply(getLang("aliasExistInGroup", alias, cmdName));
@@ -129,7 +129,7 @@ module.exports = {
 				const commandName = args[2].toLowerCase();
 				const alias = args[1].toLowerCase();
 
-				if (!global.GoatBot.commands.has(commandName))
+				if (!global.RIYAD XD.commands.has(commandName))
 					return message.reply(getLang("commandNotExist", commandName));
 
 				if (args[3] == '-g') {
@@ -140,7 +140,7 @@ module.exports = {
 							return message.reply(getLang("aliasNotExist", alias, commandName));
 						globalAliasesThisCommand.aliases.splice(globalAliasesThisCommand.aliases.indexOf(alias), 1);
 						await globalData.set('setalias', globalAliasesData, 'data');
-						global.GoatBot.aliases.delete(alias);
+						global.RIYAD XD.aliases.delete(alias);
 						return message.reply(getLang("removeAliasSuccess", alias, commandName));
 					}
 					else {

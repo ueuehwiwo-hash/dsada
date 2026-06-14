@@ -1,5 +1,5 @@
 /* ============================================================
-   ST BOT v2.4.79 — Dashboard frontend
+   RIYAD XD v2.4.79 — Dashboard frontend
    ============================================================ */
 
 const $  = (s, r = document) => r.querySelector(s);
@@ -208,7 +208,7 @@ function consoleDownload() {
         const blob = new Blob([state.consoleBuffer.map(l => l.text).join('\n')], { type: 'text/plain' });
         const a = document.createElement('a');
         a.href = URL.createObjectURL(blob);
-        a.download = `st-bot-console-${Date.now()}.log`;
+        a.download = `RIYAD XD-console-${Date.now()}.log`;
         document.body.appendChild(a); a.click(); a.remove();
 }
 

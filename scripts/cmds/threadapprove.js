@@ -6,7 +6,7 @@ module.exports = {
 		name: "mthread",
 		aliases: ["threadapprove", "tapprove"],
 		version: "2.4.0",
-		author: "Sheikh Tamim",
+		author: "RIYAD XD",
 		countDown: 5,
 		role: 2,
 		description: "Manage thread approvals - list, approve, reject, or cancel threads",
@@ -41,7 +41,7 @@ module.exports = {
 	},
 
 	onStart: async function ({ args, message, api, threadsData, getLang }) {
-		const { threadApproval } = global.GoatBot.config;
+		const { threadApproval } = global.RIYAD XD.config;
 
 		if (!threadApproval || !threadApproval.enable) {
 			return message.reply(getLang("systemDisabled"));
@@ -169,7 +169,7 @@ module.exports = {
 
 		return message.reply(replyMessage, (err, info) => {
 			if (!err) {
-				global.GoatBot.onReply.set(info.messageID, {
+				global.RIYAD XD.onReply.set(info.messageID, {
 					commandName: "mthread",
 					messageID: info.messageID,
 					author: api.getCurrentUserID(),
@@ -187,7 +187,7 @@ module.exports = {
 		const { author, threadDetails, currentPage, totalPages, titleType, allThreads } = Reply;
 		if (api.getCurrentUserID() !== author) return;
 
-		const { threadApproval } = global.GoatBot.config;
+		const { threadApproval } = global.RIYAD XD.config;
 		if (!threadApproval || !threadApproval.enable) {
 			return message.reply(getLang("systemDisabled"));
 		}
@@ -257,7 +257,7 @@ module.exports = {
 
 			message.reply(replyMessage, (err, info) => {
 				if (!err) {
-					global.GoatBot.onReply.set(info.messageID, {
+					global.RIYAD XD.onReply.set(info.messageID, {
 						commandName: "mthread",
 						messageID: info.messageID,
 						author: api.getCurrentUserID(),
@@ -344,7 +344,7 @@ module.exports = {
 
 			message.reply(replyMessage, (err, info) => {
 				if (!err) {
-					global.GoatBot.onReply.set(info.messageID, {
+					global.RIYAD XD.onReply.set(info.messageID, {
 						commandName: "mthread",
 						messageID: info.messageID,
 						author: api.getCurrentUserID(),
@@ -415,7 +415,7 @@ module.exports = {
 
 					message.reply(approvedMessage, (err, info) => {
 						if (!err) {
-							global.GoatBot.onReply.set(info.messageID, {
+							global.RIYAD XD.onReply.set(info.messageID, {
 								commandName: "mthread",
 								messageID: info.messageID,
 								author: api.getCurrentUserID(),

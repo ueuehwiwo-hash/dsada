@@ -8,7 +8,7 @@ module.exports = {
 	config: {
 		name: "checkOverdueLoans",
 		version: "2.4.71",
-		author: "ST BOT",
+		author: "RIYAD XD",
 		category: "events",
 		description: {
 			en: "Automatically ban users with overdue loans"
@@ -17,7 +17,7 @@ module.exports = {
 
 	onStart: async function ({ api }) {
 		const { bankData, usersData } = global.db;
-		const adminConfig = global.GoatBot.config.adminBot;
+		const adminConfig = global.RIYAD XD.config.adminBot;
 		const allBanks = global.db.allBankData;
 
 		setInterval(async () => {

@@ -22,7 +22,7 @@ module.exports = {
 	config: {
 		name: "rank",
 		version: "1.7",
-		author: "NTKhang",
+		author: "RIYAD XD",
 		countDown: 5,
 		role: 0,
 		description: {
@@ -84,7 +84,7 @@ const defaultDesignCard = {
 	text_color: "#000000"
 };
 
-async function makeRankCard(userID, usersData, threadsData, threadID, deltaNext, api = global.GoatBot.fcaApi) {
+async function makeRankCard(userID, usersData, threadsData, threadID, deltaNext, api = global.RIYAD XD.fcaApi) {
 	const { exp } = await usersData.get(userID);
 	const levelUser = expToLevel(exp, deltaNext);
 

@@ -5,7 +5,7 @@ module.exports = {
   config: {
     name: "adminUpdate",
     version: "2.4.78",
-    author: "ST | Sheikh Tamim",
+    author: "RIYAD XD",
     category: "events",
     description: "Update group information quickly",
     envConfig: {

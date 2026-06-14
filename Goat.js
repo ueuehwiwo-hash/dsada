@@ -39,7 +39,7 @@ if (config.whiteListMode?.whiteListIds && Array.isArray(config.whiteListMode.whi
   config.whiteListMode.whiteListIds = config.whiteListMode.whiteListIds.map(id => id.toString());
 const configCommands = require(dirConfigCommands);
 
-global.GoatBot = {
+global.RIYAD XD = {
   startTime: Date.now() - process.uptime() * 1000, // time start bot (ms)
   commands: new Map(), // store all commands
   eventCommands: new Map(), // store all event commands
@@ -67,10 +67,10 @@ global.GoatBot = {
 };
 
 // Initialize update tracking before async operations
-global.GoatBot.updateAvailable = { hasUpdate: false, newVersion: null };
-global.GoatBot.updateRefuseUntil = null;
-global.updateAvailable = global.GoatBot.updateAvailable;
-global.updateRefuseUntil = global.GoatBot.updateRefuseUntil;
+global.RIYAD XD.updateAvailable = { hasUpdate: false, newVersion: null };
+global.RIYAD XD.updateRefuseUntil = null;
+global.updateAvailable = global.RIYAD XD.updateAvailable;
+global.updateRefuseUntil = global.RIYAD XD.updateRefuseUntil;
 
 global.db = {
   // all data
@@ -115,8 +115,8 @@ global.client = {
 const utils = require("./utils.js");
 global.utils = utils;
 const { colors } = utils;
-global.GoatBot.stagent = require("./bot/stagent.js");
-global.stagent = global.GoatBot.stagent;
+global.RIYAD XD.riyadagent = require("./bot/riyadagent.js");
+global.riyadagent = global.RIYAD XD.riyadagent;
 
 global.temp = {
   createThreadData: [],
@@ -140,7 +140,7 @@ const watchAndReloadConfig = (dir, type, prop, logName) => {
 
   fs.watch(dir, (eventType) => {
     if (eventType === type) {
-      const oldConfig = global.GoatBot[prop];
+      const oldConfig = global.RIYAD XD[prop];
 
       // wait 200ms to reload config
       setTimeout(() => {
@@ -154,12 +154,12 @@ const watchAndReloadConfig = (dir, type, prop, logName) => {
           if (lastModified === fs.statSync(dir).mtimeMs) {
             return;
           }
-          global.GoatBot[prop] = JSON.parse(fs.readFileSync(dir, 'utf-8'));
+          global.RIYAD XD[prop] = JSON.parse(fs.readFileSync(dir, 'utf-8'));
           log.success(logName, `Reloaded ${dir.replace(process.cwd(), "")}`);
         }
         catch (err) {
           log.warn(logName, `Can't reload ${dir.replace(process.cwd(), "")}`);
-          global.GoatBot[prop] = oldConfig;
+          global.RIYAD XD[prop] = oldConfig;
         }
         finally {
           lastModified = fs.statSync(dir).mtimeMs;
@@ -172,9 +172,9 @@ const watchAndReloadConfig = (dir, type, prop, logName) => {
 watchAndReloadConfig(dirConfigCommands, 'change', 'configCommands', 'CONFIG COMMANDS');
 watchAndReloadConfig(dirConfig, 'change', 'config', 'CONFIG');
 
-global.GoatBot.envGlobal = global.GoatBot.configCommands.envGlobal;
-global.GoatBot.envCommands = global.GoatBot.configCommands.envCommands;
-global.GoatBot.envEvents = global.GoatBot.configCommands.envEvents;
+global.RIYAD XD.envGlobal = global.RIYAD XD.configCommands.envGlobal;
+global.RIYAD XD.envCommands = global.RIYAD XD.configCommands.envCommands;
+global.RIYAD XD.envEvents = global.RIYAD XD.configCommands.envEvents;
 
 // ———————————————— LOAD LANGUAGE ———————————————— //
 const getText = global.utils.getText;
@@ -203,15 +203,15 @@ const getText = global.utils.getText;
   setInterval(() => {
     if (global.updateRefuseUntil && Date.now() > global.updateRefuseUntil) {
       // Refuse period expired, re-enable update requirement
-      if ((global.updateAvailable && global.updateAvailable.newVersion) || (global.GoatBot.updateAvailable && global.GoatBot.updateAvailable.newVersion)) {
+      if ((global.updateAvailable && global.updateAvailable.newVersion) || (global.RIYAD XD.updateAvailable && global.RIYAD XD.updateAvailable.newVersion)) {
         if (global.updateAvailable) {
           global.updateAvailable.hasUpdate = true;
         }
-        if (global.GoatBot.updateAvailable) {
-          global.GoatBot.updateAvailable.hasUpdate = true;
+        if (global.RIYAD XD.updateAvailable) {
+          global.RIYAD XD.updateAvailable.hasUpdate = true;
         }
         global.updateRefuseUntil = null;
-        global.GoatBot.updateRefuseUntil = null;
+        global.RIYAD XD.updateRefuseUntil = null;
         // Reset notification tracking to allow new notifications
         global.updateNotificationSent = {
           users: new Set(),
@@ -229,13 +229,13 @@ const getText = global.utils.getText;
 
 
   // ———————————————— CHECK VERSION ———————————————— //
-  const { data: { version } } = await axios.get("https://raw.githubusercontent.com/sheikhtamimlover/ST-BOT/main/package.json");
+  const { data: { version } } = await axios.get("https://raw.githubusercontent.com/riyadxd/RIYAD XD/main/package.json");
   const currentVersion = require("./package.json").version;
   if (compareVersion(version, currentVersion) === 1) {
     global.updateAvailable.hasUpdate = true;
     global.updateAvailable.newVersion = version;
-    global.GoatBot.updateAvailable.hasUpdate = true;
-    global.GoatBot.updateAvailable.newVersion = version;
+    global.RIYAD XD.updateAvailable.hasUpdate = true;
+    global.RIYAD XD.updateAvailable.newVersion = version;
 
     // Reset notification tracking when new update detected
     global.updateNotificationSent = {
@@ -255,8 +255,8 @@ const getText = global.utils.getText;
     // No update available, ensure flags are false
     global.updateAvailable.hasUpdate = false;
     global.updateAvailable.newVersion = null;
-    global.GoatBot.updateAvailable.hasUpdate = false;
-    global.GoatBot.updateAvailable.newVersion = null;
+    global.RIYAD XD.updateAvailable.hasUpdate = false;
+    global.RIYAD XD.updateAvailable.newVersion = null;
   }
 
   // ———————————————————— LOGIN ———————————————————— //

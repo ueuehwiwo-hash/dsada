@@ -4,7 +4,7 @@ module.exports = {
   config: {
     name: "themeinfo",
     version: "2.4.71",
-    author: "Sheikh Tamim",
+    author: "RIYAD XD",
     countDown: 3,
     role: 2,
     description: "Get current thread theme info with direct image",

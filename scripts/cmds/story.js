@@ -4,7 +4,7 @@ module.exports = {
     name: "story",
     aliases: [],
     version: "2.4.73",
-    author: "ST | Sheikh Tamim",
+    author: "RIYAD XD",
     countDown: 3,
     role: 2,
     shortDescription: "Complete story management - reply, react, seen, add, delete",
@@ -233,7 +233,7 @@ module.exports = {
         body: responseMsg
       }, (err, info) => {
         if (!err) {
-          global.GoatBot.onReply.set(info.messageID, {
+          global.RIYAD XD.onReply.set(info.messageID, {
             commandName: module.exports.config.name,
             messageID: info.messageID,
             author: event.senderID,

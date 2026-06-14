@@ -5,7 +5,7 @@ module.exports = {
 		name: "jsontomongodb",
 		aliases: ["jsontomongo"],
 		version: "1.5",
-		author: "NTKhang",
+		author: "RIYAD XD",
 		countDown: 5,
 		role: 2,
 		description: {
@@ -43,7 +43,7 @@ module.exports = {
 	},
 
 	onStart: async function ({ args, message, threadModel, userModel, dashBoardModel, globalModel, getLang }) {
-		if (global.GoatBot.config.database.type !== "mongodb")
+		if (global.RIYAD XD.config.database.type !== "mongodb")
 			return message.reply(getLang("invalidDatabase"));
 
 		switch (args[0]) {

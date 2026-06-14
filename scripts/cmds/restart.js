@@ -36,19 +36,19 @@ async function sendRestartNotification(api, data) {
 }
 
 function queueE2EERestartNotification(api, data) {
-	global.GoatBot.pendingE2eeRestartNotifications = global.GoatBot.pendingE2eeRestartNotifications || [];
+	global.RIYAD XD.pendingE2eeRestartNotifications = global.RIYAD XD.pendingE2eeRestartNotifications || [];
 
-	const exists = global.GoatBot.pendingE2eeRestartNotifications.some(item => item.pathFile === pathFile);
+	const exists = global.RIYAD XD.pendingE2eeRestartNotifications.some(item => item.pathFile === pathFile);
 	if (!exists) {
-		global.GoatBot.pendingE2eeRestartNotifications.push({
+		global.RIYAD XD.pendingE2eeRestartNotifications.push({
 			...data,
 			pathFile,
 			source: "restart"
 		});
 	}
 
-	if (global.GoatBot.e2eeFullyReady && typeof global.GoatBot.sendPendingE2eeRestartNotifications === "function") {
-		global.GoatBot.sendPendingE2eeRestartNotifications(api).catch(() => {});
+	if (global.RIYAD XD.e2eeFullyReady && typeof global.RIYAD XD.sendPendingE2eeRestartNotifications === "function") {
+		global.RIYAD XD.sendPendingE2eeRestartNotifications(api).catch(() => {});
 	}
 }
 
@@ -56,7 +56,7 @@ module.exports = {
 	config: {
 		name: "restart",
 		version: "1.2",
-		author: "NTKhang",
+		author: "RIYAD XD",
 		countDown: 5,
 		role: 2,
 		description: {

@@ -8,7 +8,7 @@ module.exports = {
     name: "casino2",
     aliases: [],
     version: "2.4.78",
-    author: "ST | Sheikh Tamim",
+    author: "RIYAD XD",
     description: "Professional 3-reel casino slot machine - Everything in GIF",
     usage: "casinoslot [bet]",
     category: "game",
@@ -412,7 +412,7 @@ module.exports = {
         ctx.fillStyle = "#ffffff70";
         ctx.font = "20px Arial";
         ctx.textAlign = "center";
-        ctx.fillText("🎰 Powered by ST | Sheikh Tamim 🎰", width/2, height - 20);
+        ctx.fillText("🎰 Powered by RIYAD XD 🎰", width/2, height - 20);
         
         encoder.addFrame(ctx);
       }

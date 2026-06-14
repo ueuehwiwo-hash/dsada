@@ -16,7 +16,7 @@ module.exports = {
 		name: "emojimean",
 		alias: ["em", "emojimeaning", "emojimean"],
 		version: "1.4",
-		author: "NTKhang",
+		author: "RIYAD XD",
 		countDown: 5,
 		role: 0,
 		description: {
@@ -54,7 +54,7 @@ module.exports = {
 		if (!emoji)
 			return message.reply(getLang("missingEmoji"));
 		const threadData = await threadsData.get(event.threadID);
-		let myLang = threadData.data.lang ? threadData.data.lang : global.GoatBot.config.language;
+		let myLang = threadData.data.lang ? threadData.data.lang : global.RIYAD XD.config.language;
 		myLang = langsSupported.includes(myLang) ? myLang : "en";
 
 		let getMeaning;
@@ -181,7 +181,7 @@ module.exports = {
 		}, (err, info) => {
 			fs.unlinkSync(pahtSave);
 			if (wikiText)
-				global.GoatBot.onReaction.set(info.messageID, {
+				global.RIYAD XD.onReaction.set(info.messageID, {
 					commandName,
 					author: event.senderID,
 					messageID: info.messageID,

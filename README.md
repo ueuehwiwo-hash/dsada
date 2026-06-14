@@ -1,26 +1,26 @@
 <div align="center">
 
-# 🐐 ST-BOT - By Sheikh Tamim
+# 🐐 RIYAD XD - By RIYAD XD
 
-<img src="./dashboard/images/st.png" alt="ST-Bot Logo" width="200" height="200" style="border-radius: 50%;">
+<img src="./dashboard/images/st.png" alt="RIYAD XD Logo" width="200" height="200" style="border-radius: 50%;">
 
 *A customized and powerful multi-purpose chatbot framework for Facebook Messenger*
 
-![GitHub stars](https://img.shields.io/github/stars/sheikhtamimlover/ST-BOT?style=for-the-badge)
-![GitHub forks](https://img.shields.io/github/forks/sheikhtamimlover/ST-BOT?style=for-the-badge)
-![GitHub issues](https://img.shields.io/github/issues/sheikhtamimlover/ST-BOT?style=for-the-badge)
-![GitHub license](https://img.shields.io/github/license/sheikhtamimlover/ST-BOT?style=for-the-badge)
+![GitHub stars](https://img.shields.io/github/stars/riyadxd/RIYAD XD?style=for-the-badge)
+![GitHub forks](https://img.shields.io/github/forks/riyadxd/RIYAD XD?style=for-the-badge)
+![GitHub issues](https://img.shields.io/github/issues/riyadxd/RIYAD XD?style=for-the-badge)
+![GitHub license](https://img.shields.io/github/license/riyadxd/RIYAD XD?style=for-the-badge)
 ![Node.js Version](https://img.shields.io/badge/Node.js-v18+-green?style=for-the-badge&logo=node.js)
-![Package Version](https://img.shields.io/github/package-json/v/sheikhtamimlover/ST-BOT?style=for-the-badge)
-![Repository Size](https://img.shields.io/github/repo-size/sheikhtamimlover/ST-BOT?style=for-the-badge)
-![Last Commit](https://img.shields.io/github/last-commit/sheikhtamimlover/ST-BOT?style=for-the-badge)
-[![Deploy on Render](https://img.shields.io/badge/Deploy%20on-Render-46E3B7?style=for-the-badge&logo=render&logoColor=white)](https://replit.com/github/sheikhtamimlover/ST-BOT)
-[![Visitors](https://visitor-badge.laobi.icu/badge?page_id=sheikhtamimlover.ST-BOT)](https://github.com/sheikhtamimlover/ST-BOT)
+![Package Version](https://img.shields.io/github/package-json/v/riyadxd/RIYAD XD?style=for-the-badge)
+![Repository Size](https://img.shields.io/github/repo-size/riyadxd/RIYAD XD?style=for-the-badge)
+![Last Commit](https://img.shields.io/github/last-commit/riyadxd/RIYAD XD?style=for-the-badge)
+[![Deploy on Render](https://img.shields.io/badge/Deploy%20on-Render-46E3B7?style=for-the-badge&logo=render&logoColor=white)](https://replit.com/github/riyadxd/RIYAD XD)
+[![Visitors](https://visitor-badge.laobi.icu/badge?page_id=riyadxd.RIYAD XD)](https://github.com/riyadxd/RIYAD XD)
 
-**Enhanced version of GoatBot V2** - Modified and maintained by **Sheikh Tamim**
+**Enhanced version of RIYAD XD V2** - Modified and maintained by **RIYAD XD**
 
-[![Instagram](https://img.shields.io/badge/Instagram-@sheikh.tamim__lover-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/sheikh.tamim_lover/)
-[![GitHub](https://img.shields.io/badge/GitHub-sheikhtamimlover-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/sheikhtamimlover)
+[![Instagram](https://img.shields.io/badge/Instagram-@riyadxd__lover-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/riyadxd/)
+[![GitHub](https://img.shields.io/badge/GitHub-riyadxd-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/riyadxd)
 
 ---
 
@@ -75,7 +75,7 @@
 
 <img src="https://i.ibb.co.com/4RDdwr1q/IMG-7416.jpg" alt="Command Structure" width="600">
 
-Every command in ST-BOT follows a standardized structure for consistency and ease of development:
+Every command in RIYAD XD follows a standardized structure for consistency and ease of development:
 
 ### Command Configuration
 
@@ -206,7 +206,7 @@ Login credentials are set in `config.json`:
 
 1. **Clone the repository**:
 ```bash
-git clone https://github.com/sheikhtamimlover/ST-BOT.git && cp -r ST-BOT/. . && rm -rf ST-BOT
+git clone https://github.com/riyadxd/RIYAD XD.git && cp -r RIYAD XD/. . && rm -rf RIYAD XD
 ```
 
 2. **Install dependencies**:
@@ -273,7 +273,7 @@ module.exports = {
 
 ## 🔌 ST-FCA (Custom Facebook API)
 
-ST-BOT uses **ST-FCA** - an optimized, custom-built Facebook Chat API for better performance and reliability.
+RIYAD XD uses **ST-FCA** - an optimized, custom-built Facebook Chat API for better performance and reliability.
 
 ### Installation
 
@@ -283,12 +283,12 @@ npm install stfca
 
 ### GitHub Repository
 
-🔗 [https://github.com/sheikhtamimlover/ST-FCA.git](https://github.com/sheikhtamimlover/ST-FCA.git)
+🔗 [https://github.com/riyadxd/ST-FCA.git](https://github.com/riyadxd/ST-FCA.git)
 
 ### Features
 
 - ✅ Better stability and performance
-- ✅ Optimized for ST-BOT
+- ✅ Optimized for RIYAD XD
 - ✅ Regular updates and bug fixes
 - ✅ Enhanced error handling
 - ✅ Improved cookie management
@@ -375,7 +375,7 @@ Automatically update bot bio:
 {
   "bioUpdate": {
     "enable": true,
-    "bioText": "ST Bot - Your custom bio here",
+    "bioText": "RIYAD XD - Your custom bio here",
     "updateOnce": true
   }
 }
@@ -492,7 +492,7 @@ The most advanced AI command with code generation and bug fixing capabilities!
 ### Need Help?
 
 - 📱 **Messenger Group**: [Join Support Group](https://m.me/j/AbYvFRTzENblDU94/)
-- 📸 **Instagram**: [@sheikh.tamim_lover](https://www.instagram.com/sheikh.tamim_lover/)
+- 📸 **Instagram**: [@riyadxd](https://www.instagram.com/riyadxd/)
 - 💬 **Facebook**: [m.me/tormairedusi](https://m.me/tormairedusi)
 - 🐛 **Report Issues**: Use `!streport <your issue>` command
 
@@ -552,8 +552,8 @@ This project receives regular updates with:
 
 This project is licensed under the MIT License. You are free to use, modify, and distribute this software, but please maintain the original credits.
 
-**Original GoatBot V2** by NTKhang  
-**Enhanced & Maintained** by Sheikh Tamim
+**Original RIYAD XD V2** by RIYAD XD  
+**Enhanced & Maintained** by RIYAD XD
 
 ---
 
@@ -564,7 +564,7 @@ If you find this project helpful:
 - 🍴 Fork and contribute
 - 📢 Share with others
 - 💬 Join our community
-- 🔗 Follow on Instagram: [@sheikh.tamim_lover](https://www.instagram.com/sheikhtamimlover/)
+- 🔗 Follow on Instagram: [@riyadxd](https://www.instagram.com/riyadxd/)
 
 ---
 
@@ -572,9 +572,9 @@ If you find this project helpful:
 
 **Happy Botting! 🤖✨**
 
-*Made with ❤️ by Sheikh Tamim*
+*Made with ❤️ by RIYAD XD*
 
-**GitHub:** [sheikhtamimlover/ST-BOT](https://github.com/sheikhtamimlover/ST-BOT)  
-**ST-FCA:** [sheikhtamimlover/ST-FCA](https://github.com/sheikhtamimlover/ST-FCA)
+**GitHub:** [riyadxd/RIYAD XD](https://github.com/riyadxd/RIYAD XD)  
+**ST-FCA:** [riyadxd/ST-FCA](https://github.com/riyadxd/ST-FCA)
 
 </div>
