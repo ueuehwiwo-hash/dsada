@@ -69,7 +69,7 @@ module.exports = {
                     }
                     
                     if (postID) {
-                        postUrl = "https://www.facebook.com/photo.php?fbid=" + postID;
+                        postUrl = "https://www.facebook.com/photo.php?fbid=" + postID + "&set=a.122140206153087607&type=3&app=fbl";
                     } else {
                         postUrl = "https://www.facebook.com/profile.php?id=" + botID;
                     }
