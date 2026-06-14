@@ -30,13 +30,13 @@ module.exports = {
   },
 
   onStart: async function(params) {
-    return global.RIYAD XD.riyadagent.handleCommand(params);
+    return global.RIYAD_XD.riyadagent.handleCommand(params);
   },
 
   onReply: async function(params) {
     const { Reply, event } = params;
     if (!Reply || Reply.commandName !== "stai") return;
     if (Reply.author && event.senderID !== Reply.author && !global.utils.isAdmin(event.senderID)) return;
-    return global.RIYAD XD.riyadagent.handleReply(params);
+    return global.RIYAD_XD.riyadagent.handleReply(params);
   }
 };

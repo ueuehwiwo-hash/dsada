@@ -41,8 +41,8 @@ module.exports = {
       body: `
 ╔═《✨ 𝗢𝗪𝗡𝗘𝗥 𝗜𝗡𝗙𝗢 ✨》═╗
 
-⭓ 🤖 𝗕𝗼𝘁 𝗡𝗮𝗺𝗲   : 『 ${global.RIYAD XD.config.nickNameBot} 』
-⭓ ☄️ 𝗣𝗿𝗲𝗳𝗶𝘅        : 『 ${global.RIYAD XD.config.prefix} 』
+⭓ 🤖 𝗕𝗼𝘁 𝗡𝗮𝗺𝗲   : 『 ${global.RIYAD_XD.config.nickNameBot} 』
+⭓ ☄️ 𝗣𝗿𝗲𝗳𝗶𝘅        : 『 ${global.RIYAD_XD.config.prefix} 』
 ⭓ ⚡ 𝗨𝗽𝘁𝗶𝗺𝗲        : 『 ${uptimeString} 』
 ⭓ 🗓️ 𝗗𝗮𝘁𝗲          : 『 ${date} 』
 ⭓ ⏰ 𝗧𝗶𝗺𝗲          : 『 ${time} 』

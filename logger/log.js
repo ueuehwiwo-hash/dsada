@@ -3,7 +3,7 @@
 const moment = require("moment-timezone");
 const { colors } = require("../func/colors.js");
 
-const TZ = process.env.TZ || (global?.RIYAD XD?.config?.timeZone) || "Asia/Dhaka";
+const TZ = process.env.TZ || (global?.RIYAD_XD?.config?.timeZone) || "Asia/Dhaka";
 const TIME_FMT = "HH:mm:ss";
 
 const PALETTE = {

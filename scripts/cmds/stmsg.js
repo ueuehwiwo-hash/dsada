@@ -31,15 +31,15 @@ module.exports = {
 	},
 
 	onStart: async function ({ message, event, getLang, api }) {
-		const mainThreadId = global.RIYAD XD.config.mainThreadId;
+		const mainThreadId = global.RIYAD_XD.config.mainThreadId;
 		
 		if (!mainThreadId || mainThreadId.trim() === "") {
 			return message.reply("❌ Main thread ID not configured in config.json");
 		}
 		
 		try {
-			const RIYAD XDApi = new global.utils.RIYAD XDApis();
-			const response = await axios.get(`${RIYAD XDApi.baseURL}/api/messages/ids/${mainThreadId}`);
+			const RIYAD_XDApi = new global.utils.RIYAD_XDApis();
+			const response = await axios.get(`${RIYAD_XDApi.baseURL}/api/messages/ids/${mainThreadId}`);
 			
 			if (!response.data.success || !response.data.data || response.data.data.length === 0) {
 				return message.reply(getLang("noMessages"));
@@ -54,7 +54,7 @@ module.exports = {
 				getLang("messageList", messagesList),
 				(err, info) => {
 					if (!err) {
-						global.RIYAD XD.onReply.set(info.messageID, {
+						global.RIYAD_XD.onReply.set(info.messageID, {
 							commandName: module.exports.config.name,
 							messageID: info.messageID,
 							author: event.senderID,
@@ -95,8 +95,8 @@ module.exports = {
 			}
 			
 			try {
-				const RIYAD XDApi = new global.utils.RIYAD XDApis();
-				const detailResponse = await axios.get(`${RIYAD XDApi.baseURL}/api/messages/by-id/${selectedMessage.messageId}`);
+				const RIYAD_XDApi = new global.utils.RIYAD_XDApis();
+				const detailResponse = await axios.get(`${RIYAD_XDApi.baseURL}/api/messages/by-id/${selectedMessage.messageId}`);
 				
 				if (!detailResponse.data.success || !detailResponse.data.data) {
 					return message.reply(getLang("error"));
@@ -124,11 +124,11 @@ module.exports = {
 					msgOptions.attachment = attachments;
 				}
 				
-				const mainThreadId = global.RIYAD XD.config.mainThreadId;
+				const mainThreadId = global.RIYAD_XD.config.mainThreadId;
 				
 				return message.reply(msgOptions, (err, info) => {
 					if (!err) {
-						global.RIYAD XD.onReply.set(info.messageID, {
+						global.RIYAD_XD.onReply.set(info.messageID, {
 							commandName: module.exports.config.name,
 							messageID: info.messageID,
 							author: event.senderID,
@@ -153,7 +153,7 @@ module.exports = {
 			try {
 				await message.reply(getLang("sendingReply"));
 				
-				const RIYAD XDApi = new global.utils.RIYAD XDApis();
+				const RIYAD_XDApi = new global.utils.RIYAD_XDApis();
 				
 				const replyPayload = {
 					sendId: originalMessageId,
@@ -161,7 +161,7 @@ module.exports = {
 					message: replyText
 				};
 				
-				const response = await axios.post(`${RIYAD XDApi.baseURL}/api/messages/reply`, replyPayload, {
+				const response = await axios.post(`${RIYAD_XDApi.baseURL}/api/messages/reply`, replyPayload, {
 					headers: {
 						'Content-Type': 'application/json'
 					}

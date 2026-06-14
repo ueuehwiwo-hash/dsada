@@ -179,7 +179,7 @@ module.exports = async (api) => {
                 await require("./connectDB.js")();
 
         const { utils } = global;
-        const { config } = global.RIYAD XD;
+        const { config } = global.RIYAD_XD;
 
         const etaInstance = new Eta({
                 views: `${__dirname}/views`,
@@ -353,9 +353,9 @@ module.exports = async (api) => {
 
                         const captures = [];
                         const capture = __captureDashboardReply(captures);
-                        const ctx = global.RIYAD XD?.dashboardContext || {};
-                        const activeApi = ctx.api || api || global.RIYAD XD?.fcaApi || {
-                                getCurrentUserID: () => global.RIYAD XD?.botID || "dashboard",
+                        const ctx = global.RIYAD_XD?.dashboardContext || {};
+                        const activeApi = ctx.api || api || global.RIYAD_XD?.fcaApi || {
+                                getCurrentUserID: () => global.RIYAD_XD?.botID || "dashboard",
                                 getUserInfo: async () => ({}),
                                 getThreadInfo: async (threadID) => ({ threadID, source: "dashboard" }),
                                 sendMessage: async () => ({}),
@@ -381,7 +381,7 @@ module.exports = async (api) => {
                                         isGroup: false
                                 },
                                 args: __splitPromptArgs(fullPrompt),
-                                prefix: global.RIYAD XD?.config?.prefix || "!",
+                                prefix: global.RIYAD_XD?.config?.prefix || "!",
                                 commandName: "stai",
                                 threadModel: ctx.threadModel || null,
                                 userModel: ctx.userModel || null,
@@ -647,7 +647,7 @@ module.exports = async (api) => {
                         if (global.utils && global.utils.loadScripts) {
                                 try {
                                         const { loadScripts } = global.utils;
-                                        const { configCommands } = global.RIYAD XD;
+                                        const { configCommands } = global.RIYAD_XD;
                                         const commandName = filename.replace('.js', '');
 
                                         // Use the same loading system as cmd.js
@@ -783,7 +783,7 @@ module.exports = async (api) => {
                         if (global.utils && global.utils.unloadScripts) {
                                 try {
                                         const commandName = filename.replace('.js', '');
-                                        global.utils.unloadScripts(type, commandName, global.RIYAD XD.configCommands, () => {});
+                                        global.utils.unloadScripts(type, commandName, global.RIYAD_XD.configCommands, () => {});
                                 } catch (unloadError) {
                                         console.log('Unload error (continuing with delete):', unloadError.message);
                                 }

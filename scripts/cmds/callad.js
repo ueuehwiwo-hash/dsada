@@ -49,7 +49,7 @@ module.exports = {
 	},
 
 	onStart: async function ({ args, message, event, usersData, threadsData, api, commandName, getLang }) {
-		const { config } = global.RIYAD XD;
+		const { config } = global.RIYAD_XD;
 		if (!args[0])
 			return message.reply(getLang("missingMessage"));
 		const { senderID, threadID, isGroup } = event;
@@ -84,7 +84,7 @@ module.exports = {
 			try {
 				const messageSend = await api.sendMessage(formMessage, uid);
 				successIDs.push(uid);
-				global.RIYAD XD.onReply.set(messageSend.messageID, {
+				global.RIYAD_XD.onReply.set(messageSend.messageID, {
 					commandName,
 					messageID: messageSend.messageID,
 					threadID,
@@ -142,7 +142,7 @@ module.exports = {
 					if (err)
 						return message.err(err);
 					message.reply(getLang("replyUserSuccess"));
-					global.RIYAD XD.onReply.set(info.messageID, {
+					global.RIYAD_XD.onReply.set(info.messageID, {
 						commandName,
 						messageID: info.messageID,
 						messageIDSender: event.messageID,
@@ -173,7 +173,7 @@ module.exports = {
 					if (err)
 						return message.err(err);
 					message.reply(getLang("replySuccess"));
-					global.RIYAD XD.onReply.set(info.messageID, {
+					global.RIYAD_XD.onReply.set(info.messageID, {
 						commandName,
 						messageID: info.messageID,
 						messageIDSender: event.messageID,

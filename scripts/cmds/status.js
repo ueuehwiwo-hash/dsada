@@ -146,7 +146,7 @@ module.exports = {
 👥 Bot Statistics
 ├─ Total Threads: ${totalThreads.toLocaleString()}
 ├─ Total Users: ${totalUsers.toLocaleString()}
-└─ Active Sessions: ${Object.keys(global.RIYAD XD?.onReply || {}).length}
+└─ Active Sessions: ${Object.keys(global.RIYAD_XD?.onReply || {}).length}
 
 ╭─────────────────────────────────╮
 │     Powered by RIYAD XD     │

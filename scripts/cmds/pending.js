@@ -93,7 +93,7 @@ module.exports = {
 
       if (list.length != 0) {
         return api.sendMessage(getLang("returnListPending", list.length, msg), threadID, (err, info) => {
-          global.RIYAD XD.onReply.set(info.messageID, {
+          global.RIYAD_XD.onReply.set(info.messageID, {
             commandName,
             messageID: info.messageID,
             author: event.senderID,

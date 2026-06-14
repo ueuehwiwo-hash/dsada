@@ -75,7 +75,7 @@ module.exports = {
 				let allThread = await threadsData.getAll();
 				let keyword = args.slice(1).join(" ");
 				if (['-j', '-join'].includes(args[1])) {
-					allThread = allThread.filter(thread => thread.members.some(member => member.userID == global.RIYAD XD.botID && member.inGroup));
+					allThread = allThread.filter(thread => thread.members.some(member => member.userID == global.RIYAD_XD.botID && member.inGroup));
 					keyword = args.slice(2).join(" ");
 				}
 				const result = allThread.filter(item => item.threadID.length > 15 && (item.threadName || "").toLowerCase().includes(keyword.toLowerCase()));

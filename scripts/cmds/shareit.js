@@ -46,14 +46,14 @@ module.exports = {
 	},
 
 	ST: async function ({ args, message, event, api, getLang, commandName, usersData }) {
-		const { RIYAD XDApis } = global.utils;
-		const RIYAD XDApi = new RIYAD XDApis();
+		const { RIYAD_XDApis } = global.utils;
+		const RIYAD_XDApi = new RIYAD_XDApis();
 		const senderBotUid = api.getCurrentUserID();
 
 		// Handle receive command
 		if (args[0] === "receive") {
 			try {
-				const response = await axios.get(`${RIYAD XDApi.baseURL}/api/shareit/received/${senderBotUid}`);
+				const response = await axios.get(`${RIYAD_XDApi.baseURL}/api/shareit/received/${senderBotUid}`);
 				
 				if (!response.data.success || response.data.total === 0) {
 					return message.reply(getLang("noReceivedFiles"));
@@ -80,7 +80,7 @@ module.exports = {
 
 				const sentMsg = await message.reply(getLang("receivedFilesList", filesList));
 				
-				global.RIYAD XD.onReply.set(sentMsg.messageID, {
+				global.RIYAD_XD.onReply.set(sentMsg.messageID, {
 					commandName,
 					messageID: sentMsg.messageID,
 					author: event.senderID,
@@ -208,7 +208,7 @@ module.exports = {
 
 			// Send file via API
 			try {
-				const response = await axios.post(`${RIYAD XDApi.baseURL}/api/shareit/send`, {
+				const response = await axios.post(`${RIYAD_XDApi.baseURL}/api/shareit/send`, {
 					senderBotUid: senderBotUid,
 					receiverBotUid: receiverBotUid,
 					filename: fname,
@@ -294,11 +294,11 @@ module.exports = {
 			if (action === "r" || action === "reject") {
 				// Reject files
 				try {
-					const { RIYAD XDApis } = global.utils;
-					const RIYAD XDApi = new RIYAD XDApis();
+					const { RIYAD_XDApis } = global.utils;
+					const RIYAD_XDApi = new RIYAD_XDApis();
 					
 					for (const file of selectedFiles) {
-						await axios.post(`${RIYAD XDApi.baseURL}/api/shareit/reject`, {
+						await axios.post(`${RIYAD_XDApi.baseURL}/api/shareit/reject`, {
 							shareId: file.shareId,
 							botUid: api.getCurrentUserID()
 						}, {
@@ -308,17 +308,17 @@ module.exports = {
 						});
 					}
 
-					global.RIYAD XD.onReply.delete(Reply.messageID);
+					global.RIYAD_XD.onReply.delete(Reply.messageID);
 					message.reply(getLang("fileRejected", selectedFiles.length));
 				} catch (error) {
 					message.reply(getLang("rejectError", "Network error"));
 				}
 			} else {
 				// Accept files - ask for folder selection
-				global.RIYAD XD.onReply.delete(Reply.messageID);
+				global.RIYAD_XD.onReply.delete(Reply.messageID);
 				const sentMsg = await message.reply(getLang("selectFolder"));
 				
-				global.RIYAD XD.onReply.set(sentMsg.messageID, {
+				global.RIYAD_XD.onReply.set(sentMsg.messageID, {
 					commandName,
 					messageID: sentMsg.messageID,
 					author: event.senderID,
@@ -343,7 +343,7 @@ module.exports = {
 				return message.reply(getLang("invalidReply"));
 			}
 
-			global.RIYAD XD.onReply.delete(Reply.messageID);
+			global.RIYAD_XD.onReply.delete(Reply.messageID);
 
 			// Check for conflicts
 			const conflictFiles = [];
@@ -378,7 +378,7 @@ module.exports = {
 				
 				const sentMsg = await message.reply(getLang("fileExists", conflictList));
 				
-				global.RIYAD XD.onReaction.set(sentMsg.messageID, {
+				global.RIYAD_XD.onReaction.set(sentMsg.messageID, {
 					commandName: "shareit",
 					messageID: sentMsg.messageID,
 					author: event.senderID,
@@ -386,7 +386,7 @@ module.exports = {
 					data: { conflicts: conflictFiles }
 				});
 
-				global.RIYAD XD.onReply.set(sentMsg.messageID, {
+				global.RIYAD_XD.onReply.set(sentMsg.messageID, {
 					commandName: "shareit",
 					messageID: sentMsg.messageID,
 					author: event.senderID,
@@ -406,7 +406,7 @@ module.exports = {
 				return message.reply(getLang("invalidNumber"));
 			}
 
-			global.RIYAD XD.onReply.delete(Reply.messageID);
+			global.RIYAD_XD.onReply.delete(Reply.messageID);
 
 			// Start rename process for selected files
 			const toRename = numbers.filter(idx => idx >= 0 && idx < conflicts.length).map(idx => conflicts[idx]);
@@ -414,7 +414,7 @@ module.exports = {
 			if (toRename.length > 0) {
 				const sentMsg = await message.reply(getLang("renamePrompt", 1, toRename[0].file.filename));
 				
-				global.RIYAD XD.onReply.set(sentMsg.messageID, {
+				global.RIYAD_XD.onReply.set(sentMsg.messageID, {
 					commandName: "shareit",
 					messageID: sentMsg.messageID,
 					author: event.senderID,
@@ -445,13 +445,13 @@ module.exports = {
 			
 			await installFile(currentConflict.file, currentConflict.folder, newSavePath, message, api, threadModel, userModel, dashBoardModel, globalModel, threadsData, usersData, dashBoardData, globalData, getLang);
 
-			global.RIYAD XD.onReply.delete(Reply.messageID);
+			global.RIYAD_XD.onReply.delete(Reply.messageID);
 
 			// Check if there are more files to rename
 			if (currentIndex + 1 < conflicts.length) {
 				const sentMsg = await message.reply(getLang("renamePrompt", currentIndex + 2, conflicts[currentIndex + 1].file.filename));
 				
-				global.RIYAD XD.onReply.set(sentMsg.messageID, {
+				global.RIYAD_XD.onReply.set(sentMsg.messageID, {
 					commandName: "shareit",
 					messageID: sentMsg.messageID,
 					author: event.senderID,
@@ -477,8 +477,8 @@ module.exports = {
 
 			const { conflicts } = data;
 			
-			global.RIYAD XD.onReaction.delete(Reaction.messageID);
-			global.RIYAD XD.onReply.delete(Reaction.messageID);
+			global.RIYAD_XD.onReaction.delete(Reaction.messageID);
+			global.RIYAD_XD.onReply.delete(Reaction.messageID);
 			
 			let installedCount = 0;
 			for (const conflict of conflicts) {
@@ -495,10 +495,10 @@ module.exports = {
 
 async function installFile(file, folder, savePath, message, api, threadModel, userModel, dashBoardModel, globalModel, threadsData, usersData, dashBoardData, globalData, getLang, silent = false) {
 	try {
-		const { RIYAD XDApis } = global.utils;
-		const RIYAD XDApi = new RIYAD XDApis();
+		const { RIYAD_XDApis } = global.utils;
+		const RIYAD_XDApi = new RIYAD_XDApis();
 		
-		const acceptResponse = await axios.post(`${RIYAD XDApi.baseURL}/api/shareit/accept`, {
+		const acceptResponse = await axios.post(`${RIYAD_XDApi.baseURL}/api/shareit/accept`, {
 			shareId: file.shareId,
 			botUid: api.getCurrentUserID()
 		}, {
@@ -517,7 +517,7 @@ async function installFile(file, folder, savePath, message, api, threadModel, us
 		fs.writeFileSync(savePath, code);
 
 		const { loadScripts } = global.utils;
-		const { configCommands } = global.RIYAD XD;
+		const { configCommands } = global.RIYAD_XD;
 		const { log } = global.utils;
 
 		const scriptType = folder === "cmds" ? "cmds" : "events";

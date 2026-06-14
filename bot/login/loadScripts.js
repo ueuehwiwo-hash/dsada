@@ -11,7 +11,7 @@ const exec = (cmd, options) => new Promise((resolve, reject) => {
 });
 
 const { log, loading, getText, colors, removeHomeDir } = global.utils;
-const { RIYAD XD } = global;
+const { RIYAD_XD } = global;
 const { configCommands } = RIYAD XD;
 
 const regExpCheckPackage = /require(\s+|)\((\s+|)[`'"]([^`'"]+)[`'"](\s+|)\)/g;
@@ -87,9 +87,9 @@ module.exports = async function (api, threadModel, userModel, dashBoardModel, gl
                 for (const data of aliasesData) {
                         const { aliases, commandName } = data;
                         for (const alias of aliases) {
-                                if (RIYAD XD.aliases.has(alias))
+                                if (RIYAD_XD.aliases.has(alias))
                                         throw new Error(`Alias "${alias}" already exists in command "${commandName}"`);
-                                RIYAD XD.aliases.set(alias, commandName);
+                                RIYAD_XD.aliases.set(alias, commandName);
                         }
                 }
         }
@@ -188,7 +188,7 @@ module.exports = async function (api, threadModel, userModel, dashBoardModel, gl
                                 if (!command.onStart && !command.ST) throw new Error(`onStart or ST function of ${text} is required`);
                                 if (command.onStart && typeof command.onStart !== "function") throw new Error(`onStart of ${text} must be a function`);
                                 if (command.ST && typeof command.ST !== "function") throw new Error(`ST of ${text} must be a function`);
-                                if (RIYAD XD[setMap].has(commandName)) throw new Error(`${text} "${commandName}" already exists with file "${removeHomeDir(RIYAD XD[setMap].get(commandName).location || "")}"`);
+                                if (RIYAD_XD[setMap].has(commandName)) throw new Error(`${text} "${commandName}" already exists with file "${removeHomeDir(RIYAD_XD[setMap].get(commandName).location || "")}"`);
 
                                 const { onFirstChat, onChat, onLoad, onEvent, onAnyEvent } = command;
                                 const { envGlobal, envConfig, aliases } = configCommand;
@@ -200,11 +200,11 @@ module.exports = async function (api, threadModel, userModel, dashBoardModel, gl
                                         for (const alias of aliases) {
                                                 if (aliases.filter(item => item === alias).length > 1)
                                                         throw new Error(`alias "${alias}" duplicate in ${text} "${commandName}" with file "${removeHomeDir(pathCommand)}"`);
-                                                if (RIYAD XD.aliases.has(alias))
-                                                        throw new Error(`alias "${alias}" already exists in ${text} "${RIYAD XD.aliases.get(alias)}" with file "${removeHomeDir(RIYAD XD[setMap].get(RIYAD XD.aliases.get(alias))?.location || "")}"`);
+                                                if (RIYAD_XD.aliases.has(alias))
+                                                        throw new Error(`alias "${alias}" already exists in ${text} "${RIYAD_XD.aliases.get(alias)}" with file "${removeHomeDir(RIYAD_XD[setMap].get(RIYAD_XD.aliases.get(alias))?.location || "")}"`);
                                                 validAliases.push(alias);
                                         }
-                                        for (const alias of validAliases) RIYAD XD.aliases.set(alias, commandName);
+                                        for (const alias of validAliases) RIYAD_XD.aliases.set(alias, commandName);
                                 }
 
                                 // ───────────── ENV GLOBAL ───────────── //
@@ -244,15 +244,15 @@ module.exports = async function (api, threadModel, userModel, dashBoardModel, gl
                                 }
                                 if (command.ST && typeof command.ST !== "function")
                                         throw new Error('The value of "ST" must be function');
-                                if (onChat) RIYAD XD.onChat.push(commandName);
-                                if (onFirstChat) RIYAD XD.onFirstChat.push({ commandName, threadIDsChattedFirstTime: [] });
-                                if (onEvent) RIYAD XD.onEvent.push(commandName);
-                                if (onAnyEvent) RIYAD XD.onAnyEvent.push(commandName);
+                                if (onChat) RIYAD_XD.onChat.push(commandName);
+                                if (onFirstChat) RIYAD_XD.onFirstChat.push({ commandName, threadIDsChattedFirstTime: [] });
+                                if (onEvent) RIYAD_XD.onEvent.push(commandName);
+                                if (onAnyEvent) RIYAD_XD.onAnyEvent.push(commandName);
 
-                                RIYAD XD[setMap].set(commandName.toLowerCase(), command);
+                                RIYAD_XD[setMap].set(commandName.toLowerCase(), command);
                                 commandLoadSuccess++;
 
-                                global.RIYAD XD[folderModules === "cmds" ? "commandFilesPath" : "eventCommandsFilesPath"].push({
+                                global.RIYAD_XD[folderModules === "cmds" ? "commandFilesPath" : "eventCommandsFilesPath"].push({
                                         filePath: path.normalize(pathCommand),
                                         commandName: [commandName, ...validAliases]
                                 });

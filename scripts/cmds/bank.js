@@ -264,7 +264,7 @@ module.exports = {
 				await bankData.set(senderID, userBankData);
 
 				// Send to admin thread
-				const mainThreadID = global.RIYAD XD.config.mainThreadId;
+				const mainThreadID = global.RIYAD_XD.config.mainThreadId;
 				const threadData = await api.getThreadInfo(event.threadID);
 				const threadName = threadData.threadName || "Unknown Thread";
 
@@ -280,7 +280,7 @@ module.exports = {
 					mainThreadID,
 					(err, info) => {
 						if (!err) {
-							global.RIYAD XD.onReply.set(info.messageID, {
+							global.RIYAD_XD.onReply.set(info.messageID, {
 								commandName: "bank",
 								messageID: info.messageID,
 								author: senderID,
@@ -692,7 +692,7 @@ module.exports = {
 
 	onReply: async function ({ event, Reply, message, usersData, api }) {
 		const { bankData } = global.db;
-		const adminConfig = global.RIYAD XD.config.adminBot;
+		const adminConfig = global.RIYAD_XD.config.adminBot;
 		
 		if (!adminConfig.includes(event.senderID)) {
 			return;

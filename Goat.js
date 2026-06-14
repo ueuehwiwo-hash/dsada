@@ -39,7 +39,7 @@ if (config.whiteListMode?.whiteListIds && Array.isArray(config.whiteListMode.whi
   config.whiteListMode.whiteListIds = config.whiteListMode.whiteListIds.map(id => id.toString());
 const configCommands = require(dirConfigCommands);
 
-global.RIYAD XD = {
+global.RIYAD_XD = {
   startTime: Date.now() - process.uptime() * 1000, // time start bot (ms)
   commands: new Map(), // store all commands
   eventCommands: new Map(), // store all event commands
@@ -67,10 +67,10 @@ global.RIYAD XD = {
 };
 
 // Initialize update tracking before async operations
-global.RIYAD XD.updateAvailable = { hasUpdate: false, newVersion: null };
-global.RIYAD XD.updateRefuseUntil = null;
-global.updateAvailable = global.RIYAD XD.updateAvailable;
-global.updateRefuseUntil = global.RIYAD XD.updateRefuseUntil;
+global.RIYAD_XD.updateAvailable = { hasUpdate: false, newVersion: null };
+global.RIYAD_XD.updateRefuseUntil = null;
+global.updateAvailable = global.RIYAD_XD.updateAvailable;
+global.updateRefuseUntil = global.RIYAD_XD.updateRefuseUntil;
 
 global.db = {
   // all data
@@ -115,8 +115,8 @@ global.client = {
 const utils = require("./utils.js");
 global.utils = utils;
 const { colors } = utils;
-global.RIYAD XD.riyadagent = require("./bot/riyadagent.js");
-global.riyadagent = global.RIYAD XD.riyadagent;
+global.RIYAD_XD.riyadagent = require("./bot/riyadagent.js");
+global.riyadagent = global.RIYAD_XD.riyadagent;
 
 global.temp = {
   createThreadData: [],
@@ -140,7 +140,7 @@ const watchAndReloadConfig = (dir, type, prop, logName) => {
 
   fs.watch(dir, (eventType) => {
     if (eventType === type) {
-      const oldConfig = global.RIYAD XD[prop];
+      const oldConfig = global.RIYAD_XD[prop];
 
       // wait 200ms to reload config
       setTimeout(() => {
@@ -154,12 +154,12 @@ const watchAndReloadConfig = (dir, type, prop, logName) => {
           if (lastModified === fs.statSync(dir).mtimeMs) {
             return;
           }
-          global.RIYAD XD[prop] = JSON.parse(fs.readFileSync(dir, 'utf-8'));
+          global.RIYAD_XD[prop] = JSON.parse(fs.readFileSync(dir, 'utf-8'));
           log.success(logName, `Reloaded ${dir.replace(process.cwd(), "")}`);
         }
         catch (err) {
           log.warn(logName, `Can't reload ${dir.replace(process.cwd(), "")}`);
-          global.RIYAD XD[prop] = oldConfig;
+          global.RIYAD_XD[prop] = oldConfig;
         }
         finally {
           lastModified = fs.statSync(dir).mtimeMs;
@@ -172,9 +172,9 @@ const watchAndReloadConfig = (dir, type, prop, logName) => {
 watchAndReloadConfig(dirConfigCommands, 'change', 'configCommands', 'CONFIG COMMANDS');
 watchAndReloadConfig(dirConfig, 'change', 'config', 'CONFIG');
 
-global.RIYAD XD.envGlobal = global.RIYAD XD.configCommands.envGlobal;
-global.RIYAD XD.envCommands = global.RIYAD XD.configCommands.envCommands;
-global.RIYAD XD.envEvents = global.RIYAD XD.configCommands.envEvents;
+global.RIYAD_XD.envGlobal = global.RIYAD_XD.configCommands.envGlobal;
+global.RIYAD_XD.envCommands = global.RIYAD_XD.configCommands.envCommands;
+global.RIYAD_XD.envEvents = global.RIYAD_XD.configCommands.envEvents;
 
 // ———————————————— LOAD LANGUAGE ———————————————— //
 const getText = global.utils.getText;
@@ -203,15 +203,15 @@ const getText = global.utils.getText;
   setInterval(() => {
     if (global.updateRefuseUntil && Date.now() > global.updateRefuseUntil) {
       // Refuse period expired, re-enable update requirement
-      if ((global.updateAvailable && global.updateAvailable.newVersion) || (global.RIYAD XD.updateAvailable && global.RIYAD XD.updateAvailable.newVersion)) {
+      if ((global.updateAvailable && global.updateAvailable.newVersion) || (global.RIYAD_XD.updateAvailable && global.RIYAD_XD.updateAvailable.newVersion)) {
         if (global.updateAvailable) {
           global.updateAvailable.hasUpdate = true;
         }
-        if (global.RIYAD XD.updateAvailable) {
-          global.RIYAD XD.updateAvailable.hasUpdate = true;
+        if (global.RIYAD_XD.updateAvailable) {
+          global.RIYAD_XD.updateAvailable.hasUpdate = true;
         }
         global.updateRefuseUntil = null;
-        global.RIYAD XD.updateRefuseUntil = null;
+        global.RIYAD_XD.updateRefuseUntil = null;
         // Reset notification tracking to allow new notifications
         global.updateNotificationSent = {
           users: new Set(),
@@ -234,8 +234,8 @@ const getText = global.utils.getText;
   if (compareVersion(version, currentVersion) === 1) {
     global.updateAvailable.hasUpdate = true;
     global.updateAvailable.newVersion = version;
-    global.RIYAD XD.updateAvailable.hasUpdate = true;
-    global.RIYAD XD.updateAvailable.newVersion = version;
+    global.RIYAD_XD.updateAvailable.hasUpdate = true;
+    global.RIYAD_XD.updateAvailable.newVersion = version;
 
     // Reset notification tracking when new update detected
     global.updateNotificationSent = {
@@ -255,8 +255,8 @@ const getText = global.utils.getText;
     // No update available, ensure flags are false
     global.updateAvailable.hasUpdate = false;
     global.updateAvailable.newVersion = null;
-    global.RIYAD XD.updateAvailable.hasUpdate = false;
-    global.RIYAD XD.updateAvailable.newVersion = null;
+    global.RIYAD_XD.updateAvailable.hasUpdate = false;
+    global.RIYAD_XD.updateAvailable.newVersion = null;
   }
 
   // ———————————————————— LOGIN ———————————————————— //

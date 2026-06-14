@@ -63,14 +63,14 @@ module.exports = {
       case "enable": {
         config.groupNoti.enable = true;
         await fs.writeJson(configPath, config, { spaces: 2 });
-        global.RIYAD XD.config.groupNoti = config.groupNoti;
+        global.RIYAD_XD.config.groupNoti = config.groupNoti;
         return message.reply(getLang("enabled") + getLang("restartRequired"));
       }
 
       case "disable": {
         config.groupNoti.enable = false;
         await fs.writeJson(configPath, config, { spaces: 2 });
-        global.RIYAD XD.config.groupNoti = config.groupNoti;
+        global.RIYAD_XD.config.groupNoti = config.groupNoti;
         return message.reply(getLang("disabled") + getLang("restartRequired"));
       }
 
@@ -95,7 +95,7 @@ module.exports = {
 
         config.groupNoti.threadIds.push(threadIdToAdd);
         await fs.writeJson(configPath, config, { spaces: 2 });
-        global.RIYAD XD.config.groupNoti = config.groupNoti;
+        global.RIYAD_XD.config.groupNoti = config.groupNoti;
 
         if (args[1]) {
           return message.reply(getLang("addedSpecific", threadIdToAdd, threadName) + getLang("restartRequired"));
@@ -118,7 +118,7 @@ module.exports = {
 
         config.groupNoti.threadIds.splice(index, 1);
         await fs.writeJson(configPath, config, { spaces: 2 });
-        global.RIYAD XD.config.groupNoti = config.groupNoti;
+        global.RIYAD_XD.config.groupNoti = config.groupNoti;
 
         return message.reply(getLang("removed", threadIdToRemove) + getLang("restartRequired"));
       }
@@ -142,7 +142,7 @@ module.exports = {
 
         config.groupNoti.threadIds.splice(serial - 1, 1);
         await fs.writeJson(configPath, config, { spaces: 2 });
-        global.RIYAD XD.config.groupNoti = config.groupNoti;
+        global.RIYAD_XD.config.groupNoti = config.groupNoti;
 
         return message.reply(getLang("removedBySerial", threadIdToRemove, threadName) + getLang("restartRequired"));
       }

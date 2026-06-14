@@ -1,7 +1,7 @@
 const { graphQlQueryToJson } = require("graphql-query-to-json");
 const ora = require("ora");
 const { log, getText } = global.utils;
-const { config } = global.RIYAD XD;
+const { config } = global.RIYAD_XD;
 const databaseType = config.database.type;
 
 // with add null if not found data

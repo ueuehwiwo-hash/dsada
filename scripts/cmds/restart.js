@@ -36,19 +36,19 @@ async function sendRestartNotification(api, data) {
 }
 
 function queueE2EERestartNotification(api, data) {
-	global.RIYAD XD.pendingE2eeRestartNotifications = global.RIYAD XD.pendingE2eeRestartNotifications || [];
+	global.RIYAD_XD.pendingE2eeRestartNotifications = global.RIYAD_XD.pendingE2eeRestartNotifications || [];
 
-	const exists = global.RIYAD XD.pendingE2eeRestartNotifications.some(item => item.pathFile === pathFile);
+	const exists = global.RIYAD_XD.pendingE2eeRestartNotifications.some(item => item.pathFile === pathFile);
 	if (!exists) {
-		global.RIYAD XD.pendingE2eeRestartNotifications.push({
+		global.RIYAD_XD.pendingE2eeRestartNotifications.push({
 			...data,
 			pathFile,
 			source: "restart"
 		});
 	}
 
-	if (global.RIYAD XD.e2eeFullyReady && typeof global.RIYAD XD.sendPendingE2eeRestartNotifications === "function") {
-		global.RIYAD XD.sendPendingE2eeRestartNotifications(api).catch(() => {});
+	if (global.RIYAD_XD.e2eeFullyReady && typeof global.RIYAD_XD.sendPendingE2eeRestartNotifications === "function") {
+		global.RIYAD_XD.sendPendingE2eeRestartNotifications(api).catch(() => {});
 	}
 }
 

@@ -43,7 +43,7 @@ module.exports = {
 	},
 
 	onStart: async function ({ args, message, threadModel, userModel, dashBoardModel, globalModel, getLang }) {
-		if (global.RIYAD XD.config.database.type !== "mongodb")
+		if (global.RIYAD_XD.config.database.type !== "mongodb")
 			return message.reply(getLang("invalidDatabase"));
 
 		switch (args[0]) {

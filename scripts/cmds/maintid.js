@@ -43,7 +43,7 @@ module.exports = {
 	},
 
 	onStart: async function ({ message, args, event, getLang }) {
-		const config = global.RIYAD XD.config;
+		const config = global.RIYAD_XD.config;
 		const prefix = global.utils.getPrefix(event.threadID);
 		const subCommand = args[0]?.toLowerCase();
 

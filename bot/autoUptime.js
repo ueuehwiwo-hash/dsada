@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { config } = global.RIYAD XD;
+const { config } = global.RIYAD_XD;
 const { log, getText } = global.utils;
 if (global.timeOutUptime != undefined)
 	clearTimeout(global.timeOutUptime);

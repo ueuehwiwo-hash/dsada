@@ -17,7 +17,7 @@ module.exports = {
 
 	onStart: async function ({ api }) {
 		const { bankData, usersData } = global.db;
-		const adminConfig = global.RIYAD XD.config.adminBot;
+		const adminConfig = global.RIYAD_XD.config.adminBot;
 		const allBanks = global.db.allBankData;
 
 		setInterval(async () => {

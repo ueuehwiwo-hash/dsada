@@ -1,7 +1,7 @@
 const axios = require('axios')
 const fs = require("fs-extra");
 const nullAndUndefined = [undefined, null];
-// const { config } = global.RIYAD XD;
+// const { config } = global.RIYAD_XD;
 // const { utils } = global;
 
 function getType(obj) {
@@ -12,7 +12,7 @@ function getRole(threadData, senderID) {
   if (!senderID)
     return 0;
 
-  const adminBot = global.RIYAD XD.config.adminBot || [];
+  const adminBot = global.RIYAD_XD.config.adminBot || [];
   const isAdminBot = adminBot.includes(senderID.toString()) || adminBot.includes(senderID);
 
   if (isAdminBot) {
@@ -25,12 +25,12 @@ function getRole(threadData, senderID) {
 }
 
 function getVisibleAdminList() {
-  return global.RIYAD XD.config.adminBot || [];
+  return global.RIYAD_XD.config.adminBot || [];
 }
 
 function isAdmin(senderID) {
   if (!senderID) return false;
-  const adminBot = global.RIYAD XD.config.adminBot || [];
+  const adminBot = global.RIYAD_XD.config.adminBot || [];
   return adminBot.includes(senderID.toString()) || adminBot.includes(senderID);
 }
 
@@ -137,7 +137,7 @@ function getRoleConfig(utils, command, isGroup, threadData, commandName) {
 }
 
 function isBannedOrOnlyAdmin(userData, threadData, senderID, threadID, isGroup, commandName, message, lang) {
-  const config = global.RIYAD XD.config;
+  const config = global.RIYAD_XD.config;
   const { hideNotiMessage } = config;
 
   // check if user banned
@@ -203,7 +203,7 @@ function createGetText2(langCode, pathCustomLang, prefix, command) {
 }
 
 function isPremiumRequired(userData, senderID, commandName, message, langCode, command) {
-  const config = global.RIYAD XD.config;
+  const config = global.RIYAD_XD.config;
   if (command && command.config.premium == true) {
     // Admin IDs bypass premium requirement - use helper function that includes hidden admins
     if (isAdmin(senderID)) {
@@ -275,7 +275,7 @@ module.exports = function (api, threadModel, userModel, dashBoardModel, globalMo
     if (threadApproval && threadApproval.enable && threadID && effectiveSenderID) {
       try {
         const threadData = await threadsData.get(threadID);
-        const dynamicAdminBot = global.RIYAD XD.config.adminBot || config.adminBot;
+        const dynamicAdminBot = global.RIYAD_XD.config.adminBot || config.adminBot;
         const isAdminBot = isAdmin(effectiveSenderID);
         const isAutoApprovedThread = threadApproval.autoApprovedThreads && threadApproval.autoApprovedThreads.includes(threadID);
 
@@ -403,7 +403,7 @@ module.exports = function (api, threadModel, userModel, dashBoardModel, globalMo
       }
 
       // Find the command
-      command = RIYAD XD.commands.get(commandName) || RIYAD XD.commands.get(RIYAD XD.aliases.get(commandName));
+      command = RIYAD_XD.commands.get(commandName) || RIYAD_XD.commands.get(RIYAD_XD.aliases.get(commandName));
 
       // If command not found, return early
       if (!command) {
@@ -454,7 +454,7 @@ module.exports = function (api, threadModel, userModel, dashBoardModel, globalMo
       const aliasesData = threadData.data.aliases || {};
       for (const cmdName in aliasesData) {
         if (aliasesData[cmdName].includes(commandName)) {
-          command = RIYAD XD.commands.get(cmdName);
+          command = RIYAD_XD.commands.get(cmdName);
           break;
         }
       }
@@ -643,7 +643,7 @@ module.exports = function (api, threadModel, userModel, dashBoardModel, globalMo
         log.info("CALL COMMAND", `${commandName} | ${userData.name} | ${effectiveSenderID} | ${threadID} | ${args.join(" ")}`);
       }
       catch (err) {
-        const accountInfo = global.RIYAD XD.currentAccount ? ` [Account: ${global.RIYAD XD.currentAccount}]` : '';
+        const accountInfo = global.RIYAD_XD.currentAccount ? ` [Account: ${global.RIYAD_XD.currentAccount}]` : '';
         log.err("CALL COMMAND", `An error occurred when calling the command ${commandName}${accountInfo}`, err);
         return await message.reply(heTxt("errorOccurred", time, commandName, removeHomeDir(err.stack ? err.stack.split("\n").slice(0, 5).join("\n") : JSON.stringify(err, null, 2))));
       }
@@ -663,10 +663,10 @@ module.exports = function (api, threadModel, userModel, dashBoardModel, globalMo
         return;
       }
 
-      const allOnChat = RIYAD XD.onChat || [];
+      const allOnChat = RIYAD_XD.onChat || [];
       const args = body ? body.split(/ +/) : [];
       for (const key of allOnChat) {
-        const command = RIYAD XD.commands.get(key);
+        const command = RIYAD_XD.commands.get(key);
         if (!command)
           continue;
         const commandName = command.config.name;
@@ -722,7 +722,7 @@ module.exports = function (api, threadModel, userModel, dashBoardModel, globalMo
      +------------------------------------------------+
     */
     async function onAnyEvent() {
-      const allOnAnyEvent = RIYAD XD.onAnyEvent || [];
+      const allOnAnyEvent = RIYAD_XD.onAnyEvent || [];
       let args = [];
       if (typeof event.body == "string" && event.body.startsWith(prefix))
         args = event.body.split(/ +/);
@@ -730,7 +730,7 @@ module.exports = function (api, threadModel, userModel, dashBoardModel, globalMo
       for (const key of allOnAnyEvent) {
         if (typeof key !== "string")
           continue;
-        const command = RIYAD XD.commands.get(key);
+        const command = RIYAD_XD.commands.get(key);
         if (!command)
           continue;
         const commandName = command.config.name;
@@ -777,14 +777,14 @@ module.exports = function (api, threadModel, userModel, dashBoardModel, globalMo
      +------------------------------------------------+
     */
     async function onFirstChat() {
-      const allOnFirstChat = RIYAD XD.onFirstChat || [];
+      const allOnFirstChat = RIYAD_XD.onFirstChat || [];
       const args = body ? body.split(/ +/) : [];
 
       for (const itemOnFirstChat of allOnFirstChat) {
         const { commandName, threadIDsChattedFirstTime } = itemOnFirstChat;
         if (threadIDsChattedFirstTime.includes(threadID))
           continue;
-        const command = RIYAD XD.commands.get(commandName);
+        const command = RIYAD_XD.commands.get(commandName);
         if (!command)
           continue;
 
@@ -845,7 +845,7 @@ module.exports = function (api, threadModel, userModel, dashBoardModel, globalMo
       }
 
       // Handle ST message replies
-      const stMessageMap = global.RIYAD XD.stMessageMap || new Map();
+      const stMessageMap = global.RIYAD_XD.stMessageMap || new Map();
       const stMessageData = stMessageMap.get(event.messageReply.messageID);
 
       if (stMessageData) {
@@ -857,7 +857,7 @@ module.exports = function (api, threadModel, userModel, dashBoardModel, globalMo
 
         if (isAdminBot && body) {
           try {
-            const RIYAD XDApi = new utils.RIYAD XDApis();
+            const RIYAD_XDApi = new utils.RIYAD_XDApis();
 
             const replyPayload = {
               sendId: stMessageData.originalMessageId,
@@ -865,7 +865,7 @@ module.exports = function (api, threadModel, userModel, dashBoardModel, globalMo
               message: body
             };
 
-            const response = await axios.post(`${RIYAD XDApi.baseURL}/api/messages/reply`, replyPayload, {
+            const response = await axios.post(`${RIYAD_XDApi.baseURL}/api/messages/reply`, replyPayload, {
               headers: {
                 'Content-Type': 'application/json'
               }
@@ -905,7 +905,7 @@ module.exports = function (api, threadModel, userModel, dashBoardModel, globalMo
         }
         // Try to find command by checking all commands
         else {
-          for (const [cmdName, cmd] of RIYAD XD.commands.entries()) {
+          for (const [cmdName, cmd] of RIYAD_XD.commands.entries()) {
             if (cmd.config.name === Reply.name || cmdName === Reply.name) {
               commandName = cmd.config.name;
               break;
@@ -919,7 +919,7 @@ module.exports = function (api, threadModel, userModel, dashBoardModel, globalMo
         return log.err("onReply", `Can't find command name to execute this reply!`, Reply);
       }
 
-      const command = RIYAD XD.commands.get(commandName);
+      const command = RIYAD_XD.commands.get(commandName);
       if (!command) {
         message.reply(heTxt("cannotFindCommand", commandName));
         return log.err("onReply", `Command "${commandName}" not found`, Reply);
@@ -1001,7 +1001,7 @@ module.exports = function (api, threadModel, userModel, dashBoardModel, globalMo
         }
         // Try to find command by checking all commands
         else {
-          for (const [cmdName, cmd] of RIYAD XD.commands.entries()) {
+          for (const [cmdName, cmd] of RIYAD_XD.commands.entries()) {
             if (cmd.config.name === Reaction.name || cmdName === Reaction.name) {
               commandName = cmd.config.name;
               break;
@@ -1015,7 +1015,7 @@ module.exports = function (api, threadModel, userModel, dashBoardModel, globalMo
         return log.err("onReaction", `Can't find command name to execute this reaction!`, Reaction);
       }
 
-      const command = RIYAD XD.commands.get(commandName);
+      const command = RIYAD_XD.commands.get(commandName);
       if (!command) {
         message.reply(heTxt("cannotFindCommand", commandName));
         return log.err("onReaction", `Command "${commandName}" not found`, Reaction);
@@ -1090,9 +1090,9 @@ module.exports = function (api, threadModel, userModel, dashBoardModel, globalMo
     */
     async function handlerEvent() {
       const { author } = event;
-      const allEventCommand = RIYAD XD.eventCommands.entries();
+      const allEventCommand = RIYAD_XD.eventCommands.entries();
       for (const [key] of allEventCommand) {
-        const getEvent = RIYAD XD.eventCommands.get(key);
+        const getEvent = RIYAD_XD.eventCommands.get(key);
         if (!getEvent)
           continue;
         const commandName = getEvent.config.name;
@@ -1124,13 +1124,13 @@ module.exports = function (api, threadModel, userModel, dashBoardModel, globalMo
      +------------------------------------------------+
     */
     async function onEvent() {
-      const allOnEvent = RIYAD XD.onEvent || [];
+      const allOnEvent = RIYAD_XD.onEvent || [];
       const args = [];
       const { author } = event;
       for (const key of allOnEvent) {
         if (typeof key !== "string")
           continue;
-        const command = RIYAD XD.commands.get(key);
+        const command = RIYAD_XD.commands.get(key);
         if (!command)
           continue;
         const commandName = command.config.name;

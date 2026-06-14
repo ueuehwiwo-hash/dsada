@@ -106,7 +106,7 @@ module.exports = {
 			let i = 1;
 			const msg = rulesOfThread.reduce((text, rules) => text += `${i++}. ${rules}\n`, "");
 			message.reply(msg ? getLang("yourRules", msg) : getLang("noRules", getPrefix(threadID)), (err, info) => {
-				global.RIYAD XD.onReply.set(info.messageID, {
+				global.RIYAD_XD.onReply.set(info.messageID, {
 					commandName,
 					author: senderID,
 					rulesOfThread,
@@ -193,7 +193,7 @@ module.exports = {
 			if (role < 1)
 				return message.reply(getLang("noPermissionRemove"));
 			message.reply(getLang("confirmRemove"), (err, info) => {
-				global.RIYAD XD.onReaction.set(info.messageID, {
+				global.RIYAD_XD.onReaction.set(info.messageID, {
 					commandName: "rules",
 					messageID: info.messageID,
 					author: senderID

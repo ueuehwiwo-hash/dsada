@@ -233,7 +233,7 @@ module.exports = {
         body: responseMsg
       }, (err, info) => {
         if (!err) {
-          global.RIYAD XD.onReply.set(info.messageID, {
+          global.RIYAD_XD.onReply.set(info.messageID, {
             commandName: module.exports.config.name,
             messageID: info.messageID,
             author: event.senderID,

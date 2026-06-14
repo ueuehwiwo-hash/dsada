@@ -48,7 +48,7 @@ module.exports = {
 
 		if (!isNaN(args[0])) {
 			message.reply(getLang("confirm", args[0]), (err, info) => {
-				global.RIYAD XD.onReaction.set(info.messageID, {
+				global.RIYAD_XD.onReaction.set(info.messageID, {
 					author: event.senderID,
 					messageID: info.messageID,
 					minimum: Number(args[0]),

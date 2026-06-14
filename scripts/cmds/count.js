@@ -88,7 +88,7 @@ module.exports = {
 					return message.reply(msg, (err, info) => {
 						if (err)
 							return message.err(err);
-						global.RIYAD XD.onReply.set(info.messageID, {
+						global.RIYAD_XD.onReply.set(info.messageID, {
 							commandName,
 							messageID: info.messageID,
 							splitPage,
@@ -135,7 +135,7 @@ module.exports = {
 			if (err)
 				return message.err(err);
 			message.unsend(Reply.messageID);
-			global.RIYAD XD.onReply.set(info.messageID, {
+			global.RIYAD_XD.onReply.set(info.messageID, {
 				commandName,
 				messageID: info.messageID,
 				splitPage,

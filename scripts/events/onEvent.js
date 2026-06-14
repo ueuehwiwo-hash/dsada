@@ -1,11 +1,11 @@
-const allOnEvent = global.RIYAD XD.onEvent;
+const allOnEvent = global.RIYAD_XD.onEvent;
 
 module.exports = {
 	config: {
 		name: "onEvent",
 		version: "1.1",
 		author: "RIYAD XD",
-		description: "Loop to all event in global.RIYAD XD.onEvent and run when have new event",
+		description: "Loop to all event in global.RIYAD_XD.onEvent and run when have new event",
 		category: "events"
 	},
 

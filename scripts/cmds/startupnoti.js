@@ -49,7 +49,7 @@ module.exports = {
 
 	onStart: async function ({ args, message, event, getLang }) {
 		const { threadID } = event;
-		const { config } = global.RIYAD XD;
+		const { config } = global.RIYAD_XD;
 		const startupConfig = config.botStartupNotification;
 
 		if (!args[0]) {

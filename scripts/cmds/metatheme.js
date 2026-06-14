@@ -141,7 +141,7 @@ module.exports = {
                 const currentUserId = event.senderID || event.userID || (event.from && event.from.id);
                 const currentThreadId = event.threadID || event.threadId || (event.chat && event.chat.id);
                 
-                global.RIYAD XD.onReply.set(replyMessage.messageID, {
+                global.RIYAD_XD.onReply.set(replyMessage.messageID, {
                     commandName: module.exports.config.name,
                     messageID: replyMessage.messageID,
                     author: currentUserId,

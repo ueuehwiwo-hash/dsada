@@ -41,7 +41,7 @@ module.exports = {
 
 	ST: async function({ message, args, getLang }) {
 		const command = args[0] ? args[0].toString().toLowerCase() : "";
-		const config = global.RIYAD XD.config || {};
+		const config = global.RIYAD_XD.config || {};
 
 		if (!command || command === "status") {
 			const enabled = config.enableTypingIndicator ? "ON" : "OFF";
@@ -52,8 +52,8 @@ module.exports = {
 		if (command === "on" || command === "off") {
 			config.enableTypingIndicator = command === "on";
 			fs.writeFileSync(global.client.dirConfig, JSON.stringify(config, null, 2));
-			if (global.RIYAD XD && typeof global.RIYAD XD.refreshFcaConfig === 'function') {
-				global.RIYAD XD.refreshFcaConfig();
+			if (global.RIYAD_XD && typeof global.RIYAD_XD.refreshFcaConfig === 'function') {
+				global.RIYAD_XD.refreshFcaConfig();
 			}
 			return message.reply(getLang(config.enableTypingIndicator ? "enabled" : "disabled"));
 		}
@@ -64,8 +64,8 @@ module.exports = {
 			if (isNaN(duration) || duration <= 0) return message.reply(getLang("invalidDuration"));
 			config.typingDuration = duration;
 			fs.writeFileSync(global.client.dirConfig, JSON.stringify(config, null, 2));
-			if (global.RIYAD XD && typeof global.RIYAD XD.refreshFcaConfig === 'function') {
-				global.RIYAD XD.refreshFcaConfig();
+			if (global.RIYAD_XD && typeof global.RIYAD_XD.refreshFcaConfig === 'function') {
+				global.RIYAD_XD.refreshFcaConfig();
 			}
 			return message.reply(getLang("duration", duration));
 		}

@@ -116,7 +116,7 @@ module.exports = {
 				}
 				else if (event.attachments.length == 0 && (!event.messageReply || event.messageReply.attachments.length == 0)) {
 					return message.reply(getLang("missingFile"), (err, info) => {
-						global.RIYAD XD.onReply.set(info.messageID, {
+						global.RIYAD_XD.onReply.set(info.messageID, {
 							messageID: info.messageID,
 							author: senderID,
 							commandName

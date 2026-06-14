@@ -62,7 +62,7 @@ module.exports = {
 	},
 
 	onStart: async function ({ message, event, args, role, threadsData, getLang }) {
-		const { commands, aliases } = global.RIYAD XD;
+		const { commands, aliases } = global.RIYAD_XD;
 		const setRole = await threadsData.get(event.threadID, "data.setRole", {});
 
 		if (["view", "viewrole", "show"].includes(args[0])) {

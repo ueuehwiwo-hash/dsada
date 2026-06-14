@@ -50,7 +50,7 @@ module.exports = {
 
 	onStart: async function ({ args, message, event, getLang }) {
 		const { threadID } = event;
-		const { config } = global.RIYAD XD;
+		const { config } = global.RIYAD_XD;
 		
 		// Initialize botLogging if it doesn't exist
 		if (!config.botLogging) {

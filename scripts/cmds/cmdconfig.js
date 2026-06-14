@@ -42,7 +42,7 @@ module.exports = {
 		}
 
 		const { loadScripts } = global.utils;
-		const { configCommands } = global.RIYAD XD;
+		const { configCommands } = global.RIYAD_XD;
 		
 		// Check if it's a remove operation
 		const isRemove = args[0] === "-r";

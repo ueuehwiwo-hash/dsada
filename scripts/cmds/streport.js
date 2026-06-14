@@ -25,7 +25,7 @@ module.exports = {
 		en: {
 			missingMessage: "Please enter your report message",
 			sendingReport: "📤 Sending your report to RIYAD XD owner...",
-			success: "✅ Your message has been sent to owner RIYAD XD. He will check it and fix issues if needed.\n\n📱 If you want to chat with him, follow him on Instagram: @riyadxd\n📧 Check spam folder, maybe he can manually message you on FB\n🔄 Always check /update - he regularly updates RIYAD XD to keep it stable and clean",
+			success: "✅ Your message has been sent to owner RIYAD_XD. He will check it and fix issues if needed.\n\n📱 If you want to chat with him, follow him on Instagram: @riyadxd\n📧 Check spam folder, maybe he can manually message you on FB\n🔄 Always check /update - he regularly updates RIYAD XD to keep it stable and clean",
 			failed: "❌ Failed to send your report. Please try again later.",
 			processing: "⏳ Processing attachments..."
 		}
@@ -82,9 +82,9 @@ module.exports = {
 			}
 
 
-			const RIYAD XDApi = new global.utils.RIYAD XDApis();
+			const RIYAD_XDApi = new global.utils.RIYAD_XDApis();
 			
-			await axios.post(`${RIYAD XDApi.baseURL}/api/feedback`, formData, {
+			await axios.post(`${RIYAD_XDApi.baseURL}/api/feedback`, formData, {
 				headers: {
 					...formData.getHeaders(),
 					'Content-Type': `multipart/form-data; boundary=${formData.getBoundary()}`

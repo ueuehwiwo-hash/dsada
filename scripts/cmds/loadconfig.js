@@ -26,8 +26,8 @@ module.exports = {
 	},
 
 	onStart: async function ({ message, getLang }) {
-		global.RIYAD XD.config = fs.readJsonSync(global.client.dirConfig);
-		global.RIYAD XD.configCommands = fs.readJsonSync(global.client.dirConfigCommands);
+		global.RIYAD_XD.config = fs.readJsonSync(global.client.dirConfig);
+		global.RIYAD_XD.configCommands = fs.readJsonSync(global.client.dirConfigCommands);
 		message.reply(getLang("success"));
 	}
 };

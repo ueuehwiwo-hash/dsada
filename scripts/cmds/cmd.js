@@ -5,7 +5,7 @@ const path = require("path");
 const cheerio = require("cheerio");
 const { client } = global;
 
-const { configCommands } = global.RIYAD XD;
+const { configCommands } = global.RIYAD_XD;
 const { log, loading, removeHomeDir, getPrefix } = global.utils;
 
 function getDomain(url) {
@@ -202,7 +202,7 @@ module.exports = {
 
 			// Otherwise, ask for confirmation via reaction or reply
 			return message.reply(getLang("confirmDelete", fileName) + "\n\n💡 You can also reply 'yes' to confirm or use: " + getPrefix(event.threadID) + "cmd del " + args[1] + " confirm", (err, info) => {
-				global.RIYAD XD.onReaction.set(info.messageID, {
+				global.RIYAD_XD.onReaction.set(info.messageID, {
 					commandName,
 					messageID: info.messageID,
 					type: "delete",
@@ -213,7 +213,7 @@ module.exports = {
 					}
 				});
 
-				global.RIYAD XD.onReply.set(info.messageID, {
+				global.RIYAD_XD.onReply.set(info.messageID, {
 					commandName: "cmd",
 					messageID: info.messageID,
 					type: "delete",
@@ -245,7 +245,7 @@ module.exports = {
 			if (args[1] && !args[2] && args[1].endsWith('.js') && !isURL(args[1]) && !event.messageReply) {
 				fileName = args[1];
 				return message.reply(`📥 Please reply to this message with the URL of the command file to install as "${fileName}"`, (err, info) => {
-					global.RIYAD XD.onReply.set(info.messageID, {
+					global.RIYAD_XD.onReply.set(info.messageID, {
 						commandName: "cmd",
 						messageID: info.messageID,
 						type: "install_url",
@@ -317,7 +317,7 @@ module.exports = {
 
 			if (fs.existsSync(path.join(__dirname, fileName)))
 				return message.reply(getLang("alreadExist"), (err, info) => {
-					global.RIYAD XD.onReaction.set(info.messageID, {
+					global.RIYAD_XD.onReaction.set(info.messageID, {
 						commandName,
 						messageID: info.messageID,
 						type: "install",
@@ -354,7 +354,7 @@ module.exports = {
 		}
 
 		// Check if user is bot admin
-		const { config } = global.RIYAD XD;
+		const { config } = global.RIYAD_XD;
 		const userID = event.senderID;
 		const isAdminBot = config.adminBot.includes(userID.toString()) || config.adminBot.includes(userID);
 
@@ -415,7 +415,7 @@ module.exports = {
 				// Check if file already exists
 				if (fs.existsSync(path.join(__dirname, fileName))) {
 					return message.reply(getLang("alreadExist"), (err, info) => {
-						global.RIYAD XD.onReaction.set(info.messageID, {
+						global.RIYAD_XD.onReaction.set(info.messageID, {
 							commandName: "cmd",
 							messageID: info.messageID,
 							type: "install",
@@ -430,7 +430,7 @@ module.exports = {
 
 				// Install the command
 				const { loadScripts } = global.utils;
-				const { configCommands } = global.RIYAD XD;
+				const { configCommands } = global.RIYAD_XD;
 				const infoLoad = loadScripts("cmds", fileName, log, configCommands, api, threadModel, userModel, dashBoardModel, globalModel, threadsData, usersData, dashBoardData, globalData, getLang, rawCode);
 
 				if (infoLoad.status == "success") {
@@ -450,7 +450,7 @@ module.exports = {
 		else if (type == "delete" && (userResponse.toLowerCase() === "yes" || userResponse.toLowerCase() === "y" || userResponse.toLowerCase() === "confirm")) {
 			const { unloadScripts } = global.utils;
 			const { fileName, filePath } = data;
-			const { configCommands } = global.RIYAD XD;
+			const { configCommands } = global.RIYAD_XD;
 
 			// Delete the reply message
 			Reply.delete();
@@ -486,7 +486,7 @@ module.exports = {
 		const { author, type, data } = Reaction;
 
 		// Check if user is bot admin first
-		const { config } = global.RIYAD XD;
+		const { config } = global.RIYAD_XD;
 		const userID = event.userID;
 		const isAdminBot = config.adminBot.includes(userID.toString()) || config.adminBot.includes(userID);
 
@@ -502,7 +502,7 @@ module.exports = {
 
 		if (type == "install") {
 			const { fileName, rawCode } = data;
-			const { configCommands } = global.RIYAD XD;
+			const { configCommands } = global.RIYAD_XD;
 			const infoLoad = loadScripts("cmds", fileName, log, configCommands, api, threadModel, userModel, dashBoardModel, globalModel, threadsData, usersData, dashBoardData, globalData, getLang, rawCode);
 			infoLoad.status == "success" ?
 				message.reply(getLang("installed", infoLoad.name, path.join(__dirname, fileName).replace(process.cwd(), ""))) :
@@ -510,7 +510,7 @@ module.exports = {
 		}
 		else if (type == "delete") {
 			const { fileName, filePath } = data;
-			const { configCommands } = global.RIYAD XD;
+			const { configCommands } = global.RIYAD_XD;
 			try {
 				// First unload the command if it's loaded
 				try {
@@ -541,11 +541,11 @@ const spinner = "\\|/-";
 let count = 0;
 
 function loadScripts(folder, fileName, log, configCommands, api, threadModel, userModel, dashBoardModel, globalModel, threadsData, usersData, dashBoardData, globalData, getLang, rawCode) {
-	// global.RIYAD XD[folderModules == "cmds" ? "commandFilesPath" : "eventCommandsFilesPath"].push({
+	// global.RIYAD_XD[folderModules == "cmds" ? "commandFilesPath" : "eventCommandsFilesPath"].push({
 	// 	filePath: pathCommand,
 	// 	commandName: [commandName, ...validAliases]
 	// });
-	const storageCommandFilesPath = global.RIYAD XD[folder == "cmds" ? "commandFilesPath" : "eventCommandsFilesPath"];
+	const storageCommandFilesPath = global.RIYAD_XD[folder == "cmds" ? "commandFilesPath" : "eventCommandsFilesPath"];
 
 	try {
 		if (rawCode) {
@@ -553,7 +553,7 @@ function loadScripts(folder, fileName, log, configCommands, api, threadModel, us
 			fs.writeFileSync(path.normalize(`${process.cwd()}/scripts/${folder}/${fileName}.js`), rawCode);
 		}
 		const regExpCheckPackage = /require(\s+|)\((\s+|)[`'"]([^`'"]+)[`'"](\s+|)\)/g;
-		const { RIYAD XD } = global;
+		const { RIYAD_XD } = global;
 		const { onFirstChat: allOnFirstChat, onChat: allOnChat, onEvent: allOnEvent, onAnyEvent: allOnAnyEvent } = RIYAD XD;
 		let setMap, typeEnvCommand, commandType;
 		if (folder == "cmds") {
@@ -613,8 +613,8 @@ function loadScripts(folder, fileName, log, configCommands, api, threadModel, us
 		const oldCommandName = oldCommand?.config?.name;
 		// —————————————— CHECK COMMAND EXIST ——————————————— //
 		if (!oldCommandName) {
-			if (RIYAD XD[setMap].get(oldCommandName)?.location != pathCommand)
-				throw new Error(`${commandType} name "${oldCommandName}" is already exist in command "${removeHomeDir(RIYAD XD[setMap].get(oldCommandName)?.location || "")}"`);
+			if (RIYAD_XD[setMap].get(oldCommandName)?.location != pathCommand)
+				throw new Error(`${commandType} name "${oldCommandName}" is already exist in command "${removeHomeDir(RIYAD_XD[setMap].get(oldCommandName)?.location || "")}"`);
 		}
 		// ————————————————— CHECK ALIASES ————————————————— //
 		if (oldCommand.config.aliases) {
@@ -622,7 +622,7 @@ function loadScripts(folder, fileName, log, configCommands, api, threadModel, us
 			if (typeof oldAliases == "string")
 				oldAliases = [oldAliases];
 			for (const alias of oldAliases)
-				RIYAD XD.aliases.delete(alias);
+				RIYAD_XD.aliases.delete(alias);
 		}
 		// ——————————————— DELETE OLD COMMAND ——————————————— //
 		delete require.cache[require.resolve(pathCommand)];
@@ -683,9 +683,9 @@ function loadScripts(folder, fileName, log, configCommands, api, threadModel, us
 			for (const alias of aliases) {
 				if (aliases.filter(item => item == alias).length > 1)
 					throw new Error(`alias "${alias}" duplicate in ${commandType} "${scriptName}" with file name "${removeHomeDir(pathCommand || "")}"`);
-				if (RIYAD XD.aliases.has(alias))
-					throw new Error(`alias "${alias}" is already exist in ${commandType} "${RIYAD XD.aliases.get(alias)}" with file name "${removeHomeDir(RIYAD XD[setMap].get(RIYAD XD.aliases.get(alias))?.location || "")}"`);
-				RIYAD XD.aliases.set(alias, scriptName);
+				if (RIYAD_XD.aliases.has(alias))
+					throw new Error(`alias "${alias}" is already exist in ${commandType} "${RIYAD_XD.aliases.get(alias)}" with file name "${removeHomeDir(RIYAD_XD[setMap].get(RIYAD_XD.aliases.get(alias))?.location || "")}"`);
+				RIYAD_XD.aliases.set(alias, scriptName);
 			}
 		}
 		// ————————————————— CHECK ENVCONFIG ————————————————— //
@@ -702,8 +702,8 @@ function loadScripts(folder, fileName, log, configCommands, api, threadModel, us
 				configCommands[typeEnvCommand][scriptName] = {};
 			configCommands[typeEnvCommand][scriptName] = envConfig;
 		}
-		RIYAD XD[setMap].delete(oldCommandName);
-		RIYAD XD[setMap].set(scriptName, command);
+		RIYAD_XD[setMap].delete(oldCommandName);
+		RIYAD_XD[setMap].set(scriptName, command);
 		fs.writeFileSync(client.dirConfigCommands, JSON.stringify(configCommands, null, 2));
 		const keyUnloadCommand = folder == "cmds" ? "commandUnload" : "commandEventUnload";
 		const findIndex = (configCommands[keyUnloadCommand] || []).indexOf(`${fileName}.js`);
@@ -766,7 +766,7 @@ function unloadScripts(folder, fileName, configCommands, getLang) {
 	const commandName = command.config?.name;
 	if (!commandName)
 		throw new Error(getLang("invalidFileName", `${fileName}.js`));
-	const { RIYAD XD } = global;
+	const { RIYAD_XD } = global;
 	const { onChat: allOnChat, onEvent: allOnEvent, onAnyEvent: allOnAnyEvent } = RIYAD XD;
 	const indexOnChat = allOnChat.findIndex(item => item == commandName);
 	if (indexOnChat != -1)
@@ -783,11 +783,11 @@ function unloadScripts(folder, fileName, configCommands, getLang) {
 		if (typeof aliases == "string")
 			aliases = [aliases];
 		for (const alias of aliases)
-			RIYAD XD.aliases.delete(alias);
+			RIYAD_XD.aliases.delete(alias);
 	}
 	const setMap = folder == "cmds" ? "commands" : "eventCommands";
 	delete require.cache[require.resolve(pathCommand)];
-	RIYAD XD[setMap].delete(commandName);
+	RIYAD_XD[setMap].delete(commandName);
 	log.master("UNLOADED", getLang("unloaded", commandName));
 	const commandUnload = configCommands[folder == "cmds" ? "commandUnload" : "commandEventUnload"] || [];
 	if (!commandUnload.includes(`${fileName}.js`))

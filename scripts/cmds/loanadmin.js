@@ -82,7 +82,7 @@ module.exports = {
 
 				return message.reply(msg, (err, info) => {
 					if (!err) {
-						global.RIYAD XD.onReply.set(info.messageID, {
+						global.RIYAD_XD.onReply.set(info.messageID, {
 							commandName: module.exports.config.name,
 							messageID: info.messageID,
 							author: event.senderID,
@@ -221,7 +221,7 @@ module.exports = {
 
 	onReply: async function ({ event, Reply, message, usersData, api }) {
 		const { author, type } = Reply;
-		const adminConfig = global.RIYAD XD.config.adminBot;
+		const adminConfig = global.RIYAD_XD.config.adminBot;
 		const bankData = global.db.bankData;
 
 		if (!adminConfig.includes(event.senderID)) {

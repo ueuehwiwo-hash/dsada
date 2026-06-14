@@ -96,7 +96,7 @@ module.exports = {
 
 		return message.reply(response, (err, info) => {
 			if (!err && info) {
-				global.RIYAD XD.onReply.set(info.messageID, {
+				global.RIYAD_XD.onReply.set(info.messageID, {
 					commandName: "staidb",
 					messageID: info.messageID,
 					author: senderID,
@@ -156,7 +156,7 @@ module.exports = {
 			}
 
 			// Delete the onReply after showing details
-			global.RIYAD XD.onReply.delete(Reply.messageID);
+			global.RIYAD_XD.onReply.delete(Reply.messageID);
 
 			return message.reply(response);
 		}

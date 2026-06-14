@@ -84,7 +84,7 @@ const defaultDesignCard = {
 	text_color: "#000000"
 };
 
-async function makeRankCard(userID, usersData, threadsData, threadID, deltaNext, api = global.RIYAD XD.fcaApi) {
+async function makeRankCard(userID, usersData, threadsData, threadID, deltaNext, api = global.RIYAD_XD.fcaApi) {
 	const { exp } = await usersData.get(userID);
 	const levelUser = expToLevel(exp, deltaNext);
 

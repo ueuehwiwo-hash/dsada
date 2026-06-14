@@ -77,7 +77,7 @@ module.exports = {
 	},
 
 	onStart: async ({ args, message, api, threadModel, userModel, dashBoardModel, globalModel, threadsData, usersData, dashBoardData, globalData, commandName, event, getLang }) => {
-		const { configCommands } = global.RIYAD XD;
+		const { configCommands } = global.RIYAD_XD;
 		const { log, loadScripts } = global.utils;
 
 		if (args[0] == "load" && args.length == 2) {
@@ -179,7 +179,7 @@ module.exports = {
 				return message.reply(getLang("invalidUrlOrCode"));
 			if (fs.existsSync(path.join(__dirname, "..", "events", fileName)))
 				return message.reply(getLang("alreadExist"), (err, info) => {
-					global.RIYAD XD.onReaction.set(info.messageID, {
+					global.RIYAD_XD.onReaction.set(info.messageID, {
 						commandName,
 						messageID: info.messageID,
 						type: "install",
@@ -205,7 +205,7 @@ module.exports = {
 		const { author, messageID, data: { fileName, rawCode } } = Reaction;
 		if (event.userID != author)
 			return;
-		const { configCommands } = global.RIYAD XD;
+		const { configCommands } = global.RIYAD_XD;
 		const { log, loadScripts } = global.utils;
 		const infoLoad = loadScripts("events", fileName, log, configCommands, api, threadModel, userModel, dashBoardModel, globalModel, threadsData, usersData, dashBoardData, globalData, getLang, rawCode);
 		

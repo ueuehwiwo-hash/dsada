@@ -36,7 +36,7 @@ module.exports = {
 			if (author == api.getCurrentUserID())
 				return;
 			let threadName;
-			const { config } = global.RIYAD XD;
+			const { config } = global.RIYAD_XD;
 			const { botLogging } = config;
 
 			// Check if logging is enabled for this event type

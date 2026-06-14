@@ -1,5 +1,5 @@
 const fs = require("fs-extra");
-const { config } = global.RIYAD XD;
+const { config } = global.RIYAD_XD;
 const { client } = global;
 
 module.exports = {

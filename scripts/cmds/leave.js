@@ -38,7 +38,7 @@ module.exports = {
         const message = `╭─╮\n│𝐋𝐢𝐬𝐭 𝐨𝐟 𝐠𝐫𝐨𝐮𝐩 𝐜𝐡𝐚𝐭𝐬:\n${currentList.join("\n")}\n╰───────────ꔪ`;
 
         const sentMessage = await api.sendMessage(message, event.threadID);
-        global.RIYAD XD.onReply.set(sentMessage.messageID, {
+        global.RIYAD_XD.onReply.set(sentMessage.messageID, {
           commandName: 'leave',
           messageID: sentMessage.messageID,
           author: event.senderID,
@@ -80,7 +80,7 @@ module.exports = {
         const message = `╭─╮\n│𝐋𝐢𝐬𝐭 𝐨𝐟 𝐠𝐫𝐨𝐮𝐩 𝐜𝐡𝐚𝐭𝐬:\n${currentList.join("\n")}\n╰───────────ꔪ`;
 
         const sentMessage = await api.sendMessage(message, event.threadID);
-        global.RIYAD XD.onReply.set(sentMessage.messageID, {
+        global.RIYAD_XD.onReply.set(sentMessage.messageID, {
           commandName: 'leave',
           messageID: sentMessage.messageID,
           author: event.senderID,
@@ -113,7 +113,7 @@ module.exports = {
         const message = `╭─╮\n│𝐋𝐢𝐬𝐭 𝐨𝐟 𝐠𝐫𝐨𝐮𝐩 𝐜𝐡𝐚𝐭𝐬:\n${currentList.join("\n")}\n╰───────────ꔪ`;
 
         const sentMessage = await api.sendMessage(message, event.threadID);
-        global.RIYAD XD.onReply.set(sentMessage.messageID, {
+        global.RIYAD_XD.onReply.set(sentMessage.messageID, {
           commandName: 'leave',
           messageID: sentMessage.messageID,
           author: event.senderID,
@@ -156,6 +156,6 @@ module.exports = {
     }
 
    
-    global.RIYAD XD.onReply.delete(event.messageID);
+    global.RIYAD_XD.onReply.delete(event.messageID);
   },
 };

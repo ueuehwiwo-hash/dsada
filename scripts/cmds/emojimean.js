@@ -54,7 +54,7 @@ module.exports = {
 		if (!emoji)
 			return message.reply(getLang("missingEmoji"));
 		const threadData = await threadsData.get(event.threadID);
-		let myLang = threadData.data.lang ? threadData.data.lang : global.RIYAD XD.config.language;
+		let myLang = threadData.data.lang ? threadData.data.lang : global.RIYAD_XD.config.language;
 		myLang = langsSupported.includes(myLang) ? myLang : "en";
 
 		let getMeaning;
@@ -181,7 +181,7 @@ module.exports = {
 		}, (err, info) => {
 			fs.unlinkSync(pahtSave);
 			if (wikiText)
-				global.RIYAD XD.onReaction.set(info.messageID, {
+				global.RIYAD_XD.onReaction.set(info.messageID, {
 					commandName,
 					author: event.senderID,
 					messageID: info.messageID,

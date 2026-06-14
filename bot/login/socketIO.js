@@ -5,7 +5,7 @@
  */
 const { Server } = require("socket.io");
 const { log, getText } = global.utils;
-const { config } = global.RIYAD XD;
+const { config } = global.RIYAD_XD;
 
 module.exports = async (server) => {
 	const { channelName, verifyToken } = config.serverUptime.socket;

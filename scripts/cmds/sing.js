@@ -14,7 +14,7 @@ module.exports = {
   },
 
   ST: async function ({ message, args, event, usersData }) {
-    const stapi = new global.utils.RIYAD XDApis();
+    const stapi = new global.utils.RIYAD_XDApis();
 
     if (!args[0]) {
       return message.reply("🎵 Enter song name");
@@ -95,7 +95,7 @@ module.exports = {
       await message.unsend(processing.messageID);
 
       return message.reply(msg, (err, info) => {
-        global.RIYAD XD.onReply.set(info.messageID, {
+        global.RIYAD_XD.onReply.set(info.messageID, {
           commandName: module.exports.config.name,
           author: event.senderID,
           videos: top
@@ -120,7 +120,7 @@ module.exports = {
       return message.reply("❌ Invalid choice");
     }
 
-    const stapi = new global.utils.RIYAD XDApis();
+    const stapi = new global.utils.RIYAD_XDApis();
     const video = Reply.videos[choice - 1];
 
     const userName = await usersData.getName(event.senderID);

@@ -30,7 +30,7 @@ module.exports = {
       `🎮 Quiz Game - Language Selection\n━━━━━━━━━━━━━━━━━━━━━━\n\n${optionText}\n\n━━━━━━━━━━━━━━━━━━━━━━\n💡 Reply with a number to select language`
     );
 
-    global.RIYAD XD.onReply.set(sent.messageID, {
+    global.RIYAD_XD.onReply.set(sent.messageID, {
       commandName: module.exports.config.name,
       messageID: sent.messageID,
       author: event.senderID,
@@ -80,7 +80,7 @@ module.exports = {
         `🎮 Quiz Game - Category Selection\n━━━━━━━━━━━━━━━━━━━━━━\nSelected Language: ${language.name}\n\n${categoryText}\n\n━━━━━━━━━━━━━━━━━━━━━━\n💡 Reply with a number to select category`
       );
 
-      global.RIYAD XD.onReply.set(sent.messageID, {
+      global.RIYAD_XD.onReply.set(sent.messageID, {
         commandName: module.exports.config.name,
         messageID: sent.messageID,
         author: event.senderID,
@@ -99,8 +99,8 @@ module.exports = {
       const category = categoryOptions[userInput];
 
       try {
-        const RIYAD XDApi = new global.utils.RIYAD XDApis();
-        const response = await axios.post(`${RIYAD XDApi.baseURL}/api/quiz/generate`, {
+        const RIYAD_XDApi = new global.utils.RIYAD_XDApis();
+        const response = await axios.post(`${RIYAD_XDApi.baseURL}/api/quiz/generate`, {
           language: selectedLanguage.code,
           category: category.code
         }, {
@@ -122,7 +122,7 @@ module.exports = {
           `❓ ${quizData.question}\n\n━━━━━━━━━━━━━━━━━━━━━━\n\n${optionsText}\n\n━━━━━━━━━━━━━━━━━━━━━━\n💡 Reply with A, B, C, or D`
         );
 
-        global.RIYAD XD.onReply.set(sent.messageID, {
+        global.RIYAD_XD.onReply.set(sent.messageID, {
           commandName: module.exports.config.name,
           messageID: sent.messageID,
           author: event.senderID,
@@ -173,8 +173,8 @@ module.exports = {
           // Load next quiz after correct answer
           setTimeout(async () => {
             try {
-              const RIYAD XDApi = new global.utils.RIYAD XDApis();
-              const response = await axios.post(`${RIYAD XDApi.baseURL}/api/quiz/generate`, {
+              const RIYAD_XDApi = new global.utils.RIYAD_XDApis();
+              const response = await axios.post(`${RIYAD_XDApi.baseURL}/api/quiz/generate`, {
                 language: selectedLanguage.code,
                 category: selectedCategory.code
               }, {
@@ -196,7 +196,7 @@ module.exports = {
                 `❓ ${newQuizData.question}\n\n━━━━━━━━━━━━━━━━━━━━━━\n\n${optionsText}\n\n━━━━━━━━━━━━━━━━━━━━━━\n💡 Reply with A, B, C, or D`
               );
 
-              global.RIYAD XD.onReply.set(newQuizMessage.messageID, {
+              global.RIYAD_XD.onReply.set(newQuizMessage.messageID, {
                 commandName: module.exports.config.name,
                 messageID: newQuizMessage.messageID,
                 author: event.senderID,
@@ -222,8 +222,8 @@ module.exports = {
 
         setTimeout(async () => {
           try {
-            const RIYAD XDApi = new global.utils.RIYAD XDApis();
-            const response = await axios.post(`${RIYAD XDApi.baseURL}/api/quiz/generate`, {
+            const RIYAD_XDApi = new global.utils.RIYAD_XDApis();
+            const response = await axios.post(`${RIYAD_XDApi.baseURL}/api/quiz/generate`, {
               language: selectedLanguage.code,
               category: selectedCategory.code
             }, {
@@ -245,7 +245,7 @@ module.exports = {
               `❓ ${newQuizData.question}\n\n━━━━━━━━━━━━━━━━━━━━━━\n\n${optionsText}\n\n━━━━━━━━━━━━━━━━━━━━━━\n💡 Reply with A, B, C, or D`
             );
 
-            global.RIYAD XD.onReply.set(newQuizMessage.messageID, {
+            global.RIYAD_XD.onReply.set(newQuizMessage.messageID, {
               commandName: module.exports.config.name,
               messageID: newQuizMessage.messageID,
               author: event.senderID,
