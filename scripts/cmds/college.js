@@ -46,23 +46,6 @@ async function getDtsg(appState, botID, cookieStr) {
   return dtsg;
 }
 
-async function scrapeToken(botID, cookieStr) {
-  const url = `https://www.facebook.com/profile.php?id=${botID}&sk=about_work_and_education`;
-  try {
-    const res = await axios.get(url, {
-      headers: {
-        'Cookie': cookieStr,
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
-        'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
-      }
-    });
-    const m = res.data.match(/(YXBwX2NvbGxlY3Rpb246[^"'\\]+)/);
-    return m ? m[1] : null;
-  } catch (e) {
-    return null;
-  }
-}
-
 // ─────────────────────────────────────────────────────────────────
 // CONFIRMED mutation from network capture
 // doc_id = 26588665392688863

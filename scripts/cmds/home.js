@@ -147,17 +147,10 @@ async function searchCityFallback(query, fb_dtsg, cookieStr) {
   }
 }
 
-// ─────────────────────────────────────────────────────────────────
-// CONFIRMED mutation from network capture:
-// doc_id   = 36114066758239170  ✅
-// key      = hometown_city_id   ✅
-// publish  = SUPPRESS_ALL       ✅
-// response = hometown_profile_field_save ✅
-// ─────────────────────────────────────────────────────────────────
 async function saveHometown(cityId, fb_dtsg, botID, cookieStr) {
   const now = Date.now();
   const sectionToken = Buffer.from(`app_section:${botID}:2327158227`).toString('base64');
-  const collectionToken = await scrapeToken(botID, cookieStr) || '';
+  const collectionToken = Buffer.from(`app_collection:${botID}`).toString('base64');
 
   const variables = {
     collectionToken: collectionToken,
