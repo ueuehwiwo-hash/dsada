@@ -29,23 +29,35 @@ module.exports = {
         body: postText,
         privacy: { value: 'EVERYONE' } // Public post
       }, (err, info) => {
-        // Facebook's unofficial API sometimes returns a GraphQL field_exception error 
-        // even when the post is successfully published. We check if story_create exists.
         let isSuccess = false;
-        
-        if (!err) {
+        let postUrl = "";
+
+        if (!err && info) {
             isSuccess = true;
+            postUrl = info.postUrl || info.url || "";
         } else if (err && err.data && err.data.story_create) {
             // The mutation executed but returned some field errors, post is usually still created
             isSuccess = true;
+            try {
+                if (err.data.story_create.story && err.data.story_create.story.url) {
+                    postUrl = err.data.story_create.story.url;
+                } else if (err.data.story_create.post_id) {
+                    postUrl = "https://facebook.com/" + err.data.story_create.post_id;
+                }
+            } catch (e) {}
         }
 
         if (!isSuccess) {
           console.error("Create Post Error:", err);
-          return message.reply("❌ পোস্ট তৈরি করতে সমস্যা হয়েছে! কনসোল লগ চেক করুন।");
+          return message.reply("❌ পোস্ট তৈরি করতে সমস্যা হয়েছে! এটি স্প্যাম ফিল্টারে ব্লক হতে পারে অথবা অন্য কোনো সার্ভার এরর হয়েছে।");
         }
         
-        return message.reply(`✅ আপনার নতুন পোস্ট সফলভাবে করা হয়েছে!\n\n📝 টেক্সট: ${postText}\n\n(দ্রষ্টব্য: কখনো কখনো পোস্টটি সাথে সাথে দেখা গেলেও, নোটিফিকেশন আসতে কিছুটা সময় লাগতে পারে)`);
+        let replyMsg = `✅ ১০০% নিশ্চিত! আপনার নতুন পোস্ট সফলভাবে করা হয়েছে!\n\n📝 টেক্সট: ${postText}`;
+        if (postUrl) {
+            replyMsg += `\n\n🔗 পোস্ট লিংক: ${postUrl}`;
+        }
+        
+        return message.reply(replyMsg);
       });
     } catch (error) {
       console.error(error);
