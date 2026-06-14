@@ -57,7 +57,7 @@ module.exports = {
 
       let fontMap;
       try {
-        const { data } = await axios.get(`${baseUrl}/21.json`);
+        const data = JSON.parse(require("fs").readFileSync(require("path").join(__dirname, "assets", "font_21.json"), "utf8"));
         fontMap = data;
       } catch (e) {
         console.error("Font load error:", e.message);
@@ -75,7 +75,7 @@ module.exports = {
       const canvas = createCanvas(width, height);
       const ctx = canvas.getContext("2d");
 
-      const background = await loadImage("https://files.catbox.moe/29jl5s.jpg");
+      const background = await loadImage(__dirname + "/assets/pair_bg.jpg");
       ctx.drawImage(background, 0, 0, width, height);
 
       const sIdImage = await loadImage(
@@ -135,3 +135,4 @@ module.exports = {
     }
   },
 };
+

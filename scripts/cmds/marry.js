@@ -37,7 +37,7 @@ module.exports = {
                 const ppUrl2 = await usersData.getAvatarUrl(two);
                 const canvas = createCanvas(900, 850);
                 const ctx = canvas.getContext("2d");
-                const bgImg = await loadImage("https://files.catbox.moe/pxougj.jpg");
+                const bgImg = await loadImage(__dirname + "/assets/marry_bg.jpg");
                 ctx.drawImage(bgImg, 0, 0, canvas.width, canvas.height);
 
                 const pp1 = await loadImage(ppUrl1);

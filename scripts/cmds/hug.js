@@ -42,7 +42,7 @@ module.exports = {
       const canvas = createCanvas(800, 750);
       const ctx = canvas.getContext("2d");
 
-      const background = await loadImage("https://files.catbox.moe/qxovn9.jpg");
+      const background = await loadImage(__dirname + "/assets/hug_bg.jpg");
       ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
       const avatar1 = await loadImage(avatarURL1);

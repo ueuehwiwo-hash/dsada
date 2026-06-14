@@ -23,7 +23,7 @@ module.exports = {
     const Status = "⫷ 💫 Keep Calm & Code On 💫 ⫸";
 
     const urls = [
-      "https://i.ibb.co.com/B52s0L6G/2a3b08a991cb.jpg"
+      __dirname + "/assets/info_bg.jpg"
     ];
     const link = urls[Math.floor(Math.random() * urls.length)];
 

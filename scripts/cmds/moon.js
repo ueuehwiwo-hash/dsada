@@ -150,14 +150,14 @@ function checkDate(date) {
 }
 
 const moonImages = [
-	'https://i.ibb.co/9shyYH1/moon-0.png',
-	'https://i.ibb.co/vBXLL37/moon-1.png',
-	'https://i.ibb.co/0QCKK9D/moon-2.png',
-	'https://i.ibb.co/Dp62X2j/moon-3.png',
-	'https://i.ibb.co/xFKCtfd/moon-4.png',
-	'https://i.ibb.co/m4L533L/moon-5.png',
-	'https://i.ibb.co/VmshdMN/moon-6.png',
-	'https://i.ibb.co/4N7R2B2/moon-7.png',
+	'assets/moon-0.png',
+	'assets/moon-1.png',
+	'assets/moon-2.png',
+	'assets/moon-3.png',
+	'assets/moon-4.png',
+	'assets/moon-5.png',
+	'assets/moon-6.png',
+	'assets/moon-7.png',
 	'https://i.ibb.co/C2k4YB8/moon-8.png',
 	'https://i.ibb.co/F62wHxP/moon-9.png',
 	'https://i.ibb.co/Gv6R1mk/moon-10.png',
