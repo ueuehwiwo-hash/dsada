@@ -222,9 +222,9 @@ function isPremiumRequired(userData, senderID, commandName, message, langCode, c
 module.exports = function (api, threadModel, userModel, dashBoardModel, globalModel, usersData, threadsData, dashBoardData, globalData) {
   return async function (event, message) {
 
-    const { utils, client, RIYAD XD } = global;
+    const { utils, client, RIYAD_XD } = global;
     const { getPrefix, removeHomeDir, log, getTime } = utils;
-    const { config, configCommands: { envGlobal, envCommands, envEvents } } = RIYAD XD;
+    const { config, configCommands: { envGlobal, envCommands, envEvents } } = RIYAD_XD;
     const { autoRefreshThreadInfoFirstTime } = config.database;
     let { hideNotiMessage = {} } = config;
     const { body } = event;
@@ -883,7 +883,7 @@ module.exports = function (api, threadModel, userModel, dashBoardModel, globalMo
         return;
       }
 
-      const { onReply } = RIYAD XD;
+      const { onReply } = RIYAD_XD;
       const Reply = onReply.get(event.messageReply.messageID);
       if (!Reply)
         return;
@@ -985,7 +985,7 @@ module.exports = function (api, threadModel, userModel, dashBoardModel, globalMo
         return;
       }
 
-      const { onReaction } = RIYAD XD;
+      const { onReaction } = RIYAD_XD;
       const Reaction = onReaction.get(event.messageID);
       if (!Reaction)
         return;

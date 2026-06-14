@@ -12,7 +12,7 @@ const exec = (cmd, options) => new Promise((resolve, reject) => {
 
 const { log, loading, getText, colors, removeHomeDir } = global.utils;
 const { RIYAD_XD } = global;
-const { configCommands } = RIYAD XD;
+const { configCommands } = RIYAD_XD;
 
 const regExpCheckPackage = /require(\s+|)\((\s+|)[`'"]([^`'"]+)[`'"](\s+|)\)/g;
 const packageAlready = [];

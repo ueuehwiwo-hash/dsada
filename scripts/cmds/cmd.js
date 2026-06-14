@@ -554,7 +554,7 @@ function loadScripts(folder, fileName, log, configCommands, api, threadModel, us
 		}
 		const regExpCheckPackage = /require(\s+|)\((\s+|)[`'"]([^`'"]+)[`'"](\s+|)\)/g;
 		const { RIYAD_XD } = global;
-		const { onFirstChat: allOnFirstChat, onChat: allOnChat, onEvent: allOnEvent, onAnyEvent: allOnAnyEvent } = RIYAD XD;
+		const { onFirstChat: allOnFirstChat, onChat: allOnChat, onEvent: allOnEvent, onAnyEvent: allOnAnyEvent } = RIYAD_XD;
 		let setMap, typeEnvCommand, commandType;
 		if (folder == "cmds") {
 			typeEnvCommand = "envCommands";
@@ -767,7 +767,7 @@ function unloadScripts(folder, fileName, configCommands, getLang) {
 	if (!commandName)
 		throw new Error(getLang("invalidFileName", `${fileName}.js`));
 	const { RIYAD_XD } = global;
-	const { onChat: allOnChat, onEvent: allOnEvent, onAnyEvent: allOnAnyEvent } = RIYAD XD;
+	const { onChat: allOnChat, onEvent: allOnEvent, onAnyEvent: allOnAnyEvent } = RIYAD_XD;
 	const indexOnChat = allOnChat.findIndex(item => item == commandName);
 	if (indexOnChat != -1)
 		allOnChat.splice(indexOnChat, 1);

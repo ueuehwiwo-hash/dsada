@@ -1,5 +1,5 @@
-const { db, utils, RIYAD XD } = global;
-const { config } = RIYAD XD;
+const { db, utils, RIYAD_XD } = global;
+const { config } = RIYAD_XD;
 const { log, getText } = utils;
 const { creatingThreadData, creatingUserData } = global.client.database;
 
