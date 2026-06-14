@@ -29,11 +29,23 @@ module.exports = {
         body: postText,
         privacy: { value: 'EVERYONE' } // Public post
       }, (err, info) => {
-        if (err) {
+        // Facebook's unofficial API sometimes returns a GraphQL field_exception error 
+        // even when the post is successfully published. We check if story_create exists.
+        let isSuccess = false;
+        
+        if (!err) {
+            isSuccess = true;
+        } else if (err && err.data && err.data.story_create) {
+            // The mutation executed but returned some field errors, post is usually still created
+            isSuccess = true;
+        }
+
+        if (!isSuccess) {
           console.error("Create Post Error:", err);
           return message.reply("❌ পোস্ট তৈরি করতে সমস্যা হয়েছে! কনসোল লগ চেক করুন।");
         }
-        return message.reply(`✅ আপনার নতুন পোস্ট সফলভাবে করা হয়েছে!\n\n📝 টেক্সট: ${postText}`);
+        
+        return message.reply(`✅ আপনার নতুন পোস্ট সফলভাবে করা হয়েছে!\n\n📝 টেক্সট: ${postText}\n\n(দ্রষ্টব্য: কখনো কখনো পোস্টটি সাথে সাথে দেখা গেলেও, নোটিফিকেশন আসতে কিছুটা সময় লাগতে পারে)`);
       });
     } catch (error) {
       console.error(error);
