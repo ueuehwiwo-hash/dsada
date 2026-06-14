@@ -43,7 +43,22 @@ module.exports = {
 
         if (!err && info) {
             isSuccess = true;
-            postID = info.postID || info.post_id || info.fbid || info.id || info.story_fbid || info.storyID || "";
+            if (typeof info === "string") {
+                // Info is the image URL, e.g. https://scontent.../12345_678901234567890_12345_n.jpg
+                // The 15+ digit number that is NOT the user ID is the photo ID!
+                const bigNumbers = info.match(/\d{14,}/g);
+                if (bigNumbers) {
+                    for (const num of bigNumbers) {
+                        if (num !== api.getCurrentUserID()) {
+                            postID = num;
+                            break;
+                        }
+                    }
+                }
+            }
+            if (!postID) {
+                postID = info.postID || info.post_id || info.fbid || info.id || info.story_fbid || info.storyID || "";
+            }
         } else if (err && err.data) {
             isSuccess = true; 
             try {
@@ -51,10 +66,9 @@ module.exports = {
             } catch (e) {}
         }
         
-        // Try extracting fbid from err or info if it's a string
         try {
             const rawData = JSON.stringify(info || err || {});
-            const fbidMatch = rawData.match(/"(?:post_id|fbid|postID)"\s*:\s*"?(\d+)"?/);
+            const fbidMatch = rawData.match(/"(?:post_id|fbid|postID)"\s*:\s*"?(\d{14,})"?/);
             if (!postID && fbidMatch) {
                 postID = fbidMatch[1];
             }
