@@ -1,9 +1,7 @@
 const axios = require("axios");
 
 const getBaseApi = async () => {
-  const base = await axios.get(
-    "https://raw.githubusercontent.com/cyber-ullash/cyber-ullash/refs/heads/main/UllashApi.json"
-  );
+  const base = {"data": JSON.parse(require("fs").readFileSync(require("path").join(__dirname, "assets", "UllashApi.json"), "utf8"))};
   return base.data;
 };
 
@@ -132,3 +130,4 @@ module.exports.onStart = async function ({ api, event, args, usersData }) {
     );
   }
 };
+

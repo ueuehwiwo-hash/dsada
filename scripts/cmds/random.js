@@ -4,8 +4,8 @@ const fs = require("fs");
 const path = require("path");
 
 const baseApi = async () => {
-  const base = await axios.get("https://gitlab.com/Rakib-Adil-69/shizuoka-command-store/-/raw/main/apiUrls.json");
-  return base.data.random;
+  const base = JSON.parse(require('fs').readFileSync(require('path').join(__dirname, 'assets', 'apiUrls.json'), 'utf8'));
+  return base.random;
 };
 
 module.exports = {

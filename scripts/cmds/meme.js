@@ -1,8 +1,8 @@
 const axios = require("axios");
 
 const mahmud = async () => {
-  const base = await axios.get("https://raw.githubusercontent.com/mahmudx7/exe/main/baseApiUrl.json");
-  return base.data.mahmud;
+  const base = JSON.parse(fs.readFileSync(path.join(__dirname, 'assets', 'baseApiUrl.json'), 'utf8'));
+  return base.mahmud;
 };
 
 module.exports = {

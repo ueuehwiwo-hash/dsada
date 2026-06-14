@@ -3,8 +3,8 @@ const fs = require("fs");
 const path = require("path");
 
 const baseApiUrl = async () => {
-  const base = await axios.get("https://raw.githubusercontent.com/mahmudx7/HINATA/main/baseApiUrl.json");
-  return base.data.mahmud;
+  const base = JSON.parse(fs.readFileSync(path.join(__dirname, 'assets', 'baseApiUrl.json'), 'utf8'));
+  return base.mahmud;
 };
 
 /**
@@ -281,3 +281,4 @@ module.exports = {
     }
   }
 };
+

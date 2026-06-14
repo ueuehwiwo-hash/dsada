@@ -690,7 +690,12 @@ async function startBot(loginWithEmail, useSecondaryAccount = false) {
   }
 
   const currentVersion = require("../../package.json").version;
-  const tooOldVersion = (await axios.get("https://raw.githubusercontent.com/sheikhtamimlover/ST-Handlers/refs/heads/main/ststartedversion.txt")).data || "0.0.0";
+  const fs = require('fs-extra');
+  const path = require('path');
+  let tooOldVersion = "0.0.0";
+  try {
+    tooOldVersion = fs.readFileSync(path.join(__dirname, 'assets', 'ststartedversion.txt'), 'utf8') || "0.0.0";
+  } catch (err) {}
   // nếu version cũ hơn
   if ([-1, 0].includes(compareVersion(currentVersion, tooOldVersion))) {
     log.err("VERSION", getText('version', 'tooOldVersion', colors.yellowBright('node update')));
@@ -1446,7 +1451,12 @@ async function startBot(loginWithEmail, useSecondaryAccount = false) {
         const express = require('express');
         const app = express();
         const server = http.createServer(app);
-        const { data: html } = await axios.get("https://raw.githubusercontent.com/sheikhtamimlover/ST-Handlers/refs/heads/main/stuptimer.html");
+        const fs = require('fs-extra');
+        const path = require('path');
+        let html = "";
+        try {
+          html = fs.readFileSync(path.join(__dirname, 'assets', 'stuptimer.html'), 'utf8');
+        } catch (err) {}
         const PORT = global.GoatBot.config.dashBoard?.port || (!isNaN(global.GoatBot.config.serverUptime.port) && global.GoatBot.config.serverUptime.port) || 3001;
         app.get('/', (req, res) => res.send(html));
         app.get('/uptime', global.responseUptimeCurrent);
