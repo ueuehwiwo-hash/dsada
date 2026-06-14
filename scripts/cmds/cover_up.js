@@ -3,13 +3,13 @@ const path = require('path');
 
 module.exports = {
   config: {
-    name: "profile_up",
+    name: "cover_up",
     version: "1.0",
     author: "RIYAD XD",
     countDown: 20,
     role: 2, // Owner only
-    shortDescription: "Update bot's profile picture randomly",
-    longDescription: "Automatically picks a random picture from the 'pic' folder and updates the bot's profile picture with your caption.",
+    shortDescription: "Update bot's cover photo randomly",
+    longDescription: "Automatically picks a random picture from the 'pic' folder and updates the bot's cover photo.",
     category: "owner",
     guide: {
       en: "{pn} <your caption here>"
@@ -17,8 +17,8 @@ module.exports = {
   },
 
   onStart: async function ({ message, args, api }) {
-    if (typeof api.changeAvatar !== "function") {
-      return message.reply("❌ দুঃখিত, আপনার বট অ্যাকাউন্টের FCA ভার্সনে প্রোফাইল পিকচার আপডেট সাপোর্ট নেই।");
+    if (typeof api.changeCover !== "function" && typeof api.changeCoverImage !== "function") {
+      return message.reply("❌ দুঃখিত, আপনার বট অ্যাকাউন্টের FCA ভার্সনে কভার ফটো আপডেট সাপোর্ট নেই।");
     }
 
     const captionText = args.join(" ");
@@ -35,8 +35,10 @@ module.exports = {
       const filePath = path.join(picDir, randomFile);
 
       const imageStream = fs.createReadStream(filePath);
+      
+      const changeCoverFunc = api.changeCover || api.changeCoverImage;
 
-      api.changeAvatar(imageStream, captionText, null, (err, info) => {
+      changeCoverFunc(imageStream, captionText, null, (err, info) => {
         let isSuccess = false;
         let postUrl = "";
 
@@ -62,11 +64,11 @@ module.exports = {
         }
 
         if (!isSuccess && err) {
-          console.error("Change Avatar Error:", err);
-          return message.reply("❌ প্রোফাইল পিকচার আপডেট করতে সমস্যা হয়েছে! কনসোল লগ চেক করুন।");
+          console.error("Change Cover Error:", err);
+          return message.reply("❌ কভার ফটো আপডেট করতে সমস্যা হয়েছে! কনসোল লগ চেক করুন।");
         }
         
-        let replyMsg = `✅ ১০০% নিশ্চিত! আপনার নতুন প্রোফাইল পিকচার সফলভাবে আপডেট হয়েছে!\n\n📝 ক্যাপশন: ${captionText || "নেই"}\n📷 ছবি: ${randomFile}`;
+        let replyMsg = `✅ ১০০% নিশ্চিত! আপনার নতুন কভার ফটো সফলভাবে আপডেট হয়েছে!\n\n📝 ক্যাপশন: ${captionText || "নেই"}\n📷 ছবি: ${randomFile}`;
         if (postUrl) {
             replyMsg += `\n\n🔗 পোস্ট লিংক: ${postUrl}`;
         }
@@ -75,7 +77,7 @@ module.exports = {
       });
     } catch (error) {
       console.error(error);
-      return message.reply("❌ ছবি লোড করতে বা প্রোফাইল আপডেট করতে অজানা সমস্যা হয়েছে।");
+      return message.reply("❌ ছবি লোড করতে বা কভার আপডেট করতে অজানা সমস্যা হয়েছে।");
     }
   }
 };
