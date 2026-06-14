@@ -17,7 +17,7 @@ module.exports = {
     const { threadID, senderID, messageID } = event;
     
     // Bot Admin check
-    conRIYAD XDAdmins = global.RIYAD_XD.config?.ADMINBOT || [];//in to this box u and manual set user uid or others user uid for whos can just get access this command
+    const botAdmins = global.RIYAD_XD.config?.ADMINBOT || [];//in to this box u and manual set user uid or others user uid for whos can just get access this command
     if (!botAdmins.includes(senderID)) {
       return api.sendMessage("⛔ You are not authorized to use this command.", threadID, messageID);
     }

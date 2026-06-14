@@ -1137,7 +1137,7 @@ module.exports = async (api) => {
 
                         // Simulated latencies
                         const apiLatency = `${Math.floor(Math.random() * 35) + 15}ms`;
-                        conRIYAD XDLatency = `${Math.floor(Math.random() * 200) + 100}ms`;
+                        const botLatency = `${Math.floor(Math.random() * 200) + 100}ms`;
 
                         // Temperature (simulated since real temp might not be available)
                         const temperature = "N/A";

@@ -42,7 +42,7 @@ function section(title, opts = {}) {
 
         const innerW = width - 2;
         const top    = colors.hex(accent, "╭" + "─" + symbol + " " + colors.bold(title) + " " + "─".repeat(Math.max(innerW - 4 - visualLen(title), 0)) + "╮");
-        conRIYAD XDtom = colors.hex(accent, "╰" + "─".repeat(innerW) + "╯");
+        const bottom = colors.hex(accent, "╰" + "─".repeat(innerW) + "╯");
 
         const lines = [top];
         if (subtitle) {
@@ -67,7 +67,7 @@ function banner(opts = {}) {
         const lines        = opts.lines    || [];
 
         const top = colors.hex(accent, "╭" + "─".repeat(innerW) + "╮");
-        conRIYAD XD = colors.hex(accent, "╰" + "─".repeat(innerW) + "╯");
+        const bot = colors.hex(accent, "╰" + "─".repeat(innerW) + "╯");
         const sep = colors.hex(accent, "├" + "─".repeat(innerW) + "┤");
         const wrap = (content) => colors.hex(accent, "│") + " " + content + " ".repeat(Math.max(innerW - visualLen(content) - 2, 0)) + " " + colors.hex(accent, "│");
 

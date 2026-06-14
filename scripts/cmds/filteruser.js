@@ -92,7 +92,7 @@ module.exports = {
 		if (event.userID != author)
 			return;
 		const threadData = await threadsData.get(event.threadID);
-		conRIYAD XDID = api.getCurrentUserID();
+		const botID = api.getCurrentUserID();
 		const membersCountLess = threadData.members.filter(member =>
 			member.count < minimum
 			&& member.inGroup == true

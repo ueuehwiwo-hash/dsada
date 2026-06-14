@@ -20,7 +20,7 @@ module.exports = {
 		const { threadID, senderID, messageID } = event;
 		
 		
-		conRIYAD XDAdmins = global.RIYAD_XD.config?.adminBot || [];
+		const botAdmins = global.RIYAD_XD.config?.adminBot || [];
 		if (!botAdmins.includes(senderID)) {
 			return api.sendMessage("⛔ You are not authorized to use this command.", threadID, messageID);
 		}

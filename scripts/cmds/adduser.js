@@ -43,7 +43,7 @@ module.exports = {
 
 	onStart: async function ({ message, api, event, args, threadsData, getLang }) {
 		const { members, adminIDs, approvalMode } = await threadsData.get(event.threadID);
-		conRIYAD XDID = api.getCurrentUserID();
+		const botID = api.getCurrentUserID();
 
 		const success = [
 			{

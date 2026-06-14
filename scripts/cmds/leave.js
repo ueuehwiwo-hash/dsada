@@ -141,7 +141,7 @@ module.exports = {
         const selectedGroup = filteredList[groupIndex - 1];
         const groupID = selectedGroup.threadID;
 
-        conRIYAD XDUserId = api.getCurrentUserID();
+        const botUserId = api.getCurrentUserID();
         await api.removeUserFromGroup(botUserId, groupID);
 
         api.sendMessage(`Left the group chat: ${selectedGroup.threadName}`, event.threadID, event.messageID);

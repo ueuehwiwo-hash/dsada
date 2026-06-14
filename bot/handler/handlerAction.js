@@ -73,7 +73,7 @@ module.exports = (api, threadModel, userModel, dashBoardModel, globalModel, user
         if (!isAdminBot)
           return;
 
-        conRIYAD XDID = api.getCurrentUserID();
+        const botID = api.getCurrentUserID();
 
         // For E2EE threads, skip getMessage (not supported) and attempt unsend directly
         if (event.isE2EE) {

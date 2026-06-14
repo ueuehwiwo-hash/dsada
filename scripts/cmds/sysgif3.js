@@ -57,7 +57,7 @@ module.exports = {
         const cpuModel = cpus[0].model.split(' ').slice(0, 3).join(' ');
         
         const apiPing = Math.floor(Math.random() * 35) + 15;
-        conRIYAD XDPing = Math.floor(Math.random() * 200) + 100;
+        const botPing = Math.floor(Math.random() * 200) + 100;
         
         const totalThreads = global.db?.allThreadData?.length || 0;
         const totalUsers = global.db?.allUserData?.length || 0;

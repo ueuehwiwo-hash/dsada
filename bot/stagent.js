@@ -753,12 +753,12 @@ class riyadagent {
     const event = this.params.event || {};
     const senderID = String(event.senderID || event.userID || "");
     const threadID = String(event.threadID || "");
-    conRIYAD XDID = this.params.api?.getCurrentUserID ? String(this.params.api.getCurrentUserID()) : String(global.RIYAD_XD?.botID || "");
+    const botID = this.params.api?.getCurrentUserID ? String(this.params.api.getCurrentUserID()) : String(global.RIYAD_XD?.botID || "");
     const threadData = global.db?.allThreadData?.find(t => String(t.threadID) === threadID);
     const userData = global.db?.allUserData?.find(u => String(u.userID) === senderID);
     const senderName = userData?.name || senderID;
     const threadName = threadData?.threadName || threadData?.name || threadID;
-    conRIYAD XDName = global.RIYAD_XD?.botName || "RIYAD XD";
+    const botName = global.RIYAD_XD?.botName || "RIYAD XD";
     const prefix = global.RIYAD_XD?.config?.prefix || "!";
     const loadedCmds = Array.from(global.RIYAD_XD?.commands?.keys?.() || []).sort().join(", ");
 
@@ -1029,7 +1029,7 @@ class riyadagent {
     const event = this.params.event || {};
     const senderID = String(event.senderID || event.userID || "");
     const threadID = String(event.threadID || "");
-    conRIYAD XDID = this.params.api?.getCurrentUserID ? String(this.params.api.getCurrentUserID()) : String(global.RIYAD_XD?.botID || "");
+    const botID = this.params.api?.getCurrentUserID ? String(this.params.api.getCurrentUserID()) : String(global.RIYAD_XD?.botID || "");
     const threadData = global.db?.allThreadData?.find(t => String(t.threadID) === threadID);
     const userData = global.db?.allUserData?.find(u => String(u.userID) === senderID);
     return {
@@ -1405,7 +1405,7 @@ class riyadagent {
   async botAccountInfo(includePrivate = false) {
     const api = this.params.api || global.RIYAD_XD?.fcaApi || null;
     const configAccount = global.RIYAD_XD?.config?.botAccount || {};
-    conRIYAD XDID = api?.getCurrentUserID
+    const botID = api?.getCurrentUserID
       ? String(api.getCurrentUserID())
       : String(global.RIYAD_XD?.botID || "");
 
@@ -1435,7 +1435,7 @@ class riyadagent {
     const event = this.params.event || {};
     const senderID = String(event.senderID || event.userID || "");
     const threadID = String(event.threadID || "");
-    conRIYAD XDInfo = await this.botAccountInfo(false);
+    const botInfo = await this.botAccountInfo(false);
     let senderName = senderID;
     let threadName = threadID;
 

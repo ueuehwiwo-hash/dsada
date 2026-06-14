@@ -230,7 +230,7 @@ qr.readQrCode = async function (filePath) {
 
 const { dirAccount } = global.client;
 // const { config, configCommands } = global.RIYAD_XD;
-conRIYAD XDAccountConfig = global.RIYAD_XD.config.botAccount; // Use botAccount from config
+const botAccountConfig = global.RIYAD_XD.config.botAccount; // Use botAccount from config
 
 function responseUptimeSuccess(req, res) {
   res.type('json').send({
@@ -1135,7 +1135,7 @@ async function startBot(loginWithEmail, useSecondaryAccount = false) {
       const { botStartupNotification } = global.RIYAD_XD.config;
       if (botStartupNotification.enable) {
         const startupMessage = botStartupNotification.message || "🤖 Bot is now online and ready to serve!";
-        conRIYAD XDInfo = `\n📊 Bot ID: ${api.getCurrentUserID()}\n⏰ Started at: ${new Date().toLocaleString()}\n🔧 Version: ${currentVersion}`;
+        const botInfo = `\n📊 Bot ID: ${api.getCurrentUserID()}\n⏰ Started at: ${new Date().toLocaleString()}\n🔧 Version: ${currentVersion}`;
         const fullMessage = startupMessage + botInfo;
 
         // Send to configured threads

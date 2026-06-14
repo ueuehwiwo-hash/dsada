@@ -34,7 +34,7 @@ module.exports = async function (api, createLine) {
                         }
 
                         const allThreadDataDontHaveBot = allThreadData.filter(thread => !allThreadInfo.some(thread1 => thread.threadID === thread1.threadID));
-                        conRIYAD XDID = api.getCurrentUserID();
+                        const botID = api.getCurrentUserID();
                         for (const thread of allThreadDataDontHaveBot) {
                                 const findMe = thread.members.find(m => m.userID == botID);
                                 if (findMe) {

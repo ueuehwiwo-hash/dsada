@@ -29,7 +29,7 @@ module.exports = {
                 if (!event.messageReply)
                         return message.reply(getLang("syntaxError"));
 
-                conRIYAD XDID = String(api.getCurrentUserID());
+                const botID = String(api.getCurrentUserID());
                 const replyMsgID = event.messageReply.messageID;
                 const replySenderID = String(event.messageReply.senderID || "");
                 const isE2EEThread = typeof event.threadID === 'string' && event.threadID.includes('@');
