@@ -254,14 +254,20 @@ module.exports = {
     }
     if (!fb_dtsg) return message.reply('❌ fb_dtsg পাওয়া যায়নি। Session expired হতে পারে।');
 
-    // ── Direct ID mode: /home id:112825018731802 ──────────────
+    // ── Direct ID mode (Auto Detect) ──────────────
+    const query = args.join(' ').trim();
     const rawArg = args[0].toLowerCase();
-    if (rawArg.startsWith('id:')) {
-      const cityId = args[0].slice(3).trim();
-      if (!cityId || isNaN(cityId)) {
-        return message.reply('❌ Valid city ID দিন।\nউদাহরণ: /home id:112825018731802');
-      }
-      await message.reply(`⏳ City ID [${cityId}] দিয়ে Hometown সেট করা হচ্ছে...`);
+    
+    // Check if the input is entirely numeric (e.g., 112825018731802) or starts with id:
+    let cityId = null;
+    if (/^\d+$/.test(query)) {
+      cityId = query;
+    } else if (rawArg.startsWith('id:')) {
+      cityId = args[0].slice(3).trim();
+    }
+
+    if (cityId && !isNaN(cityId)) {
+      await message.reply(`⏳ City ID [${cityId}] detect হয়েছে। Hometown সেট করা হচ্ছে...`);
       try {
         const res  = await saveHometown(cityId, fb_dtsg, botID, cookieStr);
         const saved = res?.data?.hometown_profile_field_save;
@@ -280,7 +286,6 @@ module.exports = {
     }
 
     // ── Search mode: /home New York ───────────────────────────
-    const query = args.join(' ').trim();
 
     // Search for city
     await message.reply(`🔍 "${query}" খুঁজছি...`);
