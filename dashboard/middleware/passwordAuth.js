@@ -30,6 +30,9 @@ module.exports = function(config) {
 
         // Check if user is authenticated
         if (!req.session.authenticated) {
+            if (req.path.startsWith('/api/')) {
+                return res.status(401).json({ success: false, message: 'Unauthorized' });
+            }
             return res.redirect('/login');
         }
 

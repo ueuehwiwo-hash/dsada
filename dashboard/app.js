@@ -242,9 +242,8 @@ module.exports = async (api) => {
 
         // Apply password protection middleware with better API endpoint handling
         app.use((req, res, next) => {
-                // Skip password protection for API endpoints and static assets
-                const skipAuth = req.path.startsWith('/api/') || 
-                                                                                req.path.startsWith('/stats') || 
+                // Skip password protection for static assets
+                const skipAuth = req.path.startsWith('/stats') || 
                                                                                 req.path.startsWith('/system-info') ||
                                                                                 req.path.startsWith('/uptime') ||
                                                                                 req.path.startsWith('/css/') ||

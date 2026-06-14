@@ -67,8 +67,8 @@
     "expireVerifyCode": 300000,
     "port": 3021,
     "passwordProtection": {
-      "enable": false,
-      "password": "",
+      "enable": true,
+      "password": "stbotadmin",
       "notes": "Enable password protection for dashboard access"
     }
   },
